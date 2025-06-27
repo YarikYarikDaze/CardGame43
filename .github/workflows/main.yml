@@ -10,8 +10,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Super-Linter
-        uses: github/super-linter@v7.1.0
+      - name: Super-Linter
+  # You may pin to the exact commit or the version.
+  # uses: super-linter/super-linter@b92721f792f381cedc002ecdbb9847a15ece5bb8
+  uses: super-linter/super-linter@v7.1.0
+          
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
