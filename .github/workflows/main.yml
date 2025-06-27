@@ -1,0 +1,14 @@
+name: Check
+on: push
+jobs:
+  lint:
+  
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v1
+      - name: Super-Linter
+        uses: super-linter/super-linter@v7.1.0
+  
+    
+    
