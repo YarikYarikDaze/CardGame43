@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 0
   remaining: 0
-  nums:
+  possibleNums:
   - {fileID: 8279643269435607024, guid: 1bbccbfd6751a5de7960543b7db85476, type: 3}
   - {fileID: -2286529188870833429, guid: 0866fe402c3f08ce59052d9c437b5a62, type: 3}
   - {fileID: -5357903995210154981, guid: 60e01095708f4f2b4b44df9e8a25ae2e, type: 3}
@@ -116,12 +116,11 @@ MonoBehaviour:
   - {fileID: 2303314942888269524, guid: 66864aef330466c8d87f63f7c5be469c, type: 3}
   - {fileID: 1804823587958622782, guid: dc52d9e5dca71536e89bbb8fd7e8be3b, type: 3}
   possibleColors:
-  - {fileID: 1157398728493757732, guid: cc491f54e1bc327918100022990a2be0, type: 3}
   - {fileID: 4581414617268701282, guid: b711fd8c5e4f622c1a4874c3562423b8, type: 3}
   - {fileID: 9042640610010230839, guid: 3cb773bafeb97b536a2fbabe6402ea5a, type: 3}
   - {fileID: 8326954117928933334, guid: 27fbb1766269f250291e691f1173e40e, type: 3}
-  remShow: {fileID: 7715469917841009120}
   hand: {fileID: 0}
+  remCounter: {fileID: 7715469917841009120}
 --- !u!65 &3852843535687347739
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -217,7 +216,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 232852603
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 8279643269435607024, guid: 1bbccbfd6751a5de7960543b7db85476, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

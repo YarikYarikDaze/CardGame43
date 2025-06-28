@@ -17,7 +17,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] int currentTurn;               // turn counter
     [SerializeField] int playerCount;               // total player count
     [SerializeField] GameObject playerPrefab;       // prefab of a player
-    [SerializeField] GameObject enemyRenderPrefab;  // prefab of an enemy renderer
+    [SerializeField] GameObject prepRenderPrefab;  // prefab of an prep renderer
 
     [SerializeField] int initCardAmount = 8;        // amount of cards to put in every hand
 
@@ -67,7 +67,7 @@ public class GameManager : NetworkBehaviour
     void InitializeGameClientRpc()
     // Spawns player and renderer on every client
     {
-        GameObject enemyRender = Instantiate(enemyRenderPrefab);
+        GameObject prepRender = Instantiate(prepRenderPrefab);
         GameObject player = Instantiate(playerPrefab, new Vector3(0f, -5f, 0f), Quaternion.identity);
         //Debug.Log($"Object scene: {player.scene.name}");
     }
@@ -75,6 +75,7 @@ public class GameManager : NetworkBehaviour
     void SetState(int[,,] cards)
     // loads the states of each player
     {
+        ResetPrepClientRpc();
         for (int i = 0; i < playerCount; i++)
         {
             // sendParams are used for us to send only to client no. i. 
@@ -83,36 +84,72 @@ public class GameManager : NetworkBehaviour
             var sendOnly = new ClientRpcParams();
             sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[i] };
 
+            // Relays the ID to both player AND his PrepRenderer
+            SetIdClientRpc(i, playerCount, sendOnly);
+
             // Sets hand and prep
             // NOTE: preset amount of cards and colors, 
             //       we have to evaluate by colors and prep size
             int[] handCards = new int[] { cards[i, 0, 0], cards[i, 0, 1], cards[i, 0, 2] };
-            int[] prepCards = new int[] { cards[i, 1, 0], cards[i, 1, 1], cards[i, 0, 2] };
 
             // RPCs the Player ID and Cards for player's hand 
-            GiveCardsClientRpc(handCards, prepCards, sendOnly);
-            SetIdClientRpc(i, sendOnly);
+            GiveCardsClientRpc(handCards, sendOnly);
+
+
+            int[] prepCards = new int[] { cards[i, 1, 0], cards[i, 1, 1], cards[i, 1, 2] };
+            SetPrepClientRpc(prepCards);
+
 
             // Gives a turn to current player
             if (i == currentTurn)
                 SetTurnClientRpc(sendOnly);
         }
+
+        LoadPrepsClientRpc();
     }
 
     [ClientRpc]
-    void GiveCardsClientRpc(int[] handCards, int[] prepCards, ClientRpcParams clientParams)
+    void GiveCardsClientRpc(int[] handCards, ClientRpcParams clientParams)
     // each client receives only their data!
     {
         Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        if(!player) return;
-        player.Receive(handCards, prepCards);
+        if (!player) return;
+        player.Receive(handCards);
     }
 
     [ClientRpc]
-    void SetIdClientRpc(int id, ClientRpcParams clientParams)
-    // sets the client's Player Id.
+    void SetPrepClientRpc(int[] prepCards)
+    // each client receives only their data!
+    {
+        PrepRenderer preper = GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>();
+        if (!preper) return;
+        preper.Absorb(prepCards);
+    }
+
+    [ClientRpc]
+    void LoadPrepsClientRpc()
+    // each client receives only their data!
+    {
+        PrepRenderer preper = GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>();
+        if (!preper) return;
+        preper.Demonstrate();
+    }
+
+    [ClientRpc]
+    void ResetPrepClientRpc()
+    // each client receives only their data!
+    {
+        PrepRenderer preper = GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>();
+        if (!preper) return;
+        preper.Annihilate();
+    }
+
+    [ClientRpc]
+    void SetIdClientRpc(int id, int playercount, ClientRpcParams clientParams)
+    // sets the client's Player Id to player and his PrepRenderer
     {
         GameObject.FindWithTag("Player").GetComponent<Player>().SetId(id);
+        GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>().SetId(id, playercount);
     }
 
     [ClientRpc]
@@ -133,7 +170,7 @@ public class GameManager : NetworkBehaviour
         int[] oldPlacement = { playerCards[id, 1, 0], playerCards[id, 1, 1], playerCards[id, 1, 2] };
 
         var filtered = oldPlacement.Where(n => n != 0).ToArray();
-
+        Debug.Log(filtered.Length);
         int[] newPlacement;
 
         switch (filtered.Length)
@@ -169,7 +206,7 @@ public class GameManager : NetworkBehaviour
         {
             playerCards[id, 1, i] = 0;
         }
-        
+
 
         SetState(playerCards);
     }
@@ -177,9 +214,11 @@ public class GameManager : NetworkBehaviour
     public void NewTurn()
     // next turn!
     {
+
         currentTurn = (currentTurn++) % playerCount;
 
         SetState(playerCards);
     }
+
 
 }

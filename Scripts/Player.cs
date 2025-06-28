@@ -7,6 +7,7 @@ using System.Linq;
 public class Player : MonoBehaviour
 {
     [SerializeField] int id;                                // Player's ID.
+    public           int ID { get { return id; } }
     [SerializeField] bool turn;                             // Determines wether its player's turn or not
     public           bool Turn { get { return turn; } }     // Getter for read-only
     [SerializeField] int maxMoves = 1;                      // Moves per turn
@@ -17,14 +18,12 @@ public class Player : MonoBehaviour
     [Space(20)]
 
     [SerializeField] HandScript handScript;                 // Hand's script.
-    public           EnemyRender enemyRender;               // Enemy renderer script.
+    public           PrepRenderer prepRenderer;               // ALL preps' renderer script.
     
     [Space(20)]
 
     [SerializeField] public GameObject deckPrefab;          // Prefab of a card to instantiate
     public           int[] handCards;                       // Array of cards in each Deck in Hand
-    [SerializeField] int[] prepCards;                       // Array of cards on Prep
-    [SerializeField] GameObject[] prep;                     // Prep's gameobjects???
 
     void Awake()
     // On spawn gets HS and ERS
@@ -37,7 +36,7 @@ public class Player : MonoBehaviour
             handScript.playerScript = this;
         }
 
-        enemyRender = GameObject.FindWithTag("EnemyRender").GetComponent<EnemyRender>();
+        prepRenderer = GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>();
     }
 
     void Update()
@@ -45,12 +44,12 @@ public class Player : MonoBehaviour
     {
         if (selected == -1) return;
 
-        if (Input.GetKeyDown(Keycode.A) && turn)
+        if (Input.GetKeyDown(KeyCode.A) && turn)
         {
             MoveCardServerRpc(selected, id, true);
             selected = -1;
         }
-        else if (Input.GetKeyDown(Keycode.D))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             MoveCardServerRpc(selected, id, false);
             selected = -1;
@@ -63,11 +62,10 @@ public class Player : MonoBehaviour
         this.id = id;
     }
 
-    public void Receive(int[] handCards, int[] prepCards)
+    public void Receive(int[] handCards)
     // Receiver of both Hand and Prep cards, called on GMS 
     {
         SetCards(handCards);
-        SetPrep(prepCards);
     }
 
     public void TakeTurn()
@@ -86,12 +84,6 @@ public class Player : MonoBehaviour
         handScript.ReceiveCardsInHand(handCards);
     }
 
-    void SetPrep(int[] newPrepCards)
-    // unfinished Prep setter!
-    {
-        prepCards = new int[newPrepCards.Length];
-        Array.Copy(newPrepCards, prepCards, newPrepCards.Length);
-    }
 
     [ServerRpc]
     void MoveCardServerRpc(int color, int id, bool left)
@@ -101,15 +93,30 @@ public class Player : MonoBehaviour
     }
 
     [ServerRpc]
-    void CastServerRpc(int id)
+    public void CastServerRpc(int id)
     // unfinished Casting RPC
     {
+        GameManager.Instance?.NewCast(id);
     }
 
     [ServerRpc]
-    void PassServerRpc()
+    public void PassServerRpc()
     // unfinished Turn End RPC
     {
+        GameManager.Instance?.NewTurn();
+    }
+    public void EndTurn()
+    // End of turn. Envoked from server
+    {
+        turn = false;
+        EndTurnServerRpc();
+    }
+
+    [ServerRpc]
+    public void EndTurnServerRpc()
+    // Tell server that turn is over.
+    {
+        GameManager.Instance?.NewTurn();
     }
 
     void OnDestroy()

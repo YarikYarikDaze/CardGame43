@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6350529231547240019}
-  - component: {fileID: 4704238357196810416}
+  - component: {fileID: 7923991845552304107}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: EnemyRender
+  m_Name: PrepRenderer
+  m_TagString: Preper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4704238357196810416
+--- !u!114 &7923991845552304107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2629615450784681048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1b0f7b1e74e559f0ace0095d5c0379a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a4130b11f3050709af978da0d5ea6b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  enemyCount: 0
-  EnemyPrepPos: []
-  empty: {fileID: 5947998673483626066, guid: 5ad2f7e97ae07fa44ae3132afe49b4ee, type: 3}
-  prepPrefab: {fileID: 4600428072942369736, guid: 148eb5bbd33ae99c297f9d2bf490565e, type: 3}
-  cardPrefab: {fileID: 6868864908659887385, guid: c4fc0135915b854cd88fb48bd622e9c1, type: 3}
+  prepCount: 0
+  Breps: []
+  prepPrefab: {fileID: 7883755279370449652, guid: 9956869edc560199bac135fafb3fcfd0, type: 3}
