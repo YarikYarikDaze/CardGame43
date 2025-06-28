@@ -1,4 +1,4 @@
-name: C# Linting for Unity Project
+name: C# Linting with Roslynator
 
 on:
   push:
@@ -19,9 +19,9 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Install dotnet-format
-      run: dotnet tool install -g dotnet-format
+    - name: Install Roslynator
+      run: dotnet tool install -g roslynator.dotnet.cli
 
-    - name: Run dotnet-format
-      run: dotnet format --verify-no-changes --severity warn
-      working-directory: ./Scripts
+    - name: Run Roslynator
+      run: roslynator analyze --severity warning --fix-whitespace
+      working-directory: .Scripts
