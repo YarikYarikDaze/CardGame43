@@ -6,100 +6,109 @@ using System.Linq;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int id;                                // Player's ID.
+    [SerializeField] bool turn;                             // Determines wether its player's turn or not
+    public           bool Turn { get { return turn; } }     // Getter for read-only
+    [SerializeField] int maxMoves = 1;                      // Moves per turn
+    public           int remainingMoves;                    // Counter of remaining moves
+    public           int selected = -1;                     // Color of selected card
+    // COLOR 0-1-2 r-y-b
 
+    [Space(20)]
 
-    [SerializeField] Transform handPos;
-    [SerializeField] Transform prepPos;
-    [SerializeField] GameObject hand;
-    [SerializeField] GameObject[] prep;
+    [SerializeField] HandScript handScript;                 // Hand's script.
+    public           EnemyRender enemyRender;               // Enemy renderer script.
+    
+    [Space(20)]
 
-
-
-    bool turn;
-    public bool Turn { get { return turn; } }
-    int maxMoves = 1;
-    int remainingMoves;
-
-    [SerializeField] int[] prepCards;
-    public int[] handCards;
-    [SerializeField] public GameObject cardPrefab;
-
-    [SerializeField] int id;
-
-
-    [SerializeField] float mainRadius;
-    public Transform selected;
-
-    public EnemyRender enemyRender;
+    [SerializeField] public GameObject deckPrefab;          // Prefab of a card to instantiate
+    public           int[] handCards;                       // Array of cards in each Deck in Hand
+    [SerializeField] int[] prepCards;                       // Array of cards on Prep
+    [SerializeField] GameObject[] prep;                     // Prep's gameobjects???
 
     void Awake()
+    // On spawn gets HS and ERS
     {
-        InitializeItself();
-    }
+        handScript = GameObject.FindWithTag("Hand").GetComponent<HandScript>();
+        // is Hand under Player? if yes, and player is a prefab, then we can just preset it
+        if (handScript != null)
+        {
+            handScript.deckPrefab = deckPrefab;
+            handScript.playerScript = this;
+        }
 
-    void InitializeItself()
-    {
-        this.hand = GameObject.FindWithTag("Hand");
         enemyRender = GameObject.FindWithTag("EnemyRender").GetComponent<EnemyRender>();
     }
 
     void Update()
+    // Add LandCard(selected) on A/D if `selected` is set
     {
+        if (selected == -1) return;
+
+        if (Input.GetKeyDown(Keycode.A) && turn)
+        {
+            MoveCardServerRpc(selected, id, true);
+            selected = -1;
+        }
+        else if (Input.GetKeyDown(Keycode.D))
+        {
+            MoveCardServerRpc(selected, id, false);
+            selected = -1;
+        }
     }
 
     public void SetId(int id)
+    // Sets ID.
     {
         this.id = id;
     }
 
     public void Receive(int[] handCards, int[] prepCards)
+    // Receiver of both Hand and Prep cards, called on GMS 
     {
         SetCards(handCards);
         SetPrep(prepCards);
     }
 
     public void TakeTurn()
+    // Start of this player's turn
     {
-        this.turn = true;
+        turn = true;
+        remainingMoves = maxMoves;
     }
 
     void SetCards(int[] newHandCards)
+    // Sets Decks to player and passes on to Hand 
     {
-        this.handCards = new int[newHandCards.Length];
-        Array.Copy(newHandCards, this.handCards, newHandCards.Length);
-        hand.GetComponent<HandScript>().ReceiveCardsInHand(handCards);    }
+        handCards = new int[newHandCards.Length];
+        //COLOR 0-1-2 R-Y-B
+        Array.Copy(newHandCards, handCards, newHandCards.Length);
+        handScript.ReceiveCardsInHand(handCards);
+    }
 
     void SetPrep(int[] newPrepCards)
+    // unfinished Prep setter!
     {
-        this.prepCards = new int[newPrepCards.Length];
-        Array.Copy(newPrepCards, this.prepCards, newPrepCards.Length);
-    }
-
-
-    public int prepLen()
-    {
-        return 1;
-    }
-
-
-    public void LandCard(int color)
-    {
-        this.MoveCardServerRpc(color, id, true);
+        prepCards = new int[newPrepCards.Length];
+        Array.Copy(newPrepCards, prepCards, newPrepCards.Length);
     }
 
     [ServerRpc]
     void MoveCardServerRpc(int color, int id, bool left)
+    // ARGUMENT COLOR 0-1-2 R-Y-B
     {
         GameManager.Instance?.PlaceCard(color, id, left);
     }
 
     [ServerRpc]
     void CastServerRpc(int id)
+    // unfinished Casting RPC
     {
     }
 
     [ServerRpc]
     void PassServerRpc()
+    // unfinished Turn End RPC
     {
     }
 

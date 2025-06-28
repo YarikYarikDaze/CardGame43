@@ -4,10 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitionManager : NetworkBehaviour
 {
-    [SerializeField] private string gameSceneName = "Game";
+    [SerializeField] string gameSceneName = "Game";
     [SerializeField] GameObject managerPrefab;
 
     public void TransitionAllPlayersToGameScene()
+    // Transitions everyone to Game
     {
         Debug.Log("Server initiating scene transition");
         NetworkManager.Singleton.SceneManager.LoadScene(gameSceneName, LoadSceneMode.Single);
@@ -17,8 +18,8 @@ public class SceneTransitionManager : NetworkBehaviour
     }
 
     public override void OnNetworkSpawn()
+    // Logs client entrance
     {
-        // When any client loads the new scene, log it
         NetworkManager.Singleton.SceneManager.OnLoadComplete += (clientId, sceneName, loadMode) => 
         {
             Debug.Log($"Client {clientId} loaded {sceneName}");
