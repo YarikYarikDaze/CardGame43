@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] bool turn;                             // Determines wether its player's turn or not
     public           bool Turn { get { return turn; } }     // Getter for read-only
     [SerializeField] int maxMoves = 1;                      // Moves per turn
-    [SerializeField] int remainingMoves;                    // Counter of remaining moves
-    public           int selected;                          // Color of selected card
+    public           int remainingMoves;                    // Counter of remaining moves
+    public           int selected = -1;                     // Color of selected card
     // COLOR 0-1-2 r-y-b
 
     [Space(20)]
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         // is Hand under Player? if yes, and player is a prefab, then we can just preset it
         if (handScript != null)
         {
-            handScript.deckPrefab = cardPrefab;
+            handScript.deckPrefab = deckPrefab;
             handScript.playerScript = this;
         }
 
@@ -43,6 +43,18 @@ public class Player : MonoBehaviour
     void Update()
     // Add LandCard(selected) on A/D if `selected` is set
     {
+        if (selected == -1) return;
+
+        if (Input.GetKeyDown(Keycode.A) && turn)
+        {
+            MoveCardServerRpc(selected, id, true);
+            selected = -1;
+        }
+        else if (Input.GetKeyDown(Keycode.D))
+        {
+            MoveCardServerRpc(selected, id, false);
+            selected = -1;
+        }
     }
 
     public void SetId(int id)
@@ -79,11 +91,6 @@ public class Player : MonoBehaviour
     {
         prepCards = new int[newPrepCards.Length];
         Array.Copy(newPrepCards, prepCards, newPrepCards.Length);
-    }
-    public void LandCard(int color)
-    // ARGUMENT COLOR 0-1-2 R-Y-B
-    {
-        MoveCardServerRpc(color, id, true);
     }
 
     [ServerRpc]

@@ -54,7 +54,7 @@ public class CardDeckScript : MonoBehaviour
         if (hand.playerScript == null) return;
 
 
-        if (Input.GetMouseButtonDown(0) && remaining > 0 && hand.playerScript.Turn)
+        if (Input.GetMouseButtonDown(0) && remaining > 0 && hand.playerScript.Turn && hand.playerScript.remainingMoves > 0)
         {
             hand.playerScript.selected = color;
             // COLOR 0-1-2 r-y-b

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using Unity.Netcode;
 
@@ -77,7 +78,7 @@ public class GameManager : NetworkBehaviour
         for (int i = 0; i < playerCount; i++)
         {
             // sendParams are used for us to send only to client no. i. 
-            // NOTE: Its using Network's IDs, which is read only.
+            // NOTE: Its using Network's IDs, which is probably read only?
             //       Later on we have to store IDs on a separate array to allow swapping, shifting etc.
             var sendOnly = new ClientRpcParams();
             sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[i] };
@@ -122,15 +123,41 @@ public class GameManager : NetworkBehaviour
     }
 
     public void PlaceCard(int color, int id, bool left)
-    // unfinished placing cards, requires logic of placement
     // ARGUMENT COLOR 0-1-2 R-Y-B
     {
         playerCards[id, 0, color]--;
 
-        int placementColor = color + 1;
-
-        playerCards[id, 1, 0] = placementColor;
+        int newColor = color + 1;
         // COLOR 1-2-3 R-Y-B
+
+        int[] oldPlacement = { playerCards[id, 1, 0], playerCards[id, 1, 1], playerCards[id, 1, 2] };
+
+        var filtered = oldPlacement.Where(n => n != 0).ToArray();
+
+        int[] newPlacement;
+
+        switch (filtered.Length)
+        {
+            case 0:
+                newPlacement = new int[] { newColor, 0, 0 };
+                break;
+            case 1:
+                newPlacement = left ? new int[] { newColor, filtered[0], 0 }
+                                    : new int[] { filtered[0], newColor, 0 };
+                break;
+            case 2:
+                newPlacement = left ? new int[] { newColor, filtered[0], filtered[1] }
+                                    : new int[] { filtered[0], filtered[1], newColor };
+                break;
+            default:
+                newPlacement = oldPlacement;
+                break;
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            playerCards[id, 1, i] = newPlacement[i];
+        }
 
         SetState(playerCards);
     }
