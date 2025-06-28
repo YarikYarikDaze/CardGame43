@@ -24,4 +24,4 @@ jobs:
 
     - name: Run Roslynator
       run: roslynator analyze --severity warning --fix-whitespace
-      working-directory: .Scripts
+      working-directory: Scripts
