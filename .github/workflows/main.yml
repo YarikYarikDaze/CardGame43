@@ -1,4 +1,4 @@
-name: C# Linting with Roslynator
+name: C# Linting with Super-Linter
 
 on:
   push:
@@ -13,15 +13,12 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
+        fetch-depth: 0
 
-    - name: Install Roslynator
-      run: dotnet tool install -g roslynator.dotnet.cli
-
-    - name: Run Roslynator
-      run: roslynator analyze --severity warning --fix-whitespace
-      working-directory: Scripts
+    - name: Run Super-Linter
+      uses: super-linter/super-linter@v7.4.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VALIDATE_ALL_CODEBASE: true
+        DEFAULT_WORKSPACE: ./Scripts
