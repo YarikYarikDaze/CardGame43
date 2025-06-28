@@ -74,5 +74,5 @@ MonoBehaviour:
   currentTurn: 0
   playerCount: 0
   playerPrefab: {fileID: 8598175075737283874, guid: 0312d54bb69fea636a40c168e282275c, type: 3}
-  enemyRenderPrefab: {fileID: 2629615450784681048, guid: cc671f22d66bf6d8d8247b1c9062a55f, type: 3}
+  prepRenderPrefab: {fileID: 2629615450784681048, guid: cc671f22d66bf6d8d8247b1c9062a55f, type: 3}
   initCardAmount: 8

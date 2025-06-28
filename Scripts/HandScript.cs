@@ -10,10 +10,10 @@ public class HandScript : MonoBehaviour
     public           Player playerScript;           // PS, set by player, passed onto Decks for card selection
     public           GameObject deckPrefab;         // prefab of a DECK that's taken from player's cardPrefab?
 
+    bool initialized = false;
     void InitializeCards(int size)
     // Resets all the decks in hand in accordance to server
     {
-        EmptyHand();
 
         for (int i = 0; i < size; i++)
         {
@@ -29,11 +29,13 @@ public class HandScript : MonoBehaviour
             );
             // NOTE: remake positions!!
         }
+        initialized = true;
     }
 
     public void ReceiveCardsInHand(int[] newCards)
     {
-        InitializeCards(handSize);
+        if(!initialized) InitializeCards(handSize);
+
         remainingCards = new int[newCards.Length];
         Array.Copy(newCards, remainingCards, newCards.Length);
         DisplayDecksInHand();

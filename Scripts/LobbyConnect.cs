@@ -42,10 +42,11 @@ public class LobbyConnect : NetworkBehaviour
 
         connect.onClick.AddListener(() =>
         {
-            // OOOOH, YOU REFER TO SINGLETON, WHILE ITS IN GAMEOBJECT!
+            // IP.text = "127.0.0.1";
+            // Port.text = "7777";
             NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>().SetConnectionData(
-                IP.text,
-                (ushort)(int.Parse(Port.text))
+                "10.91.5.148",
+                (ushort)7777
             );
             NetworkManager.Singleton.StartClient();
             main.SetActive(false);

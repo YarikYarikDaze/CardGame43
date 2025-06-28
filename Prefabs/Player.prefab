@@ -100,7 +100,7 @@ MonoBehaviour:
   selected: -1
   handScript: {fileID: 3096346890592892216}
   enemyRender: {fileID: 0}
-  deckPrefab: {fileID: 0}
+  deckPrefab: {fileID: 6868864908659887385, guid: c4fc0135915b854cd88fb48bd622e9c1, type: 3}
   handCards: 
   prepCards: 
   prep:
