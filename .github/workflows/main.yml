@@ -22,3 +22,12 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DEFAULT_WORKSPACE: ./Scripts
         VALIDATE_CSHARP: true
+        OUTPUT_FORMAT: sarif
+        OUTPUT_DETAIL: detailed
+      continue-on-error: true
+
+    - name: Upload SARIF report
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ./sarif-report.sarif
+      continue-on-error: true
