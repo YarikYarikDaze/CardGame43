@@ -45,12 +45,12 @@ public class Player : MonoBehaviour
     {
         if (selected == -1) return;
 
-        if (Input.GetKeyDown(Keycode.A) && turn)
+        if (Input.GetKeyDown(KeyCode.A) && turn)
         {
             MoveCardServerRpc(selected, id, true);
             selected = -1;
         }
-        else if (Input.GetKeyDown(Keycode.D))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             MoveCardServerRpc(selected, id, false);
             selected = -1;

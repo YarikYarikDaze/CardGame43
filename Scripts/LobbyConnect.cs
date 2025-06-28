@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 using TMPro;
 
 public class LobbyConnect : NetworkBehaviour
@@ -42,10 +43,10 @@ public class LobbyConnect : NetworkBehaviour
         connect.onClick.AddListener(() =>
         {
             // OOOOH, YOU REFER TO SINGLETON, WHILE ITS IN GAMEOBJECT!
-            // NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
-            //     IP.text,
-            //     (ushort)int.Parse(Port.text)
-            // );
+            NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>().SetConnectionData(
+                IP.text,
+                (ushort)(int.Parse(Port.text))
+            );
             NetworkManager.Singleton.StartClient();
             main.SetActive(false);
             lobby.SetActive(true);

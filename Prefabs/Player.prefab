@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6dddec1022b72541a3b238b29fa5a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  cardsInHand: 
+  handSize: 3
+  remainingCards: 
+  playerScript: {fileID: 6155524680842160461}
+  deckPrefab: {fileID: 0}
 --- !u!1 &8598175075737283874
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,13 +93,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbde7ba4786879c199e0ea245f3fe837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPos: {fileID: 0}
-  prepPos: {fileID: 0}
-  hand: {fileID: 0}
+  id: 0
+  turn: 0
+  maxMoves: 1
+  remainingMoves: 0
+  selected: -1
+  handScript: {fileID: 3096346890592892216}
+  enemyRender: {fileID: 0}
+  deckPrefab: {fileID: 0}
+  handCards: 
+  prepCards: 
   prep:
   - {fileID: 0}
-  handCards: 
-  cardPrefab: {fileID: 6868864908659887385, guid: c4fc0135915b854cd88fb48bd622e9c1, type: 3}
-  mainRadius: 0
-  selected: {fileID: 0}
-  enemyRender: {fileID: 0}
