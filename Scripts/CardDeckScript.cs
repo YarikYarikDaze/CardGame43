@@ -4,46 +4,60 @@ using Unity.Netcode;
 
 public class CardDeckScript : MonoBehaviour
 {
-    public int color;
-    public int remaining = 0;
-    [SerializeField] Sprite[] nums;
-    [SerializeField] Sprite[] possibleColors;
-    [SerializeField] GameObject remShow;
+    public int color;                           // color id
+    // COLOR 0-1-2 r-y-b
+    public int remaining = 0;                   // the number of remaining cards under the deck
+    
+    [Space(20)]
 
-    [SerializeField] GameObject hand;
+    [SerializeField] Sprite[] possibleNums;     // array of digit sprites on the deck to show amount of cards
+    [SerializeField] Sprite[] possibleColors;   // array of possible card colors
 
-    SpriteRenderer renderer;
+    [Space(20)]
+
+    public HandScript hand;                     // literal gameobject of hand, 
+    [SerializeField] GameObject remCounter;     // the GameObject that shows the amount of remaining cards
+
+    [Space(20)]
+
+    SpriteRenderer deckRenderer;                // the deck's Sprite Renderer 
 
     void Update()
     {
     }
 
-    public void InitializeHand()
+    public void Display(int remInit)
+    // doesnt seem to be referenced???
+    // deck initializer is updated on server calls (trickling down to player, then here)
     {
-        this.hand = GameObject.FindWithTag("Hand");
-    }
-    public void Display(int remaining)
-    {
-        this.InitializeHand();
-        this.renderer = gameObject.GetComponent<SpriteRenderer>();
-        this.remaining = remaining;
-        this.SetColor();
-        this.SetRemaining();
+        deckRenderer = gameObject.GetComponent<SpriteRenderer>();
+        remaining = remInit;
+        SetColor();
+        SetRemaining();
     }
 
     void SetRemaining()
+    // sets current amount to the counter
     {
-        remShow.SetActive(true);
-        remShow.GetComponent<SpriteRenderer>().sprite = nums[remaining];
+        remCounter.SetActive(true);
+        remCounter.GetComponent<SpriteRenderer>().sprite = possibleNums[remaining];
     }
     void SetColor()
+    // sets the deck's appropriate card color
     {
-        renderer.sprite = possibleColors[color];
+        deckRenderer.sprite = possibleColors[color];
+        // COLOR 0-1-2 r-y-b
     }
-    void OnMouseOver(){
-        if (Input.GetMouseButtonDown(0) && remaining > 0 && this.hand.GetComponent<HandScript>().getPlayer().GetComponent<Player>().Turn)
+    void OnMouseOver()
+    // for some reason calls LandCard on click. todo: change to Select?
+    {
+        if (hand.playerScript == null) return;
+
+
+        if (Input.GetMouseButtonDown(0) && remaining > 0 && hand.playerScript.Turn)
         {
-            this.hand.GetComponent<HandScript>().getPlayer().GetComponent<Player>().LandCard(this.color);
+            hand.playerScript.selected = color;
+            // COLOR 0-1-2 r-y-b
         }
     }
 }

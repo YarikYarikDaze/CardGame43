@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using Unity.Netcode;
 
 public class EnemyRender : MonoBehaviour
+// bro why the fuck is it all empty
 {
     public int enemyCount;
     Vector3[] baseEnemyPos;
     [SerializeField] Transform[] EnemyPrepPos;
     [SerializeField] GameObject[,] EnemyPreps;
-    [SerializeField] Transform empty;
-
     [SerializeField] GameObject prepPrefab;
     [SerializeField] GameObject cardPrefab;
 
@@ -37,6 +36,6 @@ public class EnemyRender : MonoBehaviour
 
     void OnDestroy()
     {
-        Debug.Log("FUCCCCCCCCCCCCCCCCCCCCCCCCK");
+        //Debug.Log("FUCCCCCCCCCCCCCCCCCCCCCCCCK");
     }
 }

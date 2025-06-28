@@ -3,64 +3,58 @@ using System;
 
 public class HandScript : MonoBehaviour
 {
-    GameObject player;
+    [SerializeField] int handSize = 3;              // Amount of decks, and hence amount of colors
+    [SerializeField] int[] remainingCards;          // array with amounts of remaining cards
 
-    int[] cardsInHand;
+    [Space(20)]
+    public           Player playerScript;           // PS, set by player, passed onto Decks for card selection
+    public           GameObject deckPrefab;         // prefab of a DECK that's taken from player's cardPrefab?
 
-    GameObject cardPrefab;
-
-    GameObject[] cards;
-
-    void InitializePlayer()
+    void InitializeCards(int size)
+    // Resets all the decks in hand in accordance to server
     {
-        if (player == null)
+        EmptyHand();
+
+        for (int i = 0; i < size; i++)
         {
-            this.player = GameObject.FindWithTag("Player");
-        }
-    }
+            GameObject newDeck = Instantiate(deckPrefab);
+            newDeck.GetComponent<CardDeckScript>().hand = this;
+            newDeck.GetComponent<CardDeckScript>().color = i;
+            // COLOR 0-1-2 R-Y-B
 
-    void InitializeCards()
-    {
-        if (cards == null)
-        {
-            this.cardPrefab = player.GetComponent<Player>().cardPrefab;
-            this.cards = new GameObject[3];
-            for (int i = 0; i < cards.Length; i++)
-            {
-                cards[i] = Instantiate(cardPrefab);
-                cards[i].GetComponent<CardDeckScript>().color = i + 1;
-                cards[i].transform.parent = transform;
-                cards[i].transform.position = new Vector3(
-                    transform.position.x + 2 * i, transform.position.y + 2, transform.position.z
-                );
-            }
-        }
-    }
+            newDeck.transform.parent = transform;
 
-    void InitializeItself()
-    {
-        InitializePlayer();
-        InitializeCards();
+            newDeck.transform.position = new Vector3(
+                transform.position.x + 2 * i, transform.position.y + 2, transform.position.z
+            );
+            // NOTE: remake positions!!
+        }
     }
 
     public void ReceiveCardsInHand(int[] newCards)
     {
-        this.InitializeItself();
-        this.cardsInHand = new int[newCards.Length];
-        Array.Copy(newCards, cardsInHand, newCards.Length);
-        DisplayCardsInHand();
+        InitializeCards(handSize);
+        remainingCards = new int[newCards.Length];
+        Array.Copy(newCards, remainingCards, newCards.Length);
+        DisplayDecksInHand();
     }
 
-    void DisplayCardsInHand()
+    void EmptyHand()
     {
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            cards[i].GetComponent<CardDeckScript>().Display(cardsInHand[i]);
+            Destroy(transform.GetChild(i).gameObject);
         }
     }
 
-    public GameObject getPlayer()
+    void DisplayDecksInHand()
     {
-        return this.player;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            CardDeckScript cds = transform.GetChild(i).GetComponent<CardDeckScript>();
+            if (cds == null) continue;
+
+            cds.Display(remainingCards[i]);
+        }
     }
 }
