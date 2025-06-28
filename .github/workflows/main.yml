@@ -1,22 +1,27 @@
-name: Check_Lint
+name: C# Linting for Unity Project
 
-on: push
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      actions: read
-      checks: read
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Super-Linter
-        uses: super-linter/super-linter@v7.1.0
-  
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      VALIDATE_ALL_CODEBASE: true
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Install dotnet-format
+      run: dotnet tool install -g dotnet-format
+
+    - name: Run dotnet-format
+      run: dotnet format --verify-no-changes --severity warn
+      working-directory: ./Assets/Scripts
