@@ -16,9 +16,25 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Run Super-Linter
+    - name: Run Super-Linter for C#
       uses: super-linter/super-linter@v7.4.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VALIDATE_ALL_CODEBASE: true
         DEFAULT_WORKSPACE: ./Scripts
+        VALIDATE_CSHARP: true
+        VALIDATE_ANSIBLE: false
+        VALIDATE_BASH: false
+        VALIDATE_CSS: false
+        VALIDATE_DOCKERFILE: false
+        VALIDATE_GO: false
+        VALIDATE_JAVASCRIPT: false
+        VALIDATE_JSON: false
+        VALIDATE_MARKDOWN: false
+        VALIDATE_PYTHON: false
+        VALIDATE_RUBY: false
+        VALIDATE_XML: false
+        VALIDATE_CHECKOV: false
+        VALIDATE_JSON_PRETTIER: false
+        VALIDATE_JSCPD: false
+        VALIDATE_YAML_PRETTIER: false
