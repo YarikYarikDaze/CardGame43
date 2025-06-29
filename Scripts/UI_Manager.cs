@@ -18,7 +18,6 @@ public class UI_Manager : MonoBehaviour
         cast.onClick.AddListener(() =>
         {
             playerScript.CastServerRpc(playerScript.ID);
-            Debug.Log("AAAAAA");
         });
         pass.onClick.AddListener(() =>
         {

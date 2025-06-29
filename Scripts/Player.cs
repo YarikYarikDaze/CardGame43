@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     [SerializeField] int id;                                // Player's ID.
     public           int ID { get { return id; } }
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     void Awake()
     // On spawn gets HS and ERS
     {
-        handScript = GameObject.FindWithTag("Hand").GetComponent<HandScript>();
+        handScript = transform.GetChild(0).gameObject.GetComponent<HandScript>();
         // is Hand under Player? if yes, and player is a prefab, then we can just preset it
         if (handScript != null)
         {
@@ -36,12 +36,22 @@ public class Player : MonoBehaviour
             handScript.playerScript = this;
         }
 
-        prepRenderer = GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>();
     }
 
     void Update()
     // Add LandCard(selected) on A/D if `selected` is set
     {
+        if(!prepRenderer)
+            prepRenderer = GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>();
+
+        //Debug.Log(GetComponent<NetworkObject>().IsSpawned);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(IsOwner);
+        }
+
+        // if (!IsOwner) return;
+
         if (selected == -1) return;
 
         if (Input.GetKeyDown(KeyCode.A) && turn)
@@ -49,7 +59,7 @@ public class Player : MonoBehaviour
             MoveCardServerRpc(selected, id, true);
             selected = -1;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.D) && turn)
         {
             MoveCardServerRpc(selected, id, false);
             selected = -1;
@@ -85,25 +95,40 @@ public class Player : MonoBehaviour
     }
 
 
-    [ServerRpc]
-    void MoveCardServerRpc(int color, int id, bool left)
+    [ServerRpc(RequireOwnership = false)]
+    void MoveCardServerRpc(int color, int id, bool left, ServerRpcParams rpcParams = default)
     // ARGUMENT COLOR 0-1-2 R-Y-B
     {
-        GameManager.Instance?.PlaceCard(color, id, left);
+        ulong senderId = rpcParams.Receive.SenderClientId;
+    
+        // Validate sender exists
+        if (!NetworkManager.Singleton.ConnectedClients.ContainsKey(senderId))
+        {
+            Debug.LogError($"Unknown client ID: {senderId}");
+            return;
+        }
+
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().PlaceCard(color, id, left);
+        Debug.Log("AAAAAA");
+        if (!NetworkManager.Singleton.ConnectedClients.ContainsKey((ulong)id))
+        {
+            Debug.LogError($"Unknown client ID: {(ulong)id}");
+            return;
+        }
     }
 
-    [ServerRpc]
-    public void CastServerRpc(int id)
+    [ServerRpc(RequireOwnership = false)]
+    public void CastServerRpc(int id, ServerRpcParams rpcParams = default)
     // unfinished Casting RPC
     {
-        GameManager.Instance?.NewCast(id);
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().NewCast(id);
     }
 
-    [ServerRpc]
-    public void PassServerRpc()
+    [ServerRpc(RequireOwnership = false)]
+    public void PassServerRpc(ServerRpcParams rpcParams = default)
     // unfinished Turn End RPC
     {
-        GameManager.Instance?.NewTurn();
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().NewTurn();
     }
     public void EndTurn()
     // End of turn. Envoked from server
@@ -112,11 +137,24 @@ public class Player : MonoBehaviour
         EndTurnServerRpc();
     }
 
-    [ServerRpc]
-    public void EndTurnServerRpc()
+    [ServerRpc(RequireOwnership = false)]
+    public void EndTurnServerRpc(ServerRpcParams rpcParams = default)
     // Tell server that turn is over.
     {
-        GameManager.Instance?.NewTurn();
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().NewTurn();
+    }
+
+    public void Select(int color)
+    {
+        selected = color;
+    }
+
+    public void Kill(int id)
+    {
+        if (this.id != id)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnDestroy()

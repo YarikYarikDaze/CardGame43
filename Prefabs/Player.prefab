@@ -57,6 +57,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5332582991899046902}
+  - component: {fileID: 7868217701760922301}
   - component: {fileID: 6155524680842160461}
   m_Layer: 0
   m_Name: Player
@@ -81,6 +82,31 @@ Transform:
   - {fileID: 1380368704892822400}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7868217701760922301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598175075737283874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2209153732
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &6155524680842160461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,15 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbde7ba4786879c199e0ea245f3fe837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   id: 0
   turn: 0
   maxMoves: 1
   remainingMoves: 0
   selected: -1
   handScript: {fileID: 3096346890592892216}
-  enemyRender: {fileID: 0}
+  prepRenderer: {fileID: 0}
   deckPrefab: {fileID: 6868864908659887385, guid: c4fc0135915b854cd88fb48bd622e9c1, type: 3}
   handCards: 
-  prepCards: 
-  prep:
-  - {fileID: 0}
