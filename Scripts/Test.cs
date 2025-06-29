@@ -7,10 +7,11 @@ public class Test : NetworkBehaviour
     
     void Start()
     {
-        if (IsServer || IsHost)
+        if (NetworkManager.Singleton.IsHost)
         {
             GameObject manager = Instantiate(managerPrefab);
-            manager.GetComponent<NetworkObject>().Spawn();
+            if (manager)
+                manager.GetComponent<NetworkObject>().Spawn();
         }
     }
     

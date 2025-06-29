@@ -9,7 +9,7 @@ public class PrepScript : MonoBehaviour
         {
             if (colors[i] > 3)
             {
-                Debug.Log("uh-oh");
+                //Debug.Log("uh-oh");
                 continue;
             }
 

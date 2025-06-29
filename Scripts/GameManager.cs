@@ -21,14 +21,23 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] int initCardAmount = 8;        // amount of cards to put in every hand
 
-    public static GameManager Instance { get; private set; }  // GameManager Singleton class to call
+    [ClientRpc]
+    void aClientRpc(bool f)
+    {
+        //Debug.Log("This is"+((f) ? "" : " NOT")+" your server speaking");
+    }
+    void Update()
+    {
+        aClientRpc(NetworkManager.Singleton.IsServer);
+    }
 
+    // void Awake()
+    // {
+    //     if (!NetworkManager.Singleton.IsServer) Destroy(gameObject);
+    // }
     public override void OnNetworkSpawn()
     // Basically initializer: sets turns, p-count, and cards
     {
-        if (Instance == null && (IsServer || IsHost)) Instance = this;
-        else Destroy(gameObject);
-
 
         playerCount = NetworkManager.Singleton.ConnectedClientsIds.Count;
         playerCards = new int[playerCount, 2, 3];
@@ -54,7 +63,13 @@ public class GameManager : NetworkBehaviour
                 playerCards[i, 0, k]++;
             }
         }
-
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            GameObject playerInstance = Instantiate(playerPrefab, new Vector3(0f, -4.75f, 0f), Quaternion.identity);
+            NetworkObject netObj = playerInstance.GetComponent<NetworkObject>();
+            netObj.SpawnAsPlayerObject(clientId, true);
+            playerInstance.GetComponent<Player>().enabled = true;
+        }
         // Initializes players and state
         InitializeGameClientRpc();
         SetState(playerCards);
@@ -68,7 +83,9 @@ public class GameManager : NetworkBehaviour
     // Spawns player and renderer on every client
     {
         GameObject prepRender = Instantiate(prepRenderPrefab);
-        GameObject player = Instantiate(playerPrefab, new Vector3(0f, -5f, 0f), Quaternion.identity);
+        // GameObject player = Instantiate(playerPrefab, new Vector3(0f, -4.75f, 0f), Quaternion.identity);
+        // player.GetComponent<NetworkObject>().Spawn();
+        
         //Debug.Log($"Object scene: {player.scene.name}");
     }
 
@@ -101,9 +118,9 @@ public class GameManager : NetworkBehaviour
 
 
             // Gives a turn to current player
-            if (i == currentTurn)
-                SetTurnClientRpc(sendOnly);
+            // if (i == currentTurn)
         }
+        SetTurnClientRpc();
 
         LoadPrepsClientRpc();
     }
@@ -153,7 +170,7 @@ public class GameManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    void SetTurnClientRpc(ClientRpcParams clientParams)
+    void SetTurnClientRpc()
     // sets the turn
     {
         GameObject.FindWithTag("Player").GetComponent<Player>().TakeTurn();
@@ -214,9 +231,7 @@ public class GameManager : NetworkBehaviour
     public void NewTurn()
     // next turn!
     {
-
         currentTurn = (currentTurn++) % playerCount;
-
         SetState(playerCards);
     }
 

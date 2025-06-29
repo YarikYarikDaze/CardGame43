@@ -25,7 +25,7 @@ public class HandScript : MonoBehaviour
             newDeck.transform.parent = transform;
 
             newDeck.transform.position = new Vector3(
-                transform.position.x + 2 * i, transform.position.y + 2, transform.position.z
+                transform.position.x - 1.25f + 1.25f * i, transform.position.y, transform.position.z
             );
             // NOTE: remake positions!!
         }

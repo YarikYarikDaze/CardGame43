@@ -18,8 +18,7 @@ public class LobbyConnect : NetworkBehaviour
     [SerializeField] Button join;
     [SerializeField] GameObject JoinMenu;
 
-    [SerializeField] TMP_Text IP;
-    [SerializeField] TMP_Text Port;
+    [SerializeField] TMP_InputField IP;
     [SerializeField] Button connect;
 
     void Awake()
@@ -42,10 +41,9 @@ public class LobbyConnect : NetworkBehaviour
 
         connect.onClick.AddListener(() =>
         {
-            // IP.text = "127.0.0.1";
             // Port.text = "7777";
             NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>().SetConnectionData(
-                "10.91.5.148",
+                (IP.text!="") ? IP.text : "127.0.0.1",
                 (ushort)7777
             );
             NetworkManager.Singleton.StartClient();

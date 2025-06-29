@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5725042379732235044
+--- !u!1 &5076969238487141232
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,71 +8,67 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4872338171428163186}
-  - component: {fileID: 4413595646470738626}
-  - component: {fileID: 2665101345885090750}
+  - component: {fileID: 8171291493616886361}
+  - component: {fileID: 2272929250509315734}
+  - component: {fileID: 2559289286913832008}
   m_Layer: 0
-  m_Name: GameManager
-  m_TagString: GameManager
+  m_Name: Initializator
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4872338171428163186
+--- !u!4 &8171291493616886361
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5725042379732235044}
+  m_GameObject: {fileID: 5076969238487141232}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.05121, y: 0.05091, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4413595646470738626
+--- !u!114 &2272929250509315734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5725042379732235044}
+  m_GameObject: {fileID: 5076969238487141232}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2218215694
+  GlobalObjectIdHash: 871979595
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!114 &2665101345885090750
+--- !u!114 &2559289286913832008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5725042379732235044}
+  m_GameObject: {fileID: 5076969238487141232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e20c1f2f9657c25268de2b15bace1bf5, type: 3}
+  m_Script: {fileID: 11500000, guid: eaf566c596cd83f4692c3ed13ad739a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  currentTurn: 0
-  playerCount: 0
-  playerPrefab: {fileID: 8598175075737283874, guid: 0312d54bb69fea636a40c168e282275c, type: 3}
-  prepRenderPrefab: {fileID: 2629615450784681048, guid: cc671f22d66bf6d8d8247b1c9062a55f, type: 3}
-  initCardAmount: 8
+  managerPrefab: {fileID: 5725042379732235044, guid: bcef6d01bfc1b986fa3fc64215bc06d4, type: 3}

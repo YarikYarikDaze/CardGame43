@@ -51,13 +51,15 @@ public class CardDeckScript : MonoBehaviour
     void OnMouseOver()
     // for some reason calls LandCard on click. todo: change to Select?
     {
-        if (hand.playerScript == null) return;
-
-
         if (Input.GetMouseButtonDown(0) && remaining > 0 && hand.playerScript.Turn && hand.playerScript.remainingMoves > 0)
         {
-            hand.playerScript.selected = color;
+            hand.playerScript.Select(color);
             // COLOR 0-1-2 r-y-b
+            Debug.Log("Fingers in His Ass");
+        }
+        else
+        {
+            Debug.Log(Input.GetMouseButtonDown(0) + " " + (remaining > 0) + " " + hand.playerScript.Turn + " " + (hand.playerScript.remainingMoves > 0));
         }
     }
 }
