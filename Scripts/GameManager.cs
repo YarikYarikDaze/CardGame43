@@ -21,6 +21,8 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] int initCardAmount = 8;        // amount of cards to put in every hand
 
+    string[,] pairEffects;
+
     [ClientRpc]
     void aClientRpc(bool f)
     {
@@ -38,7 +40,7 @@ public class GameManager : NetworkBehaviour
     public override void OnNetworkSpawn()
     // Basically initializer: sets turns, p-count, and cards
     {
-
+        this.InitializeEffects();
         playerCount = NetworkManager.Singleton.ConnectedClientsIds.Count;
         playerCards = new int[playerCount, 2, 3];
         currentTurn = 0;
@@ -78,6 +80,28 @@ public class GameManager : NetworkBehaviour
         //sendParams.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[0] };
     }
 
+    void InitializeEffects()
+    {
+        pairEffects = new string[3, 3]
+        {
+            {
+                "TakeCard",
+                "TakeCard",
+                "TakeCard"
+            },
+            {
+                "TakeCard",
+                "TakeCard",
+                "TakeCard"
+            },
+            {
+                "TakeCard",
+                "TakeCard",
+                "TakeCard"
+            }
+        };
+    }
+
     [ClientRpc]
     void InitializeGameClientRpc()
     // Spawns player and renderer on every client
@@ -85,7 +109,7 @@ public class GameManager : NetworkBehaviour
         GameObject prepRender = Instantiate(prepRenderPrefab);
         // GameObject player = Instantiate(playerPrefab, new Vector3(0f, -4.75f, 0f), Quaternion.identity);
         // player.GetComponent<NetworkObject>().Spawn();
-        
+
         //Debug.Log($"Object scene: {player.scene.name}");
     }
 
@@ -219,6 +243,12 @@ public class GameManager : NetworkBehaviour
     public void NewCast(int id)
     // unfinished casting, right now only erases the cards in prep
     {
+        int[] targets = new int[] { (id + 1) % playerCount };
+        
+        SpellEffect newSpell = CreateSpell(playerCards, id, targets);
+
+        HandleNewSpell(newSpell);
+
         for (int i = 0; i < 3; i++)
         {
             playerCards[id, 1, i] = 0;
@@ -235,5 +265,27 @@ public class GameManager : NetworkBehaviour
         SetState(playerCards);
     }
 
+    int GiveColorToCard()
+    {
+        return (new System.Random()).Next(3);
+    }
 
+    public void GiveCardToPlayer(int id)
+    {
+        int color = GiveColorToCard();
+        this.playerCards[id, 0, color]++;
+        SetState(playerCards);
+    }
+
+    SpellEffect CreateSpell(int[,,] playerCards, int playerId, int[] targets)
+    {
+        SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.pairEffects[playerCards[playerId, 0, 0], playerCards[playerId, 0, 1]]);
+        newSpell.InitializeSpell(playerId, targets);
+        return newSpell;
+    }
+
+    void HandleNewSpell(SpellEffect spell)
+    {
+        spell.OnCast(spell);
+    }
 }
