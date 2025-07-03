@@ -55,11 +55,7 @@ public class CardDeckScript : MonoBehaviour
         {
             hand.playerScript.Select(color);
             // COLOR 0-1-2 r-y-b
-            Debug.Log("Fingers in His Ass");
-        }
-        else
-        {
-            Debug.Log(Input.GetMouseButtonDown(0) + " " + (remaining > 0) + " " + hand.playerScript.Turn + " " + (hand.playerScript.remainingMoves > 0));
+            //Debug.Log("Fingers in His Ass");
         }
     }
 }
