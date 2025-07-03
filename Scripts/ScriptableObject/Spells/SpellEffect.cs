@@ -4,20 +4,20 @@ using System;
 [CreateAssetMenu(fileName = "SpellEffect", menuName = "Scriptable Objects/SpellEffect")]
 public abstract class SpellEffect : ScriptableObject
 {
-    protected int duration;
+    protected int duration;         // duration determining spell logic
 
     protected int[] targets;
 
     protected int caster;
 
-    protected GameManager gameManager;
+    protected SpellManager spellManager;
 
-    public void InitializeSpell(int newCaster, int[] newTargets)
+    public void InitializeSpell(int newCaster, int[] newTargets, SpellManager spellManager)
     {
+        this.caster = newCaster;
         targets = new int[newTargets.Length];
         Array.Copy(newTargets, targets, newTargets.Length);
-        this.caster = caster;
-        this.gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        this.spellManager = spellManager;
     }
 
     public abstract void OnHit(SpellEffect spell);

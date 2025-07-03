@@ -13,7 +13,10 @@ public class TakeCard : SpellEffect
 
     public override void OnCast(SpellEffect spell)
     {
-        this.gameManager.GiveCardToPlayer(targets[0]);
-        this.duration = 0;
+        if (!this.HasEnded())
+        {
+            this.spellManager.GiveCardToPlayer(targets[0]);
+            this.duration = 0;
+        }
     }
 }

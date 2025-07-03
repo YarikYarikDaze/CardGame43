@@ -2,7 +2,8 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Unity.Netcode;
-
+using System;
+using System.Collections.Generic;
 
 public class GameManager : NetworkBehaviour
 {
@@ -21,7 +22,9 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] int initCardAmount = 8;        // amount of cards to put in every hand
 
-    string[,] pairEffects;
+    List<SpellEffect>[] spellEffectsOnPlayers;      // for now there conditions on players are stored
+
+    SpellManager spellManager;                      // spell manager
 
     [ClientRpc]
     void aClientRpc(bool f)
@@ -40,9 +43,10 @@ public class GameManager : NetworkBehaviour
     public override void OnNetworkSpawn()
     // Basically initializer: sets turns, p-count, and cards
     {
-        this.InitializeEffects();
+        this.InitializeSpellManager();
         playerCount = NetworkManager.Singleton.ConnectedClientsIds.Count;
         playerCards = new int[playerCount, 2, 3];
+        spellEffectsOnPlayers = new List<SpellEffect>[playerCount];
         currentTurn = 0;
 
 
@@ -53,6 +57,8 @@ public class GameManager : NetworkBehaviour
                 playerCards[i, 0, j] = 0;
                 playerCards[i, 1, j] = 0;
             }
+
+            spellEffectsOnPlayers[i] = new List<SpellEffect>();
         }
 
         // gives away cards players' hands with cards
@@ -80,26 +86,10 @@ public class GameManager : NetworkBehaviour
         //sendParams.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[0] };
     }
 
-    void InitializeEffects()
+    void InitializeSpellManager()
     {
-        pairEffects = new string[3, 3]
-        {
-            {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
-            },
-            {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
-            },
-            {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
-            }
-        };
+        this.spellManager = gameObject.GetComponent<SpellManager>();
+        this.spellManager.InitializeItself(this);
     }
 
     [ClientRpc]
@@ -243,19 +233,24 @@ public class GameManager : NetworkBehaviour
     public void NewCast(int id)
     // unfinished casting, right now only erases the cards in prep
     {
-        int[] targets = new int[] { (id + 1) % playerCount };
-        
-        SpellEffect newSpell = CreateSpell(playerCards, id, targets);
+        if (CantCastSpell(playerCards, id)) return;
 
-        HandleNewSpell(newSpell);
+        int[] targets = new int[] { (id + 1) % playerCount };
+
+        spellManager.CreateSpell(id, playerCards, targets);
 
         for (int i = 0; i < 3; i++)
         {
             playerCards[id, 1, i] = 0;
         }
 
-
         SetState(playerCards);
+    }
+
+    bool CantCastSpell(int[,,] playerCards, int id)
+    {
+        if (playerCards[id, 1, 0] == 0 || playerCards[id, 1, 1] == 0) return true;
+        return false;
     }
 
     public void NewTurn()
@@ -270,22 +265,31 @@ public class GameManager : NetworkBehaviour
         return (new System.Random()).Next(3);
     }
 
-    public void GiveCardToPlayer(int id)
+    public void GiveCardToPlayer(int index)
+    // Gives Card to <index> player. Color defined by GiveColorToCard()
     {
         int color = GiveColorToCard();
-        this.playerCards[id, 0, color]++;
+        this.playerCards[index, 0, color]++;
         SetState(playerCards);
     }
 
-    SpellEffect CreateSpell(int[,,] playerCards, int playerId, int[] targets)
+    public void EndPlayerTurn()
     {
-        SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.pairEffects[playerCards[playerId, 0, 0], playerCards[playerId, 0, 1]]);
-        newSpell.InitializeSpell(playerId, targets);
-        return newSpell;
+        
     }
 
-    void HandleNewSpell(SpellEffect spell)
+    public List<SpellEffect> GetEffectsOnPlayer(int index)
     {
-        spell.OnCast(spell);
+        return this.spellEffectsOnPlayers[index];
+    }
+
+    public void SetEffectsOnPlayer(int index, List<SpellEffect> newEffects)
+    {
+        this.spellEffectsOnPlayers[index] = newEffects;
+    }
+
+    public void AddEffect(int index, SpellEffect newSpell)
+    {
+        this.spellEffectsOnPlayers[index].Add(newSpell);
     }
 }

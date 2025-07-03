@@ -9,8 +9,11 @@ public class ShieldSpell : SpellEffect
     }
     public override void OnHit(SpellEffect spell)
     {
-        spell.BlockSpell();
-        this.duration = 0;
+        if (!this.HasEnded())
+        {
+            spell.BlockSpell();
+            this.duration = 0;
+        }
     }
 
     public override void OnTurn(SpellEffect spell)

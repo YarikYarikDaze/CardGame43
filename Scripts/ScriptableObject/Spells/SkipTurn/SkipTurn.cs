@@ -11,8 +11,11 @@ public class SkipTurn : SpellEffect
 
     public override void OnTurn(SpellEffect spell)
     {
-        //this.gameManager.EndTurn();
-        this.duration = 0;
+        if (!this.HasEnded())
+        {
+            this.spellManager.EndPlayerTurn();
+            this.duration = 0;
+        }
     }
 
     public override void OnCast(SpellEffect spell) {}
