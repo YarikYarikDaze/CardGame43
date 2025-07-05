@@ -7,9 +7,9 @@ public class SpellManager : MonoBehaviour
 
     string[,,] effectsArray;
 
-    public void InitializeItself(GameManager gameManager)
+    public void InitializeItself(GameManager newGameManager)
     {
-        gameManager = gameManager;
+        this.gameManager = newGameManager;
         this.InitializeEffects();
     }
 
@@ -77,7 +77,8 @@ public class SpellManager : MonoBehaviour
 
     SpellEffect TraverseEffectsOnHit(SpellEffect newSpell, int index)
     {
-        List<SpellEffect> playerEffects = gameManager.GetEffectsOnPlayer(index);
+        if(gameManager == null) Debug.Log("123");
+        List<SpellEffect> playerEffects = new List<SpellEffect>(gameManager.GetEffectsOnPlayer(index));
 
         foreach (SpellEffect spell in playerEffects)
         {

@@ -17,7 +17,7 @@ public class UI_Manager : MonoBehaviour
         playerScript = GameObject.FindWithTag("Player").GetComponent<Player>();
         cast.onClick.AddListener(() =>
         {
-            playerScript.CastSpell(playerScript.ID);
+            playerScript.CastSpell();
         });
         pass.onClick.AddListener(() =>
         {
