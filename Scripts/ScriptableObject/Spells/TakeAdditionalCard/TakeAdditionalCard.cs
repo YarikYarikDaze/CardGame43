@@ -1,17 +1,16 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShieldSpell", menuName = "Scriptable Objects/ShieldSpell")]
-public class ShieldSpell : SpellEffect
+[CreateAssetMenu(fileName = "TakeAdditionalCard", menuName = "Scriptable Objects/TakeAdditionalCard")]
+public class TakeAdditionalCard : SpellEffect
 {
     void Awake()
     {
-        this.duration = 1;
+        this.duration = 2;
     }
     public override void OnHit(SpellEffect spell)
-    {
-        if (!this.HasEnded())
-        {
-            this.Effect(spell, caster);
+    { 
+        if(!this.HasEnded()) {
+            this.Effect(spell, targets[0]);
             this.duration--;
         }
     }
@@ -25,6 +24,6 @@ public class ShieldSpell : SpellEffect
 
     public override void Effect(SpellEffect spell, int index)
     {
-        spell.EndSpell();
+        this.spellManager.GiveCardToPlayer(index);
     }
 }

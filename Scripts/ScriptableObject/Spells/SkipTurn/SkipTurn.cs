@@ -13,10 +13,15 @@ public class SkipTurn : SpellEffect
     {
         if (!this.HasEnded())
         {
-            this.spellManager.EndPlayerTurn();
-            this.duration = 0;
+            this.Effect(spell, targets[0]);
+            this.duration--;
         }
     }
 
-    public override void OnCast(SpellEffect spell) {}
+    public override void OnCast(SpellEffect spell) { }
+
+    public override void Effect(SpellEffect spell, int index)
+    {
+        this.spellManager.EndPlayerTurn();
+    }
 }

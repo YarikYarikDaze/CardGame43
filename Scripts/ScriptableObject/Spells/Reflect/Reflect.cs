@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ShieldSpell", menuName = "Scriptable Objects/ShieldSpell")]
-public class ShieldSpell : SpellEffect
+[CreateAssetMenu(fileName = "Reflect", menuName = "Scriptable Objects/Reflect")]
+public class Reflect : SpellEffect
 {
     void Awake()
     {
@@ -25,6 +25,6 @@ public class ShieldSpell : SpellEffect
 
     public override void Effect(SpellEffect spell, int index)
     {
-        spell.EndSpell();
+        spell.Effect(spell, index);
     }
 }

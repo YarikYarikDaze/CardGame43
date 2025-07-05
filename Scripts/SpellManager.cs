@@ -15,7 +15,7 @@ public class SpellManager : MonoBehaviour
 
     void InitializeEffects()
     {
-        effectsArray = new string[3,3,3]
+        effectsArray = new string[3, 3, 3]
         {
             {
                 {
@@ -157,4 +157,15 @@ public class SpellManager : MonoBehaviour
         gameManager.EndPlayerTurn();
     }
 
+    public void ClearPlayerEffects(int index)
+    {
+        List<SpellEffect> newList = new List<SpellEffect>();
+        this.gameManager.SetEffectsOnPlayer(index, newList);
+    }
+
+    public int[] GetNeighbours(int index)
+    {
+        int[] neighbours = new int[2];
+        return neighbours;
+    }
 }

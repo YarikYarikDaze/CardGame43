@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TakeCard", menuName = "Scriptable Objects/TakeCard")]
-public class TakeCard : SpellEffect
+[CreateAssetMenu(fileName = "ClearEffects", menuName = "Scriptable Objects/ClearEffects")]
+public class ClearEffects : SpellEffect
 {
     void Awake()
     {
@@ -13,15 +13,12 @@ public class TakeCard : SpellEffect
 
     public override void OnCast(SpellEffect spell)
     {
-        if (!this.HasEnded())
-        {
-            this.Effect(spell, targets[0]);
-            this.EndSpell();
-        }
+        this.Effect(spell, caster);
+        this.EndSpell();
     }
 
     public override void Effect(SpellEffect spell, int index)
     {
-        this.spellManager.GiveCardToPlayer(index);
+        this.spellManager.ClearPlayerEffects(index);
     }
 }

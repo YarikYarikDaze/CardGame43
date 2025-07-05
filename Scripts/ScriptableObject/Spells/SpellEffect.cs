@@ -26,7 +26,9 @@ public abstract class SpellEffect : ScriptableObject
 
     public abstract void OnCast(SpellEffect spell);
 
-    public void BlockSpell()
+    public abstract void Effect(SpellEffect spell, int index);
+
+    public void EndSpell()
     {
         this.duration = 0;
     }
