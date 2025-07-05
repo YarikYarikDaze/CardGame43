@@ -258,7 +258,7 @@ public class GameManager : NetworkBehaviour
     // next turn!
     {
         // NOTE: add Previous() and Next()
-        currentTurn = (currentTurn++) % playerCount;
+        currentTurn = (currentTurn + 1) % playerCount;
         SetState(playerCards);
     }
 

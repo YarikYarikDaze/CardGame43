@@ -21,6 +21,7 @@ public class UI_Manager : MonoBehaviour
         });
         pass.onClick.AddListener(() =>
         {
+            Debug.Log("TURN ENDED");
             playerScript.EndTurn();
         });
     }
