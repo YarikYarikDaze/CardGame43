@@ -132,9 +132,9 @@ public class GameManager : NetworkBehaviour
 
 
             // Gives a turn to current player
-            // if (i == currentTurn)
+            if (i == currentTurn)
+                SetTurnClientRpc(sendOnly);
         }
-        SetTurnClientRpc();
 
         LoadPrepsClientRpc();
     }
@@ -184,7 +184,7 @@ public class GameManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    void SetTurnClientRpc()
+    void SetTurnClientRpc(ClientRpcParams clientParams)
     // sets the turn
     {
         GameObject.FindWithTag("Player").GetComponent<Player>().TakeTurn();
@@ -257,6 +257,7 @@ public class GameManager : NetworkBehaviour
     public void NewTurn()
     // next turn!
     {
+        // NOTE: add Previous() and Next()
         currentTurn = (currentTurn++) % playerCount;
         SetState(playerCards);
     }

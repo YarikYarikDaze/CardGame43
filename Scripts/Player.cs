@@ -141,6 +141,8 @@ public class Player : NetworkBehaviour
     public void EndTurn()
     // End of turn. Envoked from server
     {
+        if (!turn) return;
+
         turn = false;
         EndTurnServerRpc();
     }
