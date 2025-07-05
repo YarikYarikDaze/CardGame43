@@ -14,7 +14,7 @@ public class GameManager : NetworkBehaviour
     // PREP/CARDS: 3 values, representing the color of each card in this prep,
     // INCLUDING LACK OF A CARD!
     // Hence, 0-1-2-3 X-R-Y-B
-    [SerializeField] int[,,] playerCards;           // i - players, j - hand/prep, k - cards
+    int[,,] playerCards;           // i - players, j - hand/prep, k - cards
     [SerializeField] int currentTurn;               // turn counter
     [SerializeField] int playerCount;               // total player count
     [SerializeField] GameObject playerPrefab;       // prefab of a player
@@ -286,7 +286,7 @@ public class GameManager : NetworkBehaviour
 
     public void SetEffectsOnPlayer(int index, List<SpellEffect> newEffects)
     {
-        this.spellEffectsOnPlayers[index] = newEffects;
+        this.spellEffectsOnPlayers[index] = new List<SpellEffect>(newEffects);
     }
 
     public void AddEffect(int index, SpellEffect newSpell)

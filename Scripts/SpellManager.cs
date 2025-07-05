@@ -15,57 +15,66 @@ public class SpellManager : MonoBehaviour
 
     void InitializeEffects()
     {
-        effectsArray = new string[3, 3, 3]
+        effectsArray = new string[3, 3, 4]
         {
             {
                 {
                 "TakeCard",
-                "TakeCard",
-                "TakeCard"
+                "NULL",
+                "NULL",
+                "NULL"
                 },
-                                {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
+                {
+                "NeighboursTakeCard",
+                "NULL",
+                "NULL",
+                "NULL"
                 },
-                                {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
+                {
+                "TakeAdditionalCard",
+                "NULL",
+                "NULL",
+                "NULL"
                 }
             },
             {
                 {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
+                "DiscardCard",
+                "NULL",
+                "NULL",
+                "NULL"
                 },
                 {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
+                "SkipTurn",
+                "NULL",
+                "NULL",
+                "NULL"
                 },
                 {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
+                "StealCard",
+                "NULL",
+                "NULL",
+                "NULL"
                 }
             },
             {
                 {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
+                "Reflect",
+                "NULL",
+                "NULL",
+                "NULL"
                 },
                 {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
+                "ClearEffects",
+                "NULL",
+                "NULL",
+                "NULL"
                 },
                 {
-                "TakeCard",
-                "TakeCard",
-                "TakeCard"
+                "ShieldSpell",
+                "NULL",
+                "NULL",
+                "NULL"
                 }
             }
         };
@@ -77,7 +86,6 @@ public class SpellManager : MonoBehaviour
 
     SpellEffect TraverseEffectsOnHit(SpellEffect newSpell, int index)
     {
-        if(gameManager == null) Debug.Log("123");
         List<SpellEffect> playerEffects = new List<SpellEffect>(gameManager.GetEffectsOnPlayer(index));
 
         foreach (SpellEffect spell in playerEffects)
@@ -87,12 +95,14 @@ public class SpellManager : MonoBehaviour
 
         gameManager.SetEffectsOnPlayer(index, playerEffects);
 
+        this.DeleteEndedSpells(index);
+
         return newSpell;
     }
 
     void TraverseEffectsOnTurn(int index)
     {
-        List<SpellEffect> playerEffects = gameManager.GetEffectsOnPlayer(index);
+        List<SpellEffect> playerEffects = new List<SpellEffect>(gameManager.GetEffectsOnPlayer(index));
 
         foreach (SpellEffect spell in playerEffects)
         {
@@ -106,7 +116,7 @@ public class SpellManager : MonoBehaviour
 
     public void CreateSpell(int index, int[,,] playerCards, int[] targets)
     {
-        SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.effectsArray[playerCards[index, 1, 0], playerCards[index, 1, 1], playerCards[index, 1, 2]]);
+        SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.effectsArray[playerCards[index, 1, 0] - 1, playerCards[index, 1, 1] - 1, playerCards[index, 1, 2]]);
         newSpell.InitializeSpell(index, targets, this);
 
         this.HandleNewSpell(newSpell, index);
@@ -126,7 +136,7 @@ public class SpellManager : MonoBehaviour
     {
         List<SpellEffect> endedSpells = new List<SpellEffect>();
 
-        List<SpellEffect> spellsOnPlayer = gameManager.GetEffectsOnPlayer(index);
+        List<SpellEffect> spellsOnPlayer = new List<SpellEffect>(gameManager.GetEffectsOnPlayer(index));
 
         foreach (SpellEffect spell in spellsOnPlayer)
         {
