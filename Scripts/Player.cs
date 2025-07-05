@@ -58,11 +58,13 @@ public class Player : NetworkBehaviour
         {
             MoveCardServerRpc(selected, id, true);
             selected = -1;
+            remainingMoves--;
         }
         else if (Input.GetKeyDown(KeyCode.D) && turn)
         {
             MoveCardServerRpc(selected, id, false);
             selected = -1;
+            remainingMoves--;
         }
     }
 
@@ -129,6 +131,7 @@ public class Player : NetworkBehaviour
         if (Turn)
         {
             this.CastServerRpc(this.id);
+            remainingMoves--;
         }
     }
 
