@@ -114,22 +114,26 @@ public class SpellManager : MonoBehaviour
         this.DeleteEndedSpells(index);
     }
 
-    public void CreateSpell(int index, int[,,] playerCards, int[] targets)
+    public void CreateSpell(int index, int[,,] playerCards)
     {
         SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.effectsArray[playerCards[index, 1, 0] - 1, playerCards[index, 1, 1] - 1, playerCards[index, 1, 2]]);
+        int[] targets = gameManager.GetTargets(index, newSpell.GetTargetsNumber());
         newSpell.InitializeSpell(index, targets, this);
 
-        this.HandleNewSpell(newSpell, index);
+        this.HandleNewSpell(newSpell, index, targets);
     }
-    void HandleNewSpell(SpellEffect newSpell, int index)
+    void HandleNewSpell(SpellEffect newSpell, int index, int[] targets)
     {
-        SpellEffect spellAfterHandling = this.TraverseEffectsOnHit(newSpell, index);
+        foreach (int target in targets)
+        {
+            SpellEffect spellAfterHandling = this.TraverseEffectsOnHit(newSpell, target);
 
-        spellAfterHandling.OnCast(spellAfterHandling);
+            spellAfterHandling.OnCast(spellAfterHandling);
 
-        gameManager.AddEffect(index, spellAfterHandling);
+            gameManager.AddEffect(target, spellAfterHandling);
 
-        this.DeleteEndedSpells(index);
+            this.DeleteEndedSpells(target);
+        }
     }
 
     void DeleteEndedSpells(int index)
@@ -165,7 +169,7 @@ public class SpellManager : MonoBehaviour
 
     public void EndPlayerTurn(int index)
     {
-        gameManager.ForceEndPlayerTurn(index);
+        gameManager.ForceEndPlayerTurn();
     }
 
     public void ClearPlayerEffects(int index)
@@ -176,7 +180,7 @@ public class SpellManager : MonoBehaviour
 
     public int[] GetNeighbours(int index)
     {
-        int[] neighbours = new int[2];
+        int[] neighbours = new int[2] {gameManager.PreviousPlayer(index), gameManager.NextPlayer(index)};
         return neighbours;
     }
 }

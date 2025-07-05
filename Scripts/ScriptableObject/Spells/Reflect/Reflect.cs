@@ -6,6 +6,7 @@ public class Reflect : SpellEffect
     void Awake()
     {
         this.duration = 1;
+        this.targetsNumber = 0;
     }
     public override void OnHit(SpellEffect spell)
     {

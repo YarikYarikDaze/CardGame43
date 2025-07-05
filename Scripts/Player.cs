@@ -144,6 +144,7 @@ public class Player : NetworkBehaviour
         if (!turn) return;
 
         turn = false;
+        Debug.Log("I ended turn");
         EndTurnServerRpc();
     }
 

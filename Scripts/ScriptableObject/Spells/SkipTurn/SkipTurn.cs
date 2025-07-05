@@ -6,6 +6,7 @@ public class SkipTurn : SpellEffect
     void Awake()
     {
         this.duration = 1;
+        this.targetsNumber = 1;
     }
     public override void OnHit(SpellEffect spell) { }
 
@@ -14,7 +15,7 @@ public class SkipTurn : SpellEffect
         if (!this.HasEnded())
         {
             this.Effect(spell, targets[0]);
-            this.duration--;
+            this.EndSpell();
         }
     }
 

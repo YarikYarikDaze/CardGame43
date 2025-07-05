@@ -20,7 +20,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] GameObject playerPrefab;       // prefab of a player
     [SerializeField] GameObject prepRenderPrefab;  // prefab of an prep renderer
 
-    [SerializeField] int initCardAmount = 8;        // amount of cards to put in every hand
+    [SerializeField] int initCardAmount = 12;        // amount of cards to put in every hand
 
     List<SpellEffect>[] spellEffectsOnPlayers;      // for now there conditions on players are stored
 
@@ -236,9 +236,7 @@ public class GameManager : NetworkBehaviour
     {
         if (CantCastSpell(playerCards, id)) return;
 
-        int[] targets = new int[] { (id + 1) % playerCount };
-
-        spellManager.CreateSpell(id, playerCards, targets);
+        spellManager.CreateSpell(id, playerCards);
 
         for (int i = 0; i < 3; i++)
         {
@@ -246,6 +244,20 @@ public class GameManager : NetworkBehaviour
         }
 
         SetState(playerCards);
+    }
+
+    public int[] GetTargets(int index, int N)
+    {
+        int[] targets;
+        if (N == 0)
+        {
+            targets = new int[] { index };
+        }
+        else
+        {
+            targets = new int[] { (index + 1) % playerCount };
+        }
+        return targets;
     }
 
     bool CantCastSpell(int[,,] playerCards, int id)
@@ -258,8 +270,7 @@ public class GameManager : NetworkBehaviour
     // next turn!
     {
         // NOTE: add Previous() and Next()
-        currentTurn = (currentTurn + 1) % playerCount;
-        SetState(playerCards);
+        currentTurn = NextPlayer(currentTurn);
         spellManager.TraverseEffectsOnTurn(currentTurn);
         SetState(playerCards);
     }
@@ -285,6 +296,7 @@ public class GameManager : NetworkBehaviour
     public void SetEffectsOnPlayer(int index, List<SpellEffect> newEffects)
     {
         this.spellEffectsOnPlayers[index] = new List<SpellEffect>(newEffects);
+        Debug.Log(spellEffectsOnPlayers[index].Count);
     }
 
     public void AddEffect(int index, SpellEffect newSpell)
@@ -292,17 +304,18 @@ public class GameManager : NetworkBehaviour
         this.spellEffectsOnPlayers[index].Add(newSpell);
     }
 
-    public void ForceEndPlayerTurn(int index)
+    public void ForceEndPlayerTurn()
     {
-        var sendOnly = new ClientRpcParams();
-        sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[index] };
-        ForceEndPlayerTurnClientRpc(sendOnly);
+        this.currentTurn = NextPlayer(currentTurn);
     }
-    
-    [ClientRpc]
-    void ForceEndPlayerTurnClientRpc(ClientRpcParams clientParams)
-    // sets the turn
+
+    public int PreviousPlayer(int index)
     {
-        GameObject.FindWithTag("Player").GetComponent<Player>().EndTurn();
+        return (index - 1) % playerCount;
+    }
+
+    public int NextPlayer(int index)
+    {
+        return (index + 1) % playerCount;
     }
 }

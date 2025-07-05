@@ -6,6 +6,7 @@ public class TakeAdditionalCard : SpellEffect
     void Awake()
     {
         this.duration = 2;
+        this.targetsNumber = 1;
     }
     public override void OnHit(SpellEffect spell)
     { 

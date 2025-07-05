@@ -12,6 +12,8 @@ public abstract class SpellEffect : ScriptableObject
 
     protected SpellManager spellManager;
 
+    protected int targetsNumber;
+
     public void InitializeSpell(int newCaster, int[] newTargets, SpellManager spellManager)
     {
         this.caster = newCaster;
@@ -36,5 +38,10 @@ public abstract class SpellEffect : ScriptableObject
     public bool HasEnded()
     {
         return this.duration <= 0;
+    }
+
+    public int GetTargetsNumber()
+    {
+        return this.targetsNumber;
     }
 }
