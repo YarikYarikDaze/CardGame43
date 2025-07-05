@@ -261,6 +261,7 @@ public class GameManager : NetworkBehaviour
         currentTurn = (currentTurn + 1) % playerCount;
         SetState(playerCards);
         spellManager.TraverseEffectsOnTurn(currentTurn);
+        SetState(playerCards);
     }
 
     int GiveColorToCard()
