@@ -80,11 +80,11 @@ public class Player : NetworkBehaviour
         SetCards(handCards);
     }
 
-    public void TakeTurn()
+    public void TakeTurn(bool turn)
     // Start of this player's turn
     {
-        turn = true;
-        remainingMoves = maxMoves;
+        this.turn = turn;
+        remainingMoves = turn ? maxMoves : 0;
     }
 
     void SetCards(int[] newHandCards)
@@ -146,8 +146,6 @@ public class Player : NetworkBehaviour
     {
         if (!turn) return;
 
-        turn = false;
-        Debug.Log("I ended turn");
         EndTurnServerRpc();
     }
 

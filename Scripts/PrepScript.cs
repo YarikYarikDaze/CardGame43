@@ -21,10 +21,10 @@ public class PrepScript : MonoBehaviour
             }
 
             transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = sprites[colors[i]];
-            transform.GetChild(i).position = new Vector3(
+            transform.GetChild(i).localPosition = new Vector3(
                 (shift - shift * amount) + shift * i * 2,
-                transform.position.y,
-                transform.position.z
+                0f,
+                0f
             );
         }
     }
