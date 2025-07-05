@@ -47,7 +47,7 @@ public class Player : NetworkBehaviour
         //Debug.Log(GetComponent<NetworkObject>().IsSpawned);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log(IsOwner);
+            // Debug.Log(IsOwner);
         }
 
         // if (!IsOwner) return;
@@ -104,15 +104,15 @@ public class Player : NetworkBehaviour
         // Validate sender exists
         if (!NetworkManager.Singleton.ConnectedClients.ContainsKey(senderId))
         {
-            Debug.LogError($"Unknown client ID: {senderId}");
+            // Debug.LogError($"Unknown client ID: {senderId}");
             return;
         }
 
         GameObject.FindWithTag("GameManager").GetComponent<GameManager>().PlaceCard(color, id, left);
-        Debug.Log("AAAAAA");
+        // Debug.Log("AAAAAA");
         if (!NetworkManager.Singleton.ConnectedClients.ContainsKey((ulong)id))
         {
-            Debug.LogError($"Unknown client ID: {(ulong)id}");
+            // Debug.LogError($"Unknown client ID: {(ulong)id}");
             return;
         }
     }
@@ -167,6 +167,6 @@ public class Player : NetworkBehaviour
 
     void OnDestroy()
     {
-        Debug.Log("OOOOOOOOAAAAAAAAAAAAAHHH");
+        // Debug.Log("OOOOOOOOAAAAAAAAAAAAAHHH");
     }
 }

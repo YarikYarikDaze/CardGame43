@@ -201,7 +201,7 @@ public class GameManager : NetworkBehaviour
         int[] oldPlacement = { playerCards[id, 1, 0], playerCards[id, 1, 1], playerCards[id, 1, 2] };
 
         var filtered = oldPlacement.Where(n => n != 0).ToArray();
-        Debug.Log(filtered.Length);
+        //Debug.Log(filtered.Length);
         int[] newPlacement;
 
         switch (filtered.Length)

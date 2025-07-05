@@ -36,7 +36,7 @@ public class PrepRenderer : MonoBehaviour
             {PlPos[0], PlPos[1], PlPos[2], PlPos[3], PlPos[4], PlPos[5]}
         };
         prepCards = new int[2, 3];
-        Debug.Log(prepCards.GetLength(0) + ";   " + prepCards.GetLength(1));
+        // Debug.Log(prepCards.GetLength(0) + ";   " + prepCards.GetLength(1));
 
     }
 
@@ -62,7 +62,7 @@ public class PrepRenderer : MonoBehaviour
         }
         for (int i = 0; i < prepCount; i++)
         {
-            Debug.Log(prepCards[i, 0]+", "+prepCards[i, 1]+", "+prepCards[i, 2]);
+            // Debug.Log(prepCards[i, 0]+", "+prepCards[i, 1]+", "+prepCards[i, 2]);
         }
         counter++;
     }
