@@ -193,8 +193,6 @@ public class GameManager : NetworkBehaviour
     public void PlaceCard(int color, int id, bool left)
     // ARGUMENT COLOR 0-1-2 R-Y-B
     {
-        playerCards[id, 0, color]--;
-
         int newColor = color + 1;
         // COLOR 1-2-3 R-Y-B
 
@@ -214,6 +212,7 @@ public class GameManager : NetworkBehaviour
                                     : new int[] { filtered[0], newColor, 0 };
                 break;
             case 2:
+                return;
                 newPlacement = left ? new int[] { newColor, filtered[0], filtered[1] }
                                     : new int[] { filtered[0], filtered[1], newColor };
                 break;
@@ -226,6 +225,8 @@ public class GameManager : NetworkBehaviour
         {
             playerCards[id, 1, i] = newPlacement[i];
         }
+
+        playerCards[id, 0, color]--;
 
         SetState(playerCards);
     }
