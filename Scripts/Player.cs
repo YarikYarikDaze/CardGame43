@@ -124,6 +124,14 @@ public class Player : NetworkBehaviour
         GameObject.FindWithTag("GameManager").GetComponent<GameManager>().NewCast(id);
     }
 
+    public void CastSpell()
+    {
+        if (Turn)
+        {
+            this.CastServerRpc(this.id);
+        }
+    }
+
     [ServerRpc(RequireOwnership = false)]
     public void PassServerRpc(ServerRpcParams rpcParams = default)
     // unfinished Turn End RPC
