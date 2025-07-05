@@ -43,7 +43,7 @@ public class LobbyConnect : NetworkBehaviour
         {
             // Port.text = "7777";
             NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>().SetConnectionData(
-                (IP.text!="") ? IP.text : "127.0.0.1",
+                (IP.text!="") ? ("192.168."+IP.text) : "127.0.0.1",
                 (ushort)7777
             );
             NetworkManager.Singleton.StartClient();
