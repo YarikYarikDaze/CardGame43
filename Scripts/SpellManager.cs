@@ -100,7 +100,7 @@ public class SpellManager : MonoBehaviour
         return newSpell;
     }
 
-    void TraverseEffectsOnTurn(int index)
+    public void TraverseEffectsOnTurn(int index)
     {
         List<SpellEffect> playerEffects = new List<SpellEffect>(gameManager.GetEffectsOnPlayer(index));
 
@@ -163,9 +163,9 @@ public class SpellManager : MonoBehaviour
         gameManager.GiveCardToPlayer(index);
     }
 
-    public void EndPlayerTurn()
+    public void EndPlayerTurn(int index)
     {
-        gameManager.EndPlayerTurn();
+        gameManager.ForceEndPlayerTurn(index);
     }
 
     public void ClearPlayerEffects(int index)

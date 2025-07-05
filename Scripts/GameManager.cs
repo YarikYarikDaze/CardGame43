@@ -260,6 +260,7 @@ public class GameManager : NetworkBehaviour
         // NOTE: add Previous() and Next()
         currentTurn = (currentTurn + 1) % playerCount;
         SetState(playerCards);
+        spellManager.TraverseEffectsOnTurn(currentTurn);
     }
 
     int GiveColorToCard()
@@ -275,11 +276,6 @@ public class GameManager : NetworkBehaviour
         SetState(playerCards);
     }
 
-    public void EndPlayerTurn()
-    {
-        
-    }
-
     public List<SpellEffect> GetEffectsOnPlayer(int index)
     {
         return this.spellEffectsOnPlayers[index];
@@ -293,5 +289,19 @@ public class GameManager : NetworkBehaviour
     public void AddEffect(int index, SpellEffect newSpell)
     {
         this.spellEffectsOnPlayers[index].Add(newSpell);
+    }
+
+    public void ForceEndPlayerTurn(int index)
+    {
+        var sendOnly = new ClientRpcParams();
+        sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[index] };
+        ForceEndPlayerTurnClientRpc(sendOnly);
+    }
+    
+    [ClientRpc]
+    void ForceEndPlayerTurnClientRpc(ClientRpcParams clientParams)
+    // sets the turn
+    {
+        GameObject.FindWithTag("Player").GetComponent<Player>().EndTurn();
     }
 }

@@ -22,6 +22,6 @@ public class SkipTurn : SpellEffect
 
     public override void Effect(SpellEffect spell, int index)
     {
-        this.spellManager.EndPlayerTurn();
+        this.spellManager.EndPlayerTurn(index);
     }
 }
