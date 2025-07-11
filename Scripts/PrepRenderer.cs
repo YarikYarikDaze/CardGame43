@@ -83,10 +83,13 @@ public class PrepRenderer : MonoBehaviour
                 basePos[prepCount - 1, shift(i)].y,
                 0f
             );
-        
+
+
+
             Breps[i].transform.rotation = Quaternion.Euler(0f, 0f, basePos[prepCount - 1, shift(i)].z);
 
-            Breps[i].GetComponent<PrepScript>().SetCards(new int[]{prepCards[i, 0],prepCards[i, 1],prepCards[i, 2]});
+            Breps[i].GetComponent<PrepScript>().SetCards(new int[] { prepCards[i, 0], prepCards[i, 1], prepCards[i, 2] });
+            Breps[i].GetComponent<PrepScript>().id = i;
         }
     }
     

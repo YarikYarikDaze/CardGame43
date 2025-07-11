@@ -18442,10 +18442,10 @@ MonoBehaviour:
   main: {fileID: 852114733343943229}
   ChoiceMenu: {fileID: 388333475787335330}
   lobbyHost: {fileID: 1181397163}
-  lobbyJoin: {fileID: 1473713086}
+  lobbyJoin: {fileID: 949339864}
   host: {fileID: 6258179033477316819}
   join: {fileID: 6253115496800524549}
-  JoinMenu: {fileID: 949339864}
+  JoinMenu: {fileID: 1473713086}
   IP: {fileID: 1667241190}
   connect: {fileID: 1667241188}
 --- !u!114 &8281725745537779143

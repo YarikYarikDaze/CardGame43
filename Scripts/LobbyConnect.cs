@@ -45,6 +45,7 @@ public class LobbyConnect : NetworkBehaviour
                 (ushort)7777
             );
             NetworkManager.Singleton.StartClient();
+            Debug.Log("Get on with it!");
             main.SetActive(false);
             lobbyJoin.SetActive(true);
             lobbyHost.SetActive(false);
