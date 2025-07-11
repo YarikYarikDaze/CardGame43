@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handSize: 3
   remainingCards: 
+  cardp: {fileID: 2526665614035294652, guid: 7c749da96ac19bf73b029ed17dce3fc7, type: 3}
   playerScript: {fileID: 6155524680842160461}
   deckPrefab: {fileID: 0}
 --- !u!1 &8598175075737283874
@@ -124,7 +125,6 @@ MonoBehaviour:
   turn: 0
   maxMoves: 1
   remainingMoves: 0
-  selected: -1
   handScript: {fileID: 3096346890592892216}
   prepRenderer: {fileID: 0}
   deckPrefab: {fileID: 6868864908659887385, guid: c4fc0135915b854cd88fb48bd622e9c1, type: 3}

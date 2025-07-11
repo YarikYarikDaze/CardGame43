@@ -53,7 +53,13 @@ public class CardDeckScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && remaining > 0 && hand.playerScript.Turn && hand.playerScript.remainingMoves > 0)
         {
-            hand.playerScript.Select(color);
+            // hand.playerScript.Select(color);
+            GameObject card = Instantiate(hand.cardp);
+            card.GetComponent<CardPlacementScript>().color = color;
+            card.GetComponent<CardPlacementScript>().playerScript = hand.playerScript;
+            card.GetComponent<SpriteRenderer>().sprite = deckRenderer.sprite;
+
+
             // COLOR 0-1-2 r-y-b
             // Debug.Log("Fingers in His Ass");
         }

@@ -10,7 +10,6 @@ public class LobbyConnect : NetworkBehaviour
     
 
     [SerializeField] GameObject main;
-    [SerializeField] GameObject lobby;
     [SerializeField] GameObject ChoiceMenu;
     [SerializeField] GameObject lobbyHost;
     [SerializeField] GameObject lobbyJoin;
@@ -27,7 +26,6 @@ public class LobbyConnect : NetworkBehaviour
         {
             NetworkManager.Singleton.StartHost();
             main.SetActive(false);
-            lobby.SetActive(true);
             lobbyHost.SetActive(true);
             lobbyJoin.SetActive(false);
             ChoiceMenu.SetActive(false);
@@ -48,7 +46,6 @@ public class LobbyConnect : NetworkBehaviour
             );
             NetworkManager.Singleton.StartClient();
             main.SetActive(false);
-            lobby.SetActive(true);
             lobbyJoin.SetActive(true);
             lobbyHost.SetActive(false);
         });

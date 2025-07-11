@@ -5,7 +5,7 @@ public class HandScript : MonoBehaviour
 {
     [SerializeField] int handSize = 3;              // Amount of decks, and hence amount of colors
     [SerializeField] int[] remainingCards;          // array with amounts of remaining cards
-
+    public GameObject cardp;
     [Space(20)]
     public           Player playerScript;           // PS, set by player, passed onto Decks for card selection
     public           GameObject deckPrefab;         // prefab of a DECK that's taken from player's cardPrefab?

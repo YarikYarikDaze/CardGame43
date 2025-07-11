@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PrepScript : MonoBehaviour
 {
+    int id;
     [SerializeField] Sprite[] sprites;
     [SerializeField] float shift = 0.625f;
 
@@ -26,6 +27,14 @@ public class PrepScript : MonoBehaviour
                 0f,
                 0f
             );
+        }
+    }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Raaah!");
         }
     }
 }
