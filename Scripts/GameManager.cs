@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public class GameManager : NetworkBehaviour
 {
@@ -25,6 +26,8 @@ public class GameManager : NetworkBehaviour
     List<SpellEffect>[] spellEffectsOnPlayers;      // for now there conditions on players are stored
 
     SpellManager spellManager;                      // spell manager
+
+    int[] targetsIndexes;                           // indexes of targets for current cast
 
     [ClientRpc]
     void aClientRpc(bool f)
@@ -235,12 +238,14 @@ public class GameManager : NetworkBehaviour
     {
         if (CantCastSpell(playerCards, id)) return;
 
-        spellManager.CreateSpell(id, playerCards);
+        int[] cards = new int[] { playerCards[id, 1, 0], playerCards[id, 1, 1], playerCards[id, 1, 2] };
 
         for (int i = 0; i < 3; i++)
         {
             playerCards[id, 1, i] = 0;
         }
+
+        spellManager.CreateSpell(id, cards);
 
         SetState(playerCards);
     }
@@ -254,9 +259,50 @@ public class GameManager : NetworkBehaviour
         }
         else
         {
-            targets = new int[] { (index + 1) % playerCount };
+            targets = new int[N];
+            Array.Copy(PlayerChooseTargets(index, N), targets, N);
         }
         return targets;
+    }
+
+    int[] PlayerChooseTargets(int index, int N)
+    {
+        int[] targets = new int[N];
+        targetsIndexes = null;
+        var sendOnly = new ClientRpcParams();
+        sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[index] };
+        ChooseTargetsClientRpc(N, sendOnly);
+
+        StartCoroutine(WaitUntilTargetsArrayIsFull());
+
+        Array.Copy(targetsIndexes, targets, N);
+
+        targetsIndexes = null;
+
+        return targets;
+    }
+
+    bool TargetsArrayIsFull()
+    {
+        return targetsIndexes != null;
+    }
+
+    IEnumerator WaitUntilTargetsArrayIsFull()
+    {
+        yield return new WaitUntil(() => TargetsArrayIsFull());
+    }
+
+    [ClientRpc]
+    void ChooseTargetsClientRpc(int N, ClientRpcParams clientParams)
+    // sets the turn
+    {
+        GameObject.FindWithTag("Player").GetComponent<Player>().ChooseTargts(N);
+    }
+
+    public void AcceptTargetsFromPlayer(int[] targets)
+    {
+        targetsIndexes = new int[targets.Length];
+        Array.Copy(targets, targetsIndexes, targets.Length);
     }
 
     bool CantCastSpell(int[,,] playerCards, int id)
@@ -316,5 +362,36 @@ public class GameManager : NetworkBehaviour
     public int NextPlayer(int index)
     {
         return (index + 1) % playerCount;
+    }
+
+    
+    public int ChooseCard(int index)
+    {
+        int CardsOnHand = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            if (playerCards[index, 1, i] != 0) CardsOnHand++;
+        }
+        if (CardsOnHand == 0) return -1;
+
+        int CardNumber = (new System.Random()).Next(CardsOnHand);
+
+        return CardNumber;
+    }
+
+    public int RemoveCardFromPrep(int index, int cardNumber)
+    {
+        int previousColor = playerCards[index, 1, cardNumber];
+        for (int i = cardNumber; i < 2; i++)
+        {
+            playerCards[index, 1, i] = playerCards[index, 1, i + 1];
+        }
+        playerCards[index, 1, 2] = 0;
+        return previousColor;
+    }
+
+    public void AddCardToPrep(int index, int cardNumber, int color)
+    {
+        playerCards[index, 1, cardNumber] = color;
     }
 }

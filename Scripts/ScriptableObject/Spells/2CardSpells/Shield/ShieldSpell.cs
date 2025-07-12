@@ -5,26 +5,28 @@ public class ShieldSpell : SpellEffect
 {
     void Awake()
     {
-        this.duration = 1;
+        this.duration = 2;
         this.targetsNumber = 0;
+        this.spellType = 0;
+        this.spellEffectsCount = 2;
     }
     public override void OnHit(SpellEffect spell)
     {
         if (!this.HasEnded())
         {
-            this.Effect(spell, caster);
-            this.duration--;
+            this.Effect(spell, targets[0], caster);
+            this.spellEffectsCount--;
         }
     }
 
-    public override void OnTurn(SpellEffect spell)
+    public override void OnTurn()
     {
-        this.EndSpell();
+        this.duration--;
     }
 
-    public override void OnCast(SpellEffect spell) { }
+    public override void OnCast() { }
 
-    public override void Effect(SpellEffect spell, int index)
+    public override void Effect(SpellEffect spell, int target, int caster)
     {
         spell.EndSpell();
     }

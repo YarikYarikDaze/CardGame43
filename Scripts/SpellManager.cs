@@ -106,7 +106,7 @@ public class SpellManager : MonoBehaviour
 
         foreach (SpellEffect spell in playerEffects)
         {
-            spell.OnTurn(spell);
+            spell.OnTurn();
         }
 
         gameManager.SetEffectsOnPlayer(index, playerEffects);
@@ -114,9 +114,9 @@ public class SpellManager : MonoBehaviour
         this.DeleteEndedSpells(index);
     }
 
-    public void CreateSpell(int index, int[,,] playerCards)
+    public void CreateSpell(int index, int[] playerCards)
     {
-        SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.effectsArray[playerCards[index, 1, 0] - 1, playerCards[index, 1, 1] - 1, playerCards[index, 1, 2]]);
+        SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.effectsArray[playerCards[0] - 1, playerCards[1] - 1, playerCards[2]]);
         int[] targets = gameManager.GetTargets(index, newSpell.GetTargetsNumber());
         newSpell.InitializeSpell(index, targets, this);
 
@@ -128,7 +128,7 @@ public class SpellManager : MonoBehaviour
         {
             SpellEffect spellAfterHandling = this.TraverseEffectsOnHit(newSpell, target);
 
-            spellAfterHandling.OnCast(spellAfterHandling);
+            spellAfterHandling.OnCast();
 
             gameManager.AddEffect(target, spellAfterHandling);
 
@@ -180,7 +180,26 @@ public class SpellManager : MonoBehaviour
 
     public int[] GetNeighbours(int index)
     {
-        int[] neighbours = new int[2] {gameManager.PreviousPlayer(index), gameManager.NextPlayer(index)};
+        int[] neighbours = new int[2] { gameManager.PreviousPlayer(index), gameManager.NextPlayer(index) };
         return neighbours;
+    }
+
+    public void StealCard(int indexCaster, int indexTarget)
+    {
+        int cardNumber = ChooseCard(indexTarget);
+        int color = gameManager.RemoveCardFromPrep(indexTarget, cardNumber);
+        gameManager.AddCardToPrep(indexCaster, 0, color);
+    }
+
+    public void DiscardCard(int indexTarget)
+    {
+        int cardNumber = ChooseCard(indexTarget);
+        gameManager.RemoveCardFromPrep(indexTarget, cardNumber);
+    }
+
+    public int ChooseCard(int index)
+    {
+        int cardNumber = gameManager.ChooseCard(index);
+        return cardNumber;
     }
 }

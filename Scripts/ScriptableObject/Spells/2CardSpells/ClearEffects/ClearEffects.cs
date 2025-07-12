@@ -7,19 +7,21 @@ public class ClearEffects : SpellEffect
     {
         this.duration = 1;
         this.targetsNumber = 0;
+        this.spellType = 1;
+        this.spellEffectsCount = 1;
     }
     public override void OnHit(SpellEffect spell) { }
 
-    public override void OnTurn(SpellEffect spell) { }
+    public override void OnTurn() { }
 
-    public override void OnCast(SpellEffect spell)
+    public override void OnCast()
     {
-        this.Effect(spell, caster);
+        this.Effect(null, targets[0], caster);
         this.EndSpell();
     }
 
-    public override void Effect(SpellEffect spell, int index)
+    public override void Effect(SpellEffect spell, int target, int caster)
     {
-        this.spellManager.ClearPlayerEffects(index);
+        this.spellManager.ClearPlayerEffects(target);
     }
 }

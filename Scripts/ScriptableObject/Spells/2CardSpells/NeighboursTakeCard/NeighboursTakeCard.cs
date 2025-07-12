@@ -8,6 +8,15 @@ public class NeighboursTakeCard : SpellEffect
     {
         this.duration = 1;
         this.targetsNumber = 0;
+        this.spellType = 2;
+        this.spellEffectsCount = 1;
+    }
+
+    public override void InitializeSpell(int newCaster, int[] newTargets, SpellManager spellManager)
+    {
+        this.caster = newCaster;
+        this.spellManager = spellManager;
+        this.GetNeighbours();
     }
 
     void GetNeighbours()
@@ -18,23 +27,22 @@ public class NeighboursTakeCard : SpellEffect
 
     public override void OnHit(SpellEffect spell) { }
 
-    public override void OnTurn(SpellEffect spell) { }
+    public override void OnTurn() { }
 
-    public override void OnCast(SpellEffect spell)
+    public override void OnCast()
     {
         if (!this.HasEnded())
         {
-            this.GetNeighbours();
             foreach (int index in targets)
             {
-                this.Effect(spell, index);
+                this.Effect(null, index, caster);
             }
             this.EndSpell();
         }
     }
 
-    public override void Effect(SpellEffect spell, int index)
+    public override void Effect(SpellEffect spell, int target, int caster)
     {
-        this.spellManager.GiveCardToPlayer(index);
+        this.spellManager.GiveCardToPlayer(target);
     }
 }

@@ -2,28 +2,31 @@ using UnityEngine;
 using Unity.Netcode;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 
 public class Player : NetworkBehaviour
 {
     [SerializeField] int id;                                // Player's ID.
-    public           int ID { get { return id; } }
+    public int ID { get { return id; } }
     [SerializeField] bool turn;                             // Determines wether its player's turn or not
-    public           bool Turn { get { return turn; } }     // Getter for read-only
+    public bool Turn { get { return turn; } }     // Getter for read-only
     [SerializeField] int maxMoves = 1;                      // Moves per turn
-    public           int remainingMoves;                    // Counter of remaining moves
-    public           int selected = -1;                     // Color of selected card
+    public int remainingMoves;                    // Counter of remaining moves
+    public int selected = -1;                     // Color of selected card
     // COLOR 0-1-2 r-y-b
 
     [Space(20)]
 
     [SerializeField] HandScript handScript;                 // Hand's script.
-    public           PrepRenderer prepRenderer;               // ALL preps' renderer script.
-    
+    public PrepRenderer prepRenderer;               // ALL preps' renderer script.
+
     [Space(20)]
 
     [SerializeField] public GameObject deckPrefab;          // Prefab of a card to instantiate
-    public           int[] handCards;                       // Array of cards in each Deck in Hand
+    public int[] handCards;                       // Array of cards in each Deck in Hand
+
+    int[] targetsIndexes;                                   // Array of current targets for current cast
 
     void Awake()
     // On spawn gets HS and ERS
@@ -41,7 +44,7 @@ public class Player : NetworkBehaviour
     void Update()
     // Add LandCard(selected) on A/D if `selected` is set
     {
-        if(!prepRenderer)
+        if (!prepRenderer)
             prepRenderer = GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>();
 
         //Debug.Log(GetComponent<NetworkObject>().IsSpawned);
@@ -102,7 +105,7 @@ public class Player : NetworkBehaviour
     // ARGUMENT COLOR 0-1-2 R-Y-B
     {
         ulong senderId = rpcParams.Receive.SenderClientId;
-    
+
         // Validate sender exists
         if (!NetworkManager.Singleton.ConnectedClients.ContainsKey(senderId))
         {
@@ -172,5 +175,52 @@ public class Player : NetworkBehaviour
     void OnDestroy()
     {
         // Debug.Log("OOOOOOOOAAAAAAAAAAAAAHHH");
+    }
+
+    public void AddTarget(int index)
+    {
+
+    }
+
+    public void RemoveTarget(int index)
+    {
+
+    }
+
+    public void ChooseTargts(int N)
+    {
+        InitializeTargetsArray(N);
+
+        StartCoroutine(WaitUntilTargetsArrayIsFull(N));
+
+        SetTargetsIndexesOnServerServerRpc(targetsIndexes);
+
+        targetsIndexes = null;
+    }
+
+    void InitializeTargetsArray(int N)
+    {
+        this.targetsIndexes = new int[N];
+        for (int i = 0; i < N; i++)
+        {
+            targetsIndexes[i] = -1;
+        }
+    }
+
+    bool TargetsArrayIsFull(int N)
+    {
+        return targetsIndexes[N - 1] != -1;
+    }
+
+    IEnumerator WaitUntilTargetsArrayIsFull(int N)
+    {
+        yield return new WaitUntil(() => TargetsArrayIsFull(N));
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetTargetsIndexesOnServerServerRpc(int[] targets, ServerRpcParams rpcParams = default)
+    // unfinished Turn End RPC
+    {
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().AcceptTargetsFromPlayer(targets);
     }
 }

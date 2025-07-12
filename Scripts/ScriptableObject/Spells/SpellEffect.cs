@@ -4,7 +4,9 @@ using System;
 [CreateAssetMenu(fileName = "SpellEffect", menuName = "Scriptable Objects/SpellEffect")]
 public abstract class SpellEffect : ScriptableObject
 {
-    protected int duration;         // duration determining spell logic
+    protected int duration;         // duration of spell in terms of turns
+
+    protected int spellEffectsCount;    // how many times spell effect can be triggered
 
     protected int[] targets;
 
@@ -14,7 +16,9 @@ public abstract class SpellEffect : ScriptableObject
 
     protected int targetsNumber;
 
-    public void InitializeSpell(int newCaster, int[] newTargets, SpellManager spellManager)
+    protected int spellType;        // 0 - spells that defend, 1 - special ability spells, 2 - spells that gives card
+
+    public virtual void InitializeSpell(int newCaster, int[] newTargets, SpellManager spellManager)
     {
         this.caster = newCaster;
         targets = new int[newTargets.Length];
@@ -24,24 +28,40 @@ public abstract class SpellEffect : ScriptableObject
 
     public abstract void OnHit(SpellEffect spell);
 
-    public abstract void OnTurn(SpellEffect spell);
+    public abstract void OnTurn();
 
-    public abstract void OnCast(SpellEffect spell);
+    public abstract void OnCast();
 
-    public abstract void Effect(SpellEffect spell, int index);
+    public abstract void Effect(SpellEffect spell, int target, int caster);
 
     public void EndSpell()
     {
         this.duration = 0;
+        this.spellEffectsCount = 0;
     }
 
     public bool HasEnded()
     {
-        return this.duration <= 0;
+        return (this.duration <= 0) || (this.spellEffectsCount <= 0);
     }
 
     public int GetTargetsNumber()
     {
         return this.targetsNumber;
+    }
+
+    public int GetCasterIndex()
+    {
+        return this.caster;
+    }
+
+    public int[] GetTargetsIndexes()
+    {
+        return this.targets;
+    }
+
+    public int GetSpellType()
+    {
+        return this.spellType;
     }
 }
