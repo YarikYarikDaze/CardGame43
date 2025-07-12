@@ -54,22 +54,8 @@ public class Player : NetworkBehaviour
         }
 
         // if (!IsOwner) return;
-
-        if (selected == -1) return;
-
-        if (Input.GetKeyDown(KeyCode.A) && turn)
-        {
-            MoveCardServerRpc(selected, id, true);
-            selected = -1;
-            remainingMoves--;
-        }
-        else if (Input.GetKeyDown(KeyCode.D) && turn)
-        {
-            MoveCardServerRpc(selected, id, false);
-            selected = -1;
-            remainingMoves--;
-        }
     }
+
 
     public void SetId(int id)
     // Sets ID.
@@ -99,6 +85,12 @@ public class Player : NetworkBehaviour
         handScript.ReceiveCardsInHand(handCards);
     }
 
+
+    public void MoveCard(int color, bool left)
+    {
+        MoveCardServerRpc(color, id, left);
+        remainingMoves--;
+    }
 
     [ServerRpc(RequireOwnership = false)]
     void MoveCardServerRpc(int color, int id, bool left, ServerRpcParams rpcParams = default)
@@ -159,10 +151,6 @@ public class Player : NetworkBehaviour
         GameObject.FindWithTag("GameManager").GetComponent<GameManager>().NewTurn();
     }
 
-    public void Select(int color)
-    {
-        selected = color;
-    }
 
     public void Kill(int id)
     {
