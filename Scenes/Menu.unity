@@ -1113,7 +1113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796913479025722514, guid: d857d4438deb11d819c1afd62a9dae9f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2448,7 +2448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2085102856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18539,7 +18539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8274779185734593126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18585,7 +18585,6 @@ MonoBehaviour:
   host: {fileID: 6258179033477316819}
   join: {fileID: 6253115496800524549}
   JoinMenu: {fileID: 1473713086}
-  hostText: {fileID: 1726091859}
   IP: {fileID: 1667241190}
   connect: {fileID: 1667241188}
 --- !u!114 &8281725745537779143
