@@ -114,13 +114,19 @@ public class SpellManager : MonoBehaviour
         this.DeleteEndedSpells(index);
     }
 
-    public void CreateSpell(int index, int[] playerCards)
+    public void InstantiateSpell(int index, int[] playerCards)
     {
         SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.effectsArray[playerCards[0] - 1, playerCards[1] - 1, playerCards[2]]);
-        int[] targets = gameManager.GetTargets(index, newSpell.GetTargetsNumber());
-        newSpell.InitializeSpell(index, targets, this);
+        gameManager.GetTargets(index, newSpell);
+    }
 
-        this.HandleNewSpell(newSpell, index, targets);
+    public void InitializeSpell(SpellEffect spell, int caster, int[] targets)
+    {
+        spell.InitializeSpell(caster, targets, this);
+
+        gameManager.ClearPrepOfAPlayer(caster);
+
+        this.HandleNewSpell(spell, caster, targets);
     }
     void HandleNewSpell(SpellEffect newSpell, int index, int[] targets)
     {

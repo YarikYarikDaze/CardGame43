@@ -34,7 +34,7 @@ public class PrepScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("ID:" + id);
+            GameObject.FindWithTag("Player").GetComponent<Player>().AddTarget(this.id);
         }
     }
 }

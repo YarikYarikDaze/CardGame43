@@ -167,12 +167,21 @@ public class Player : NetworkBehaviour
 
     public void AddTarget(int index)
     {
-
-    }
-
-    public void RemoveTarget(int index)
-    {
-
+        if (this.targetsIndexes == null) return;
+        int minIndex = 1000;
+        for (int i = 0; i < this.targetsIndexes.Length; i++)
+        {
+            if (targetsIndexes[i] == index)
+            {
+                return;
+            }
+            if (targetsIndexes[i] == -1 && i<minIndex)
+            {
+                minIndex = i;
+            }
+        }
+        if (minIndex == 1000) return;
+        targetsIndexes[minIndex] = index;
     }
 
     public void ChooseTargts(int N)
@@ -180,10 +189,6 @@ public class Player : NetworkBehaviour
         InitializeTargetsArray(N);
 
         StartCoroutine(WaitUntilTargetsArrayIsFull(N));
-
-        SetTargetsIndexesOnServerServerRpc(targetsIndexes);
-
-        targetsIndexes = null;
     }
 
     void InitializeTargetsArray(int N)
@@ -195,14 +200,13 @@ public class Player : NetworkBehaviour
         }
     }
 
-    bool TargetsArrayIsFull(int N)
-    {
-        return targetsIndexes[N - 1] != -1;
-    }
-
     IEnumerator WaitUntilTargetsArrayIsFull(int N)
     {
-        yield return new WaitUntil(() => TargetsArrayIsFull(N));
+        yield return new WaitUntil(() => this.targetsIndexes[N - 1] != -1);
+
+        SetTargetsIndexesOnServerServerRpc(targetsIndexes);
+
+        targetsIndexes = null;
     }
 
     [ServerRpc(RequireOwnership = false)]

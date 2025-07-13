@@ -240,56 +240,54 @@ public class GameManager : NetworkBehaviour
 
         int[] cards = new int[] { playerCards[id, 1, 0], playerCards[id, 1, 1], playerCards[id, 1, 2] };
 
-        for (int i = 0; i < 3; i++)
-        {
-            playerCards[id, 1, i] = 0;
-        }
-
-        spellManager.CreateSpell(id, cards);
+        spellManager.InstantiateSpell(id, cards);
 
         SetState(playerCards);
     }
 
-    public int[] GetTargets(int index, int N)
+    public void GetTargets(int index, SpellEffect spell)
     {
-        int[] targets;
+        int N = spell.GetTargetsNumber();
         if (N == 0)
         {
-            targets = new int[] { index };
+            int[] targets = new int[] { index };
+            spellManager.InitializeSpell(spell, index, targets);
         }
         else
         {
-            targets = new int[N];
-            Array.Copy(PlayerChooseTargets(index, N), targets, N);
+            PlayerChooseTargets(index, spell);
         }
-        return targets;
     }
 
-    int[] PlayerChooseTargets(int index, int N)
+    public void ClearPrepOfAPlayer(int index)
     {
-        int[] targets = new int[N];
+        for (int i = 0; i < 3; i++)
+        {
+            playerCards[index, 1, i] = 0;
+        }
+    }
+
+    void PlayerChooseTargets(int index, SpellEffect spell)
+    {
         targetsIndexes = null;
         var sendOnly = new ClientRpcParams();
         sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[index] };
-        ChooseTargetsClientRpc(N, sendOnly);
+        ChooseTargetsClientRpc(spell.GetTargetsNumber(), sendOnly);
 
-        StartCoroutine(WaitUntilTargetsArrayIsFull());
+        StartCoroutine(WaitUntilTargetsArrayIsFull(spell, index));
+    }
 
-        Array.Copy(targetsIndexes, targets, N);
+    IEnumerator WaitUntilTargetsArrayIsFull(SpellEffect spell, int index)
+    {
+        yield return new WaitUntil(() => targetsIndexes != null);
+
+        int[] newTargets = new int[targetsIndexes.Length];
+
+        Array.Copy(targetsIndexes, newTargets, targetsIndexes.Length);
 
         targetsIndexes = null;
 
-        return targets;
-    }
-
-    bool TargetsArrayIsFull()
-    {
-        return targetsIndexes != null;
-    }
-
-    IEnumerator WaitUntilTargetsArrayIsFull()
-    {
-        yield return new WaitUntil(() => TargetsArrayIsFull());
+        spellManager.InitializeSpell(spell, index, newTargets);
     }
 
     [ClientRpc]
