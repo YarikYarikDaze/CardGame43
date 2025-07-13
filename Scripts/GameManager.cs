@@ -214,11 +214,11 @@ public class GameManager : NetworkBehaviour
                                     : new int[] { filtered[0], newColor, 0 };
                 break;
             case 2:
-                return;
                 newPlacement = left ? new int[] { newColor, filtered[0], filtered[1] }
                                     : new int[] { filtered[0], filtered[1], newColor };
                 break;
             default:
+                return;
                 newPlacement = oldPlacement;
                 break;
         }
@@ -229,6 +229,8 @@ public class GameManager : NetworkBehaviour
         }
 
         playerCards[id, 0, color]--;
+
+        ChangePlayerRemainingMoves(id, -1);
 
         SetState(playerCards);
     }
@@ -242,7 +244,20 @@ public class GameManager : NetworkBehaviour
 
         spellManager.InstantiateSpell(id, cards);
 
-        SetState(playerCards);
+        ChangePlayerRemainingMoves(id, -1);
+    }
+
+    void ChangePlayerRemainingMoves(int index, int change)
+    {
+        var sendOnly = new ClientRpcParams();
+        sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[index] };
+        ChangePlayerRemainingMovesClientRpc(change, sendOnly);
+    }
+
+    [ClientRpc]
+    void ChangePlayerRemainingMovesClientRpc(int change, ClientRpcParams clientParams)
+    {
+        GameObject.FindWithTag("Player").GetComponent<Player>().ChangeActionsLeft(change);
     }
 
     public void GetTargets(int index, SpellEffect spell)
@@ -349,7 +364,7 @@ public class GameManager : NetworkBehaviour
 
     public void ForceEndPlayerTurn()
     {
-        this.currentTurn = NextPlayer(currentTurn);
+        this.NewTurn();
     }
 
     public int PreviousPlayer(int index)

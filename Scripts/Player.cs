@@ -72,8 +72,11 @@ public class Player : NetworkBehaviour
     public void TakeTurn(bool turn)
     // Start of this player's turn
     {
-        this.turn = turn;
-        remainingMoves = turn ? maxMoves : 0;
+        if (this.turn != turn)
+        {
+            this.turn = turn;
+            remainingMoves = turn ? maxMoves : 0; 
+        }
     }
 
     void SetCards(int[] newHandCards)
@@ -89,7 +92,6 @@ public class Player : NetworkBehaviour
     public void MoveCard(int color, bool left)
     {
         MoveCardServerRpc(color, id, left);
-        remainingMoves--;
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -126,7 +128,6 @@ public class Player : NetworkBehaviour
         if (Turn)
         {
             this.CastServerRpc(this.id);
-            remainingMoves--;
         }
     }
 
@@ -165,6 +166,12 @@ public class Player : NetworkBehaviour
         // Debug.Log("OOOOOOOOAAAAAAAAAAAAAHHH");
     }
 
+    public void ChangeActionsLeft(int change)
+    {
+        this.remainingMoves += change;
+        Debug.Log(change);
+    }
+
     public void AddTarget(int index)
     {
         if (this.targetsIndexes == null) return;
@@ -175,7 +182,7 @@ public class Player : NetworkBehaviour
             {
                 return;
             }
-            if (targetsIndexes[i] == -1 && i<minIndex)
+            if (targetsIndexes[i] == -1 && i < minIndex)
             {
                 minIndex = i;
             }
