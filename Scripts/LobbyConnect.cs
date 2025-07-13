@@ -1,4 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
@@ -16,12 +22,20 @@ public class LobbyConnect : NetworkBehaviour
     [SerializeField] Button host;
     [SerializeField] Button join;
     [SerializeField] GameObject JoinMenu;
-
+    [SerializeField] TMP_Text hostText;
     [SerializeField] TMP_InputField IP;
     [SerializeField] Button connect;
 
+    public string GetLocalIPv4()
+    {
+        return Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
+    }
+
     void Awake()
     {
+        string[] fours = GetLocalIPv4().Split(".");
+        string first = fours[0] + "." + fours[1] + ".";
+        string second = fours[2] + "." + fours[3];
         host.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartHost();
@@ -29,6 +43,7 @@ public class LobbyConnect : NetworkBehaviour
             lobbyHost.SetActive(true);
             lobbyJoin.SetActive(false);
             ChoiceMenu.SetActive(false);
+            hostText.text = "The code is: <" + second + ">";
         });
 
         join.onClick.AddListener(() =>
@@ -41,7 +56,7 @@ public class LobbyConnect : NetworkBehaviour
         {
             // Port.text = "7777";
             NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>().SetConnectionData(
-                (IP.text!="") ? ("192.168."+IP.text) : "127.0.0.1",
+                (IP.text!="") ? (first+IP.text) : "127.0.0.1",
                 (ushort)7777
             );
             NetworkManager.Singleton.StartClient();
