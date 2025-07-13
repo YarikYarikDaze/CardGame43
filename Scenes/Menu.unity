@@ -18585,6 +18585,7 @@ MonoBehaviour:
   host: {fileID: 6258179033477316819}
   join: {fileID: 6253115496800524549}
   JoinMenu: {fileID: 1473713086}
+  hostText: {fileID: 1726091859}
   IP: {fileID: 1667241190}
   connect: {fileID: 1667241188}
 --- !u!114 &8281725745537779143
