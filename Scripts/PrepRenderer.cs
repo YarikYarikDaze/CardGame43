@@ -15,6 +15,7 @@ public class PrepRenderer : MonoBehaviour
     [SerializeField] GameObject[] Breps;
     [SerializeField] GameObject prepPrefab;
 
+    [SerializeField] GameObject turner;
     public void Awake()
     {
         prepCount = NetworkManager.Singleton.ConnectedClientsIds.Count;
@@ -39,6 +40,7 @@ public class PrepRenderer : MonoBehaviour
         };
         prepCards = new int[prepCount, 3];
         // Debug.Log(prepCards.GetLength(0) + ";   " + prepCards.GetLength(1));
+        turner = GameObject.FindWithTag("turner");
 
     }
 
@@ -71,7 +73,7 @@ public class PrepRenderer : MonoBehaviour
     int shift(int i) {
         return (prepCount * 2 - playerId + i) % prepCount;
     }
-    public void Demonstrate()
+    public void Demonstrate(int order)
     {
         //Debug.Log("Hey!");
         Breps = new GameObject[prepCount];
@@ -84,6 +86,10 @@ public class PrepRenderer : MonoBehaviour
                 0f
             );
 
+            if (i == order)
+            {
+                turner.transform.position = Breps[i].transform.position;
+            }
 
 
             Breps[i].transform.rotation = Quaternion.Euler(0f, 0f, basePos[prepCount - 1, shift(i)].z);

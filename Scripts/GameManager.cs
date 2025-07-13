@@ -138,7 +138,7 @@ public class GameManager : NetworkBehaviour
             SetTurnClientRpc(i == currentTurn, sendOnly);
         }
 
-        LoadPrepsClientRpc();
+        LoadPrepsClientRpc(currentTurn);
     }
 
     [ClientRpc]
@@ -160,12 +160,12 @@ public class GameManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    void LoadPrepsClientRpc()
+    void LoadPrepsClientRpc(int order)
     // each client receives only their data!
     {
         PrepRenderer preper = GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>();
         if (!preper) return;
-        preper.Demonstrate();
+        preper.Demonstrate(order);
     }
 
     [ClientRpc]
