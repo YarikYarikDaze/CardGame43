@@ -24,9 +24,9 @@ public class PrepRenderer : MonoBehaviour
         {
             new Vector3(0f, -3f, 0f),       // YOU
             new Vector3(-6f, 0f, -90f),     // LEFT
-            new Vector3(-6f, 3f, 180f),     // OPPOSITE LEFT
-            new Vector3(0f, 3f, 180f),      // OPPOSITE CENTER
-            new Vector3(6f, 3f, 180f),      // OPPOSITE RIGHT
+            new Vector3(-6f, 3f, 0f),     // OPPOSITE LEFT
+            new Vector3(0f, 3f, 0f),      // OPPOSITE CENTER
+            new Vector3(6f, 3f, 0f),      // OPPOSITE RIGHT
             new Vector3(6f, 0f, 90f)        // RIGHT
         };
         Vector3 empty = new Vector3(0f, 0f, 0f);
