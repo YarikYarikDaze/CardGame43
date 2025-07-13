@@ -280,6 +280,7 @@ public class GameManager : NetworkBehaviour
         {
             playerCards[index, 1, i] = 0;
         }
+        SetState(this.playerCards);
     }
 
     void PlayerChooseTargets(int index, SpellEffect spell)
