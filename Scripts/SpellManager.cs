@@ -20,61 +20,61 @@ public class SpellManager : MonoBehaviour
             {
                 {
                 "TakeCard",
-                "NULL",
-                "NULL",
-                "NULL"
+                "SuperTakeCard",
+                "NULLSpell",
+                "NULLSpell"
                 },
                 {
                 "NeighboursTakeCard",
-                "NULL",
-                "NULL",
-                "NULL"
+                "NULLSpell",
+                "NULLSpell",
+                "NULLSpell"
                 },
                 {
                 "TakeAdditionalCard",
-                "NULL",
-                "NULL",
-                "NULL"
+                "NULLSpell",
+                "NULLSpell",
+                "NULLSpell"
                 }
             },
             {
                 {
                 "DiscardCard",
-                "NULL",
-                "NULL",
-                "NULL"
+                "NULLSpell",
+                "NULLSpell",
+                "NULLSpell"
                 },
                 {
                 "SkipTurn",
-                "NULL",
-                "NULL",
-                "NULL"
+                "NULLSpell",
+                "NULLSpell",
+                "NULLSpell"
                 },
                 {
                 "StealCard",
-                "NULL",
-                "NULL",
-                "NULL"
+                "NULLSpell",
+                "NULLSpell",
+                "NULLSpell"
                 }
             },
             {
                 {
                 "Reflect",
-                "NULL",
-                "NULL",
-                "NULL"
+                "NULLSpell",
+                "NULLSpell",
+                "NULLSpell"
                 },
                 {
                 "ClearEffects",
-                "NULL",
-                "NULL",
-                "NULL"
+                "NULLSpell",
+                "NULLSpell",
+                "NULLSpell"
                 },
                 {
                 "ShieldSpell",
-                "NULL",
-                "NULL",
-                "NULL"
+                "NULLSpell",
+                "NULLSpell",
+                "SuperBlock"
                 }
             }
         };
