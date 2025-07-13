@@ -56,15 +56,16 @@ public class LobbyConnect : NetworkBehaviour
         {
             // Port.text = "7777";
             NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>().SetConnectionData(
-                (IP.text!="") ? (IP.text) : "127.0.0.1",
+                (IP.text!="") ? (first+IP.text) : "127.0.0.1",
                 (ushort)7777
             );
             NetworkManager.Singleton.StartClient();
+            Debug.Log(first+IP.text);
             Debug.Log("Get on with it!");
             main.SetActive(false);
             lobbyJoin.SetActive(true);
             lobbyHost.SetActive(false);
         });
     }
-
 }
+//10.91.87.137
