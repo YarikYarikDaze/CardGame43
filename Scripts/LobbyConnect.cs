@@ -56,7 +56,7 @@ public class LobbyConnect : NetworkBehaviour
         {
             // Port.text = "7777";
             string num1 = int.Parse(((IP.text).Substring(0, 2)), System.Globalization.NumberStyles.HexNumber).ToString();
-            string num2 = int.Parse(((IP.text).Substring(2, 4)), System.Globalization.NumberStyles.HexNumber).ToString();
+            string num2 = int.Parse(((IP.text).Substring(2, 2)), System.Globalization.NumberStyles.HexNumber).ToString();
 
             NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>().SetConnectionData(
 
