@@ -35,7 +35,7 @@ public class LobbyConnect : NetworkBehaviour
     {
         string[] fours = GetLocalIPv4().Split(".");
         string first = fours[0] + "." + fours[1] + ".";
-        string second = (Int32.Parse(fours[2])).ToString("X2")+(Int32.Parse(fours[2])).ToString("X2");
+        string second = (Int32.Parse(fours[2])).ToString("X2")+(Int32.Parse(fours[3])).ToString("X2");
         host.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartHost();
@@ -56,7 +56,7 @@ public class LobbyConnect : NetworkBehaviour
         {
             // Port.text = "7777";
             string num1 = int.Parse(((IP.text).Substring(0, 2)), System.Globalization.NumberStyles.HexNumber).ToString();
-            string num2 = int.Parse(((IP.text).Substring(2, 2)), System.Globalization.NumberStyles.HexNumber).ToString();
+            string num2 = int.Parse(((IP.text).Substring(2, 4)), System.Globalization.NumberStyles.HexNumber).ToString();
 
             NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>().SetConnectionData(
 
