@@ -21,7 +21,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] GameObject playerPrefab;       // prefab of a player
     [SerializeField] GameObject prepRenderPrefab;  // prefab of an prep renderer
 
-    [SerializeField] int initCardAmount = 12;        // amount of cards to put in every hand
+    [SerializeField] int initCardAmount = 8;        // amount of cards to put in every hand
 
     List<SpellEffect>[] spellEffectsOnPlayers;      // for now there conditions on players are stored
 

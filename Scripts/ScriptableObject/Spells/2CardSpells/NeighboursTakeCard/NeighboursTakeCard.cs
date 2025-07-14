@@ -21,8 +21,8 @@ public class NeighboursTakeCard : SpellEffect
 
     void GetNeighbours()
     {
-        int[] targets = new int[this.spellManager.GetNeighbours(caster).Length];
-        Array.Copy(this.spellManager.GetNeighbours(caster), targets, this.spellManager.GetNeighbours(caster).Length);
+        this.targets = new int[2];
+        Array.Copy(this.spellManager.GetNeighbours(caster), this.targets, 2);
     }
 
     public override void OnHit(SpellEffect spell) { }
