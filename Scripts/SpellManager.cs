@@ -200,6 +200,11 @@ public class SpellManager : MonoBehaviour
     public void DiscardCard(int indexTarget)
     {
         int cardNumber = ChooseCard(indexTarget);
+        if (cardNumber == -1)
+        {
+            GiveCardToPlayer(indexTarget);
+            return;
+        }
         gameManager.RemoveCardFromPrep(indexTarget, cardNumber);
     }
 
