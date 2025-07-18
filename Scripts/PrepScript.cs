@@ -1,10 +1,13 @@
 using UnityEngine;
+using TMPro;
 
 public class PrepScript : MonoBehaviour
 {
     public int id;
     [SerializeField] Sprite[] sprites;
     [SerializeField] float shift = 0.625f;
+    [SerializeField] TMP_Text cardCount;
+    [SerializeField] TMP_Text idDemo;
 
     public void SetCards(int[] colors)
     {
@@ -13,7 +16,7 @@ public class PrepScript : MonoBehaviour
         {
             amount += colors[i] == 0 ? 0 : 1;
         }
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (colors[i] > 3)
             {
@@ -29,6 +32,17 @@ public class PrepScript : MonoBehaviour
             );
         }
     }
+    public void KeepRot(){
+        cardCount.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        idDemo.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    }
+    public void SetCount(int count){
+        cardCount.text = count.ToString();
+    } 
+    public void Demo(){
+        idDemo.text = id.ToString();
+    }
+
 
     void OnMouseOver()
     {

@@ -29,6 +29,7 @@ public class GameManager : NetworkBehaviour
 
     int[] targetsIndexes;                           // indexes of targets for current cast
 
+    int winner = -1;
     [ClientRpc]
     void aClientRpc(bool f)
     {
@@ -125,13 +126,15 @@ public class GameManager : NetworkBehaviour
             // NOTE: preset amount of cards and colors, 
             //       we have to evaluate by colors and prep size
             int[] handCards = new int[] { cards[i, 0, 0], cards[i, 0, 1], cards[i, 0, 2] };
+            int cardCount = handCards.Sum();
+            if(cardCount==0) winner = i;
 
             // RPCs the Player ID and Cards for player's hand 
             GiveCardsClientRpc(handCards, sendOnly);
 
 
             int[] prepCards = new int[] { cards[i, 1, 0], cards[i, 1, 1], cards[i, 1, 2] };
-            SetPrepClientRpc(prepCards);
+            SetPrepClientRpc(prepCards, cardCount);
 
 
             // Gives a turn to current player
@@ -139,6 +142,8 @@ public class GameManager : NetworkBehaviour
         }
 
         LoadPrepsClientRpc(currentTurn);
+        //add win calls
+
     }
 
     [ClientRpc]
@@ -151,12 +156,12 @@ public class GameManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    void SetPrepClientRpc(int[] prepCards)
+    void SetPrepClientRpc(int[] prepCards, int cCount)
     // each client receives only their data!
     {
         PrepRenderer preper = GameObject.FindWithTag("Preper").GetComponent<PrepRenderer>();
         if (!preper) return;
-        preper.Absorb(prepCards);
+        preper.Absorb(prepCards, cCount);
     }
 
     [ClientRpc]

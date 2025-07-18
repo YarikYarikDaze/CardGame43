@@ -12,6 +12,8 @@ public class PrepRenderer : MonoBehaviour
 
     [SerializeField] int counter;
     public int[,] prepCards;
+    public int[] prepCardCount;
+
     [SerializeField] GameObject[] Breps;
     [SerializeField] GameObject prepPrefab;
 
@@ -39,6 +41,7 @@ public class PrepRenderer : MonoBehaviour
             {PlPos[0], PlPos[1], PlPos[2], PlPos[3], PlPos[4], PlPos[5]}
         };
         prepCards = new int[prepCount, 3];
+        prepCardCount = new int[prepCount];
         // Debug.Log(prepCards.GetLength(0) + ";   " + prepCards.GetLength(1));
         turner = GameObject.FindWithTag("turner");
 
@@ -57,9 +60,10 @@ public class PrepRenderer : MonoBehaviour
         }
         counter = 0;
     }
-    public void Absorb(int[] newPrepCards)
+    public void Absorb(int[] newPrepCards, int cardCount)
     {
         // Debug.Log(counter + ";   "+ prepCards.GetLength(0) + ";   " + prepCards.GetLength(1));
+        prepCardCount[counter] = cardCount;
         for (int i = 0; i < 3; i++)
         {
             prepCards[counter, i] = newPrepCards[i];
@@ -96,6 +100,11 @@ public class PrepRenderer : MonoBehaviour
 
             Breps[i].GetComponent<PrepScript>().SetCards(new int[] { prepCards[i, 0], prepCards[i, 1], prepCards[i, 2] });
             Breps[i].GetComponent<PrepScript>().id = i;
+            if(shift(i)!=0){
+                Breps[i].GetComponent<PrepScript>().SetCount(prepCardCount[i]);
+                Breps[i].GetComponent<PrepScript>().KeepRot();
+                Breps[i].GetComponent<PrepScript>().Demo();
+            }
         }
     }
     
