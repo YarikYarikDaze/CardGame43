@@ -27,7 +27,7 @@ public class GameManager : NetworkBehaviour
 
     SpellManager spellManager;                      // spell manager
 
-    int[] targetsIndexes;                           // indexes of targets for current cast
+    int target;                          // indexes of targets for current cast
 
     [ClientRpc]
     void aClientRpc(bool f)
@@ -235,6 +235,11 @@ public class GameManager : NetworkBehaviour
         SetState(playerCards);
     }
 
+    public void SpellCasted()
+    {
+        this.SetState(playerCards);
+    }
+
     public void NewCast(int id)
     // unfinished casting, right now only erases the cards in prep
     {
@@ -260,18 +265,14 @@ public class GameManager : NetworkBehaviour
         GameObject.FindWithTag("Player").GetComponent<Player>().ChangeActionsLeft(change);
     }
 
-    public void GetTargets(int index, SpellEffect spell)
+    public void GetTarget(int index, SpellEffect spell)
     {
-        int N = spell.GetTargetsNumber();
-        if (N == 0)
+        if (spell.IsSelfCasted())
         {
-            int[] targets = new int[] { index };
-            spellManager.InitializeSpell(spell, index, targets);
+            spellManager.InitializeSpell(spell, index, index);
+            return;
         }
-        else
-        {
-            PlayerChooseTargets(index, spell);
-        }
+        PlayerChooseTarget(index, spell);
     }
 
     public void ClearPrepOfAPlayer(int index)
@@ -283,40 +284,33 @@ public class GameManager : NetworkBehaviour
         SetState(this.playerCards);
     }
 
-    void PlayerChooseTargets(int index, SpellEffect spell)
+    void PlayerChooseTarget(int index, SpellEffect spell)
     {
-        targetsIndexes = null;
+        this.target = -1;
         var sendOnly = new ClientRpcParams();
         sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[index] };
-        ChooseTargetsClientRpc(spell.GetTargetsNumber(), sendOnly);
+        ChooseTargetClientRpc(sendOnly);
 
-        StartCoroutine(WaitUntilTargetsArrayIsFull(spell, index));
+        StartCoroutine(WaitUntilTargetsIsChosen(spell, index));
     }
 
-    IEnumerator WaitUntilTargetsArrayIsFull(SpellEffect spell, int index)
+    IEnumerator WaitUntilTargetIsChosen(SpellEffect spell, int index)
     {
-        yield return new WaitUntil(() => targetsIndexes != null);
+        yield return new WaitUntil(() => target != -1);
 
-        int[] newTargets = new int[targetsIndexes.Length];
-
-        Array.Copy(targetsIndexes, newTargets, targetsIndexes.Length);
-
-        targetsIndexes = null;
-
-        spellManager.InitializeSpell(spell, index, newTargets);
+        spellManager.InitializeSpell(spell, index, this.target);
     }
 
     [ClientRpc]
     void ChooseTargetsClientRpc(int N, ClientRpcParams clientParams)
     // sets the turn
     {
-        GameObject.FindWithTag("Player").GetComponent<Player>().ChooseTargts(N);
+        GameObject.FindWithTag("Player").GetComponent<Player>().ChooseTarget();
     }
 
-    public void AcceptTargetsFromPlayer(int[] targets)
+    public void AcceptTargetFromPlayer(int newTarget)
     {
-        targetsIndexes = new int[targets.Length];
-        Array.Copy(targets, targetsIndexes, targets.Length);
+        this.target = newTarget;
     }
 
     bool CantCastSpell(int[,,] playerCards, int id)
@@ -378,19 +372,25 @@ public class GameManager : NetworkBehaviour
         return (index + 1) % playerCount;
     }
 
-    
+
     public int ChooseCard(int index)
+    {
+        int CardsOnHand = GetCardsCountPrep(index);
+        if (CardsOnHand == 0) return -1;
+
+        int CardNumber = (new System.Random()).Next(CardsOnHand);
+
+        return CardNumber;
+    }
+
+    public int GetCardsCountPrep(int index)
     {
         int CardsOnHand = 0;
         for (int i = 0; i < 3; i++)
         {
             if (playerCards[index, 1, i] != 0) CardsOnHand++;
         }
-        if (CardsOnHand == 0) return -1;
-
-        int CardNumber = (new System.Random()).Next(CardsOnHand);
-
-        return CardNumber;
+        return CardsOnHand;
     }
 
     public int RemoveCardFromPrep(int index, int cardNumber)
@@ -407,5 +407,20 @@ public class GameManager : NetworkBehaviour
     public void AddCardToPrep(int index, int cardNumber, int color)
     {
         playerCards[index, 1, cardNumber] = color;
+    }
+
+    public int GetRandomPlayer()
+    {
+        return (new System.Random()).Next(playerCount);
+    }
+
+    public void ReturnSpellToPrep(int index)
+    {
+        int CardCount = GetCardsCountPrep(index);
+        for (int i = 0; i < CardCount; i++)
+        {
+            playerCards[index, 0, playerCards[index, 1, i]]++;
+            playerCards[index, 1, i] = 0;
+        }
     }
 }

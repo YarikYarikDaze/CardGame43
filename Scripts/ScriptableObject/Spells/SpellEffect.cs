@@ -18,19 +18,21 @@ public abstract class SpellEffect : ScriptableObject
 
     protected int spellType;        // 0 - spells that defend, 1 - special ability spells, 2 - spells that gives card
 
-    public virtual void InitializeSpell(int newCaster, int[] newTargets, SpellManager spellManager)
+    protected bool SelfCasted;
+
+    public virtual void InitializeSpell(int newCaster, int newTarget, SpellManager spellManager)
     {
         this.caster = newCaster;
-        targets = new int[newTargets.Length];
-        Array.Copy(newTargets, targets, newTargets.Length);
+        this.targets = new int[newTargets.Length];
+        targets[0] = newTarget;
         this.spellManager = spellManager;
     }
 
-    public abstract void OnHit(SpellEffect spell);
+    public virtual void OnHit(SpellEffect spell);
 
-    public abstract void OnTurn();
+    public virtual void OnTurn();
 
-    public abstract void OnCast();
+    public virtual void OnCast();
 
     public abstract void Effect(SpellEffect spell, int target, int caster);
 
@@ -63,5 +65,21 @@ public abstract class SpellEffect : ScriptableObject
     public int GetSpellType()
     {
         return this.spellType;
+    }
+
+    public bool IsSelfCasted()
+    {
+        return this.SelfCasted;
+    }
+
+    public void Block(int index)
+    {
+        for (int i; i < targetsNumber; i++)
+        {
+            if (targets[i] == index)
+            {
+                this.targets[i] = -1;
+            }
+        }
     }
 }

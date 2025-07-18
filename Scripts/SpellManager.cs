@@ -120,9 +120,9 @@ public class SpellManager : MonoBehaviour
         gameManager.GetTargets(index, newSpell);
     }
 
-    public void InitializeSpell(SpellEffect spell, int caster, int[] targets)
+    public void InitializeSpell(SpellEffect spell, int caster, int target)
     {
-        spell.InitializeSpell(caster, targets, this);
+        spell.InitializeSpell(caster, target, this);
 
         gameManager.ClearPrepOfAPlayer(caster);
 
@@ -140,6 +140,7 @@ public class SpellManager : MonoBehaviour
 
             this.DeleteEndedSpells(target);
         }
+        gameManager.SpellCasted();
     }
 
     void DeleteEndedSpells(int index)
@@ -201,6 +202,7 @@ public class SpellManager : MonoBehaviour
     {
         int cardNumber = ChooseCard(indexTarget);
         if (cardNumber == -1)
+
         {
             GiveCardToPlayer(indexTarget);
             return;
@@ -212,5 +214,24 @@ public class SpellManager : MonoBehaviour
     {
         int cardNumber = gameManager.ChooseCard(index);
         return cardNumber;
+    }
+
+    public void GiveCardsPrep(int target)
+    {
+        int CardsCount = gameManager.GetCardsCountPrep(target);
+        for (int i = 0; i < CardsCount; i++)
+        {
+            this.GiveCardToPlayer(target);
+        }
+    }
+
+    public int GetRandomPlayer()
+    {
+        return gameManager.GetRandomPlayer();
+    }
+
+    public void ReturnSpellToPrep(int target)
+    {
+        gameManager.ReturnSpellToPrep(target);
     }
 }
