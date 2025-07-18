@@ -26,6 +26,9 @@ public class LobbyConnect : NetworkBehaviour
     [SerializeField] TMP_InputField IP;
     [SerializeField] Button connect;
 
+    [SerializeField] Button proceed;
+    [SerializeField] SceneTransitionManager transitionManager;
+
     public string GetLocalIPv4()
     {
         return Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
@@ -35,7 +38,7 @@ public class LobbyConnect : NetworkBehaviour
     {
         string[] fours = GetLocalIPv4().Split(".");
         string first = fours[0] + "." + fours[1] + ".";
-        string second = (Int32.Parse(fours[2])).ToString("X2")+(Int32.Parse(fours[3])).ToString("X2");
+        string second = (Int32.Parse(fours[2])).ToString("X2") + (Int32.Parse(fours[3])).ToString("X2");
         host.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartHost();
@@ -64,11 +67,20 @@ public class LobbyConnect : NetworkBehaviour
                 (ushort)7777
             );
             NetworkManager.Singleton.StartClient();
-            Debug.Log(first+IP.text);
+            Debug.Log(first + IP.text);
             Debug.Log("Get on with it!");
             main.SetActive(false);
             lobbyJoin.SetActive(true);
             lobbyHost.SetActive(false);
+        });
+
+        proceed.onClick.AddListener(() =>
+        {
+            int count = NetworkManager.Singleton.ConnectedClientsIds.Count;
+            if (count >= 3 && count <= 6)
+            {
+                transitionManager.TransitionAllPlayersToGameScene();
+            }
         });
     }
 }
