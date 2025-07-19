@@ -117,7 +117,7 @@ public class SpellManager : MonoBehaviour
     public void InstantiateSpell(int index, int[] playerCards)
     {
         SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.effectsArray[playerCards[0] - 1, playerCards[1] - 1, playerCards[2]]);
-        gameManager.GetTargets(index, newSpell);
+        gameManager.GetTarget(index, newSpell);
     }
 
     public void InitializeSpell(SpellEffect spell, int caster, int target)
@@ -126,7 +126,7 @@ public class SpellManager : MonoBehaviour
 
         gameManager.ClearPrepOfAPlayer(caster);
 
-        this.HandleNewSpell(spell, caster, targets);
+        this.HandleNewSpell(spell, caster, spell.GetTargetsIndexes());
     }
     void HandleNewSpell(SpellEffect newSpell, int index, int[] targets)
     {

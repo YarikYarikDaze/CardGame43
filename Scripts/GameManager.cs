@@ -250,11 +250,11 @@ public class GameManager : NetworkBehaviour
     {
         if (CantCastSpell(playerCards, id)) return;
 
+        Debug.Log("Cast Is Pending");
+
         int[] cards = new int[] { playerCards[id, 1, 0], playerCards[id, 1, 1], playerCards[id, 1, 2] };
 
         spellManager.InstantiateSpell(id, cards);
-
-        ChangePlayerRemainingMoves(id, -1);
     }
 
     void ChangePlayerRemainingMoves(int index, int change)
@@ -296,18 +296,20 @@ public class GameManager : NetworkBehaviour
         sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[index] };
         ChooseTargetClientRpc(sendOnly);
 
-        StartCoroutine(WaitUntilTargetsIsChosen(spell, index));
+        StartCoroutine(WaitUntilTargetIsChosen(spell, index));
     }
 
     IEnumerator WaitUntilTargetIsChosen(SpellEffect spell, int index)
     {
-        yield return new WaitUntil(() => target != -1);
+        yield return new WaitUntil(() => this.target != -1);
+
+        Debug.Log("123");
 
         spellManager.InitializeSpell(spell, index, this.target);
     }
 
     [ClientRpc]
-    void ChooseTargetsClientRpc(int N, ClientRpcParams clientParams)
+    void ChooseTargetClientRpc(ClientRpcParams clientParams)
     // sets the turn
     {
         GameObject.FindWithTag("Player").GetComponent<Player>().ChooseTarget();

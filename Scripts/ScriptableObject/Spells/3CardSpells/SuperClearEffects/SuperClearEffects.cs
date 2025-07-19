@@ -3,12 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SuperClearEffects", menuName = "Scriptable Objects/SuperClearEffects")]
 public class SuperClearEffects : SpellEffect
 {
-     void Awake()
+    void Awake()
     {
         this.duration = 1;
         this.targetsNumber = 1;
         this.spellType = 1;
         this.spellEffectsCount = 1;
+        this.SelfCasted = false;
     }
     public override void OnHit(SpellEffect spell) { }
 

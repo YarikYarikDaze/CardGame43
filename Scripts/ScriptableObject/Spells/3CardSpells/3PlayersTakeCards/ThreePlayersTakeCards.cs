@@ -6,12 +6,13 @@ public class ThreePlayersTakeCards : SpellEffect
     void Awake()
     {
         this.duration = 1;
-        this.targetsNumber = 0;
+        this.targetsNumber = 3;
         this.spellType = 2;
         this.spellEffectsCount = 1;
+        this.SelfCasted = false;
     }
 
-    public override void InitializeSpell(int newCaster, int[] newTargets, SpellManager spellManager)
+    public override void InitializeSpell(int newCaster, int target, SpellManager spellManager)
     {
         this.caster = newCaster;
         this.spellManager = spellManager;
@@ -27,19 +28,19 @@ public class ThreePlayersTakeCards : SpellEffect
     {
         if (!this.HasEnded())
         {
-            this.Effect(null, targets[0], caster);
+            foreach (int index in targets)
+            {
+                if (index != -1)
+                {
+                    this.Effect(null, index, caster);
+                }
+            }
             this.EndSpell();
         }
     }
 
-    public override void OnTurn()
-    {
-    }
-
-    public override void OnCast() { }
-
     public override void Effect(SpellEffect spell, int target, int caster)
     {
-        this.spellManager.ReturnSpellToPrep(target);
+        this.spellManager.GiveCardToPlayer(target);
     }
 }

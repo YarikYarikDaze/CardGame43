@@ -6,9 +6,10 @@ public class SuperReflect : SpellEffect
     void Awake()
     {
         this.duration = 2;
-        this.targetsNumber = 0;
+        this.targetsNumber = 1;
         this.spellType = 0;
         this.spellEffectsCount = 1;
+        this.SelfCasted = true;
     }
     public override void OnHit(SpellEffect spell)
     {

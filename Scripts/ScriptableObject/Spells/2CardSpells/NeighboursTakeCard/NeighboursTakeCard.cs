@@ -7,12 +7,13 @@ public class NeighboursTakeCard : SpellEffect
     void Awake()
     {
         this.duration = 1;
-        this.targetsNumber = 0;
+        this.targetsNumber = 2;
         this.spellType = 2;
         this.spellEffectsCount = 1;
+        this.SelfCasted = true;
     }
 
-    public override void InitializeSpell(int newCaster, int[] newTargets, SpellManager spellManager)
+    public override void InitializeSpell(int newCaster, int target, SpellManager spellManager)
     {
         this.caster = newCaster;
         this.spellManager = spellManager;
@@ -22,20 +23,19 @@ public class NeighboursTakeCard : SpellEffect
     void GetNeighbours()
     {
         this.targets = new int[2];
-        Array.Copy(this.spellManager.GetNeighbours(caster), this.targets, 2);
+        Array.Copy(this.spellManager.GetNeighbours(caster), this.targets, this.targetsNumber);
     }
-
-    public override void OnHit(SpellEffect spell) { }
-
-    public override void OnTurn() { }
 
     public override void OnCast()
     {
-        if (!this.HasEnded())
+        if (!HasEnded())
         {
             foreach (int index in targets)
             {
-                this.Effect(null, index, caster);
+                if (index != -1)
+                {
+                    this.Effect(null, index, caster);
+                }
             }
             this.EndSpell();
         }

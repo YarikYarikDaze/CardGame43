@@ -23,16 +23,16 @@ public abstract class SpellEffect : ScriptableObject
     public virtual void InitializeSpell(int newCaster, int newTarget, SpellManager spellManager)
     {
         this.caster = newCaster;
-        this.targets = new int[newTargets.Length];
+        this.targets = new int[targetsNumber];
         targets[0] = newTarget;
         this.spellManager = spellManager;
     }
 
-    public virtual void OnHit(SpellEffect spell);
+    public virtual void OnHit(SpellEffect spell) { }
 
-    public virtual void OnTurn();
+    public virtual void OnTurn() { }
 
-    public virtual void OnCast();
+    public virtual void OnCast() { }
 
     public abstract void Effect(SpellEffect spell, int target, int caster);
 
@@ -74,7 +74,7 @@ public abstract class SpellEffect : ScriptableObject
 
     public void Block(int index)
     {
-        for (int i; i < targetsNumber; i++)
+        for (int i = 0; i < targetsNumber; i++)
         {
             if (targets[i] == index)
             {

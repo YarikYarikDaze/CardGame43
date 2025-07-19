@@ -9,6 +9,7 @@ public class Burn : SpellEffect
         this.targetsNumber = 1;
         this.spellType = 2;
         this.spellEffectsCount = 3;
+        this.SelfCasted = false;
     }
     public override void OnHit(SpellEffect spell) { }
 

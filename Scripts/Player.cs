@@ -26,7 +26,7 @@ public class Player : NetworkBehaviour
     [SerializeField] public GameObject deckPrefab;          // Prefab of a card to instantiate
     public int[] handCards;                       // Array of cards in each Deck in Hand
 
-    int[] targetsIndexes;                                   // Array of current targets for current cast
+    public int target;                                   // Array of current targets for current cast
 
     void Awake()
     // On spawn gets HS and ERS
@@ -174,52 +174,41 @@ public class Player : NetworkBehaviour
 
     public void AddTarget(int index)
     {
-        if (this.targetsIndexes == null) return;
-        int minIndex = 1000;
-        for (int i = 0; i < this.targetsIndexes.Length; i++)
+        if (index == this.id)
         {
-            if (targetsIndexes[i] == index)
-            {
-                return;
-            }
-            if (targetsIndexes[i] == -1 && i < minIndex)
-            {
-                minIndex = i;
-            }
+            Debug.Log("ClickedNot");
+            return;
         }
-        if (minIndex == 1000) return;
-        targetsIndexes[minIndex] = index;
-    }
-
-    public void ChooseTargts(int N)
-    {
-        InitializeTargetsArray(N);
-
-        StartCoroutine(WaitUntilTargetsArrayIsFull(N));
-    }
-
-    void InitializeTargetsArray(int N)
-    {
-        this.targetsIndexes = new int[N];
-        for (int i = 0; i < N; i++)
+        Debug.Log("Clicked");
+        if (this.target == -1)
         {
-            targetsIndexes[i] = -1;
+            this.target = index;
+            Debug.Log("Added");
         }
     }
 
-    IEnumerator WaitUntilTargetsArrayIsFull(int N)
+    public void ChooseTarget()
     {
-        yield return new WaitUntil(() => this.targetsIndexes[N - 1] != -1);
+        this.target = -1;
 
-        SetTargetsIndexesOnServerServerRpc(targetsIndexes);
+        StartCoroutine(WaitUntilTargetIsChosen());
+    }
 
-        targetsIndexes = null;
+    IEnumerator WaitUntilTargetIsChosen()
+    {
+        yield return new WaitUntil(() => this.target >= 0);
+
+        SetTargetServerRpc(target);
+
+        Debug.Log("TargetSetted");
+
+        this.target = -2;
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void SetTargetsIndexesOnServerServerRpc(int[] targets, ServerRpcParams rpcParams = default)
+    public void SetTargetServerRpc(int target, ServerRpcParams rpcParams = default)
     // unfinished Turn End RPC
     {
-        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().AcceptTargetsFromPlayer(targets);
+        GameObject.FindWithTag("GameManager").GetComponent<GameManager>().AcceptTargetFromPlayer(target);
     }
 }

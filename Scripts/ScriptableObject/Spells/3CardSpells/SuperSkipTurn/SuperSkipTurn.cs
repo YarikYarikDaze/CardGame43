@@ -9,6 +9,7 @@ public class SuperSkipTurn : SpellEffect
         this.targetsNumber = 1;
         this.spellType = 2;
         this.spellEffectsCount = 1;
+        this.SelfCasted = false;
     }
     public override void OnHit(SpellEffect spell) { }
 

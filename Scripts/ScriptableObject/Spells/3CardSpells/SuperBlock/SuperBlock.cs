@@ -6,9 +6,10 @@ public class SuperBlock : SpellEffect
     void Awake()
     {
         this.duration = 4;
-        this.targetsNumber = 0;
+        this.targetsNumber = 1;
         this.spellType = 0;
         this.spellEffectsCount = 3;
+        this.SelfCasted = true;
     }
     public override void OnHit(SpellEffect spell)
     {

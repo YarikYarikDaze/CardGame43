@@ -6,13 +6,11 @@ public class ClearEffects : SpellEffect
     void Awake()
     {
         this.duration = 1;
-        this.targetsNumber = 0;
+        this.targetsNumber = 1;
         this.spellType = 1;
         this.spellEffectsCount = 1;
+        this.SelfCasted = true;
     }
-    public override void OnHit(SpellEffect spell) { }
-
-    public override void OnTurn() { }
 
     public override void OnCast()
     {

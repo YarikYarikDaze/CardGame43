@@ -9,16 +9,20 @@ public class StealCard : SpellEffect
         this.targetsNumber = 1;
         this.spellType = 1;
         this.spellEffectsCount = 1;
+        this.SelfCasted = false;
     }
-    public override void OnHit(SpellEffect spell) { }
-
-    public override void OnTurn() { }
 
     public override void OnCast()
     { 
         if (!HasEnded())
         {
-            this.Effect(null, targets[0], caster);
+            foreach (int index in targets)
+            {
+                if (index != -1)
+                {
+                    this.Effect(null, index, caster);
+                }
+            }
             this.EndSpell();
         }
     }
