@@ -38,7 +38,7 @@ public class Player : NetworkBehaviour
             handScript.deckPrefab = deckPrefab;
             handScript.playerScript = this;
         }
-
+        this.target = -2;
     }
 
     void Update()
@@ -72,11 +72,8 @@ public class Player : NetworkBehaviour
     public void TakeTurn(bool turn)
     // Start of this player's turn
     {
-        if (this.turn != turn)
-        {
-            this.turn = turn;
-            remainingMoves = turn ? maxMoves : 0; 
-        }
+        this.turn = turn;
+        remainingMoves = turn ? maxMoves : 0;
     }
 
     void SetCards(int[] newHandCards)
@@ -91,7 +88,10 @@ public class Player : NetworkBehaviour
 
     public void MoveCard(int color, bool left)
     {
-        MoveCardServerRpc(color, id, left);
+        if (Turn && remainingMoves > 0)
+        {
+            MoveCardServerRpc(color, id, left);
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -125,7 +125,7 @@ public class Player : NetworkBehaviour
 
     public void CastSpell()
     {
-        if (Turn)
+        if (Turn && remainingMoves > 0 && this.target==-2)
         {
             this.CastServerRpc(this.id);
         }
@@ -169,7 +169,10 @@ public class Player : NetworkBehaviour
     public void ChangeActionsLeft(int change)
     {
         this.remainingMoves += change;
-        Debug.Log(change);
+        if (remainingMoves == 0)
+        {
+            this.EndTurn();
+        }
     }
 
     public void AddTarget(int index)
@@ -210,5 +213,10 @@ public class Player : NetworkBehaviour
     // unfinished Turn End RPC
     {
         GameObject.FindWithTag("GameManager").GetComponent<GameManager>().AcceptTargetFromPlayer(target);
+    }
+
+    public void AnimateEffect(int spellId, int caster, int[] targets)
+    {
+        // Animation Logic
     }
 }

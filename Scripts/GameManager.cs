@@ -85,6 +85,7 @@ public class GameManager : NetworkBehaviour
         // Initializes players and state
         InitializeGameClientRpc();
         SetState(playerCards);
+        SetTurns();
 
         //var sendParams = new ClientRpcParams();
         //sendParams.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[0] };
@@ -127,7 +128,7 @@ public class GameManager : NetworkBehaviour
             //       we have to evaluate by colors and prep size
             int[] handCards = new int[] { cards[i, 0, 0], cards[i, 0, 1], cards[i, 0, 2] };
             int cardCount = handCards.Sum();
-            if(cardCount==0) winner = i;
+            if (cardCount == 0) winner = i;
 
             // RPCs the Player ID and Cards for player's hand 
             GiveCardsClientRpc(handCards, sendOnly);
@@ -135,10 +136,6 @@ public class GameManager : NetworkBehaviour
 
             int[] prepCards = new int[] { cards[i, 1, 0], cards[i, 1, 1], cards[i, 1, 2] };
             SetPrepClientRpc(prepCards, cardCount);
-
-
-            // Gives a turn to current player
-            SetTurnClientRpc(i == currentTurn, sendOnly);
         }
 
         LoadPrepsClientRpc(currentTurn);
@@ -155,6 +152,21 @@ public class GameManager : NetworkBehaviour
         GameObject winnerAnouncement = GameObject.FindWithTag("WinPanel");
         winnerAnouncement.SetActive(true);
         winnerAnouncement.GetComponent<WinPanel>().AnnounceWinner(newWinner);
+    }
+
+    void SetTurns()
+    {
+        for (int i = 0; i < playerCount; i++)
+        {
+            // sendParams are used for us to send only to client no. i. 
+            // NOTE: Its using Network's IDs, which is probably read only?
+            //       Later on we have to store IDs on a separate array to allow swapping, shifting etc.
+            var sendOnly = new ClientRpcParams();
+            sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[i] };
+
+            // Gives a turn to current player
+            SetTurnClientRpc(i == currentTurn, sendOnly);
+        }
     }
 
     [ClientRpc]
@@ -251,9 +263,15 @@ public class GameManager : NetworkBehaviour
         SetState(playerCards);
     }
 
+    public int GetPlayerCount()
+    {
+        return this.playerCount;
+    }
+
     public void SpellCasted()
     {
         this.SetState(playerCards);
+        this.ChangePlayerRemainingMoves(currentTurn, -1);
     }
 
     public void NewCast(int id)
@@ -345,6 +363,7 @@ public class GameManager : NetworkBehaviour
         CheckWinner(currentTurn);
         spellManager.TraverseEffectsOnTurn(currentTurn);
         SetState(playerCards);
+        SetTurns();
     }
 
     public void CheckWinner(int i)
@@ -363,6 +382,12 @@ public class GameManager : NetworkBehaviour
     // Gives Card to <index> player. Color defined by GiveColorToCard()
     {
         int color = GiveColorToCard();
+        this.playerCards[index, 0, color]++;
+        SetState(playerCards);
+    }
+
+    public void GiveSpecificCardToPlayer(int index, int color)
+    {
         this.playerCards[index, 0, color]++;
         SetState(playerCards);
     }
@@ -390,7 +415,7 @@ public class GameManager : NetworkBehaviour
 
     public int PreviousPlayer(int index)
     {
-        return (index - 1) % playerCount;
+        return (index - 1 + playerCount) % playerCount;
     }
 
     public int NextPlayer(int index)
@@ -448,5 +473,33 @@ public class GameManager : NetworkBehaviour
             playerCards[index, 0, playerCards[index, 1, i]]++;
             playerCards[index, 1, i] = 0;
         }
+    }
+
+    int GetCardsInHandAmount(int index)
+    {
+        return playerCards[index, 0, 0] + playerCards[index, 0, 1] + playerCards[index, 0, 2];
+    }
+
+    public void RenewCardsInHands(int index)
+    {
+        int amount = GetCardsInHandAmount(index);
+        playerCards[index, 0, 0] = 0;
+        playerCards[index, 0, 1] = 0;
+        playerCards[index, 0, 2] = 0;
+        for (int i = 0; i < amount; i++)
+        {
+            this.GiveCardToPlayer(index);
+        }
+    }
+
+    public void SendSpellsAnimationsToClients(int spellIndex, int caster, int[] targets)
+    {
+        this.AnimateEffectClientRpc(spellIndex, caster, targets);
+    }
+
+    [ClientRpc]
+    void AnimateEffectClientRpc(int spellIndex, int caster, int[] targets)
+    {
+        GameObject.FindWithTag("Player").GetComponent<Player>().AnimateEffect(spellIndex, caster, targets);
     }
 }

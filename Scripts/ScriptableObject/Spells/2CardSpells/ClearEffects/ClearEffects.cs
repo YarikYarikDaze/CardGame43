@@ -10,6 +10,7 @@ public class ClearEffects : SpellEffect
         this.spellType = 1;
         this.spellEffectsCount = 1;
         this.SelfCasted = true;
+        this.spellIndex = 7;
     }
 
     public override void OnCast()
@@ -21,5 +22,6 @@ public class ClearEffects : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.ClearPlayerEffects(target);
+        SendIdToClients();
     }
 }

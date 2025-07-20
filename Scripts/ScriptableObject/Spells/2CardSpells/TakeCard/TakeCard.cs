@@ -10,6 +10,7 @@ public class TakeCard : SpellEffect
         this.spellType = 2;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
+        this.spellIndex = 0;
     }
 
     public override void OnCast()
@@ -30,5 +31,6 @@ public class TakeCard : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.GiveCardToPlayer(target);
+        SendIdToClients();
     }
 }

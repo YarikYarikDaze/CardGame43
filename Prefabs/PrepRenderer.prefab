@@ -45,5 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prepCount: 0
+  counter: 0
+  prepCardCount: 
   Breps: []
   prepPrefab: {fileID: 7883755279370449652, guid: 9956869edc560199bac135fafb3fcfd0, type: 3}
+  turner: {fileID: 0}
+  animatorPrefab: {fileID: 7480644081257693054, guid: 46fbc33521f569e42a2629be22cbe555, type: 3}

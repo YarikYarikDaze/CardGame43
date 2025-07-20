@@ -24,5 +24,6 @@ public class SuperClearEffects : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.ClearPlayerEffects(target);
+        SendIdToClients();
     }   
 }

@@ -10,6 +10,7 @@ public class StealCard : SpellEffect
         this.spellType = 1;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
+        this.spellIndex = 5;
     }
 
     public override void OnCast()
@@ -30,5 +31,6 @@ public class StealCard : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.StealCard(caster, target);
+        SendIdToClients();
     }
 }

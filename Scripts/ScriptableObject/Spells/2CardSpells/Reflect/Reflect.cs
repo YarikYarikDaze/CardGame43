@@ -10,6 +10,7 @@ public class Reflect : SpellEffect
         this.spellType = 0;
         this.spellEffectsCount = 1;
         this.SelfCasted = true;
+        this.spellIndex = 6;
     }
     public override void OnHit(SpellEffect spell)
     {
@@ -27,5 +28,6 @@ public class Reflect : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         spell.Effect(this, target, caster);
+        SendIdToClients();
     }
 }

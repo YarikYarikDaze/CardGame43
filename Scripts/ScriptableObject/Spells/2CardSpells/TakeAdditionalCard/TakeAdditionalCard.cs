@@ -10,6 +10,7 @@ public class TakeAdditionalCard : SpellEffect
         this.spellType = 2;
         this.spellEffectsCount = 2;
         this.SelfCasted = false;
+        this.spellIndex = 2;
     }
     public override void OnHit(SpellEffect spell)
     { 
@@ -33,5 +34,6 @@ public class TakeAdditionalCard : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.GiveCardToPlayer(target);
+        SendIdToClients();
     }
 }

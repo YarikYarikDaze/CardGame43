@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
+using System.Collections;
 
 [CreateAssetMenu(fileName = "SpellEffect", menuName = "Scriptable Objects/SpellEffect")]
 public abstract class SpellEffect : ScriptableObject
@@ -19,6 +21,8 @@ public abstract class SpellEffect : ScriptableObject
     protected int spellType;        // 0 - spells that defend, 1 - special ability spells, 2 - spells that gives card
 
     protected bool SelfCasted;
+
+    protected int spellIndex;
 
     public virtual void InitializeSpell(int newCaster, int newTarget, SpellManager spellManager)
     {
@@ -81,5 +85,10 @@ public abstract class SpellEffect : ScriptableObject
                 this.targets[i] = -1;
             }
         }
+    }
+
+    protected void SendIdToClients()
+    {
+        spellManager.SendIdToClients(spellIndex, caster, targets);
     }
 }

@@ -18,6 +18,8 @@ public class PrepRenderer : MonoBehaviour
     [SerializeField] GameObject prepPrefab;
 
     [SerializeField] GameObject turner;
+
+    GameObject animator;
     public void Awake()
     {
         prepCount = NetworkManager.Singleton.ConnectedClientsIds.Count;
@@ -44,7 +46,6 @@ public class PrepRenderer : MonoBehaviour
         prepCardCount = new int[prepCount];
         // Debug.Log(prepCards.GetLength(0) + ";   " + prepCards.GetLength(1));
         turner = GameObject.FindWithTag("turner");
-
     }
 
     public void SetId(int newId, int allplayers)

@@ -42,5 +42,6 @@ public class ReturnSpellToPrep : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.ReturnSpellToPrep(target);
+        SendIdToClients();
     }
 }

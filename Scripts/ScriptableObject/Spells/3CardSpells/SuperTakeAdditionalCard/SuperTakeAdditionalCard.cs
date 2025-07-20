@@ -30,5 +30,6 @@ public class SuperTakeAdditionalCard : SpellEffect
     {
         this.spellManager.GiveCardToPlayer(target);
         this.spellManager.GiveCardToPlayer(target);
+        SendIdToClients();
     }
 }
