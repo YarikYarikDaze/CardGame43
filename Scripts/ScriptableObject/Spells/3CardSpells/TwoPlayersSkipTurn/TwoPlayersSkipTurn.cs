@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-[CreateAssetMenu(fileName = "ThreePlayersTakeCards", menuName = "Scriptable Objects/ThreePlayersTakeCards")]
-public class ThreePlayersTakeCards : SpellEffect
+[CreateAssetMenu(fileName = "TwoPlayersSkipTurn", menuName = "Scriptable Objects/TwoPlayersSkipTurn")]
+public class TwoPlayersSkipTurn : SpellEffect
 {
     void Awake()
     {
         this.duration = 1;
-        this.targetsNumber = 3;
-        this.spellType = 2;
+        this.targetsNumber = 2;
+        this.spellType = 1;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
     }
@@ -19,16 +19,16 @@ public class ThreePlayersTakeCards : SpellEffect
     {
         this.caster = newCaster;
         this.spellManager = spellManager;
-        this.GetTwoNextPlayers(target);
+        GetNextPlayer(target);
     }
 
-    void GetTwoNextPlayers(int target)
+    void GetNextPlayer(int target)
     {
         this.targets = new int[targetsNumber];
-        spellManager.GetTwoNextPlayers(target, caster);
-        Array.Copy(spellManager.GetTwoNextPlayers(target, caster), this.targets, targetsNumber);
+        Array.Copy(spellManager.GetTwoNextPlayers(target, caster), targets, targetsNumber);
     }
-    public override void OnHit(SpellEffect spell)
+
+    public override void OnCast()
     {
         if (!this.HasEnded())
         {
@@ -36,10 +36,6 @@ public class ThreePlayersTakeCards : SpellEffect
             {
                 if (index != -1)
                 {
-                    if (targets[0] == index)
-                    {
-                        this.Effect(null, index, caster);
-                    }
                     this.Effect(null, index, caster);
                 }
             }
@@ -49,6 +45,6 @@ public class ThreePlayersTakeCards : SpellEffect
 
     public override void Effect(SpellEffect spell, int target, int caster)
     {
-        this.spellManager.GiveCardToPlayer(target);
-    }
+        this.spellManager.EndPlayerTurn(target);
+    }   
 }

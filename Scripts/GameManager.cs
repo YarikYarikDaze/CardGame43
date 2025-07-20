@@ -127,7 +127,7 @@ public class GameManager : NetworkBehaviour
             //       we have to evaluate by colors and prep size
             int[] handCards = new int[] { cards[i, 0, 0], cards[i, 0, 1], cards[i, 0, 2] };
             int cardCount = handCards.Sum();
-            if(cardCount==0) winner = i;
+            if (cardCount == 0) winner = i;
 
             // RPCs the Player ID and Cards for player's hand 
             GiveCardsClientRpc(handCards, sendOnly);
@@ -439,6 +439,23 @@ public class GameManager : NetworkBehaviour
         {
             playerCards[index, 0, playerCards[index, 1, i]]++;
             playerCards[index, 1, i] = 0;
+        }
+    }
+
+    int GetCardsInHandAmount(int index)
+    {
+        return playerCards[index, 0, 0] + playerCards[index, 0, 1] + playerCards[index, 0, 2];
+    }
+
+    public void RenewCardsInHands(int index)
+    {
+        int amount = GetCardsInHandAmount(index);
+        playerCards[index, 0, 0] = 0;
+        playerCards[index, 0, 1] = 0;
+        playerCards[index, 0, 2] = 0;
+        for (int i = 0; i < amount; i++)
+        {
+            this.GiveCardToPlayer(index);
         }
     }
 }

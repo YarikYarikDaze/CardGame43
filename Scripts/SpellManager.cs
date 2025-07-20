@@ -260,7 +260,7 @@ public class SpellManager : MonoBehaviour
 
     public void CreateRandomSpell(int caster)
     {
-        Random random = new Random();
+        System.Random random = new System.Random();
         SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.effectsArray[random.Next(3), random.Next(3), random.Next(4)]);
 
         if (newSpell.IsSelfCasted())
@@ -296,8 +296,13 @@ public class SpellManager : MonoBehaviour
             {
                 return;
             }
-            int color = gameManager.RemoveCardFromPrep(targetarget, cardNumber);
+            int color = gameManager.RemoveCardFromPrep(target, cardNumber);
             gameManager.GiveSpecificCardToPlayer(target, color);
         }
+    }
+
+    public void RenewCardsInHands(int target)
+    {
+        gameManager.RenewCardsInHands(target);
     }
 }

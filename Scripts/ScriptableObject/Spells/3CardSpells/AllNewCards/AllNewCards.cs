@@ -3,16 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-[CreateAssetMenu(fileName = "DeleteCardsFromPrep", menuName = "Scriptable Objects/DeleteCardsFromPrep")]
-public class DeleteCardsFromPrep : SpellEffect
+[CreateAssetMenu(fileName = "AllNewCards", menuName = "Scriptable Objects/AllNewCards")]
+public class AllNewCards : SpellEffect
 {
-
-    int InitialTarget;
     void Awake()
     {
         this.duration = 1;
         this.targetsNumber = 6;
-        this.spellType = 2;
+        this.spellType = 1;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
     }
@@ -20,7 +18,6 @@ public class DeleteCardsFromPrep : SpellEffect
     {
         this.caster = newCaster;
         this.spellManager = spellManager;
-        InitialTarget = target;
         GetAllPlayers();
     }
 
@@ -38,14 +35,7 @@ public class DeleteCardsFromPrep : SpellEffect
             {
                 if (index != -1)
                 {
-                    if (index == InitialTarget)
-                    {
-                        this.Effect(null, index, caster);
-                    }
-                    else
-                    {
-                        this.AdditionalEffect(index);
-                    }
+                    this.Effect(null, index, caster);
                 }
             }
             this.EndSpell();
@@ -54,10 +44,6 @@ public class DeleteCardsFromPrep : SpellEffect
 
     public override void Effect(SpellEffect spell, int target, int caster)
     {
-        spellManager.ReturnCardsToHand(target, 1);
-    }
-
-    void AdditionalEffect(int target) {
-        this.spellManager.DiscardCard(target);
+        spellManager.RenewCardsInHands(target);
     }
 }
