@@ -21,34 +21,34 @@ public class SpellManager : MonoBehaviour
                 {
                 "TakeCard",
                 "SuperTakeCard",
-                "NULLSpell",
-                "NULLSpell"
+                "Burn",
+                "TakeCardOnHit"
                 },
                 {
                 "NeighboursTakeCard",
-                "NULLSpell",
-                "NULLSpell",
-                "NULLSpell"
+                "TakeCardsPrep",
+                "ReturnSpellToPrep",
+                "ThreePlayersTakeCards"
                 },
                 {
                 "TakeAdditionalCard",
-                "NULLSpell",
-                "NULLSpell",
-                "NULLSpell"
+                "SuperTakeAdditionalCard",
+                "RandomSpell",
+                "SuperClearEffects"
                 }
             },
             {
                 {
                 "DiscardCard",
-                "NULLSpell",
-                "NULLSpell",
-                "NULLSpell"
+                "DeleteCardsFromPrep",
+                "DeleteCardsFromPrep",
+                "AllNewCards"
                 },
                 {
                 "SkipTurn",
-                "NULLSpell",
-                "NULLSpell",
-                "NULLSpell"
+                "TakeCardSkipTurn",
+                "ThreePlayersTakeCards",
+                "NeighboursSkipTurn"
                 },
                 {
                 "StealCard",
