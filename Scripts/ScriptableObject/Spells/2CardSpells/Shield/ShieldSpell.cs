@@ -10,6 +10,7 @@ public class ShieldSpell : SpellEffect
         this.spellType = 0;
         this.spellEffectsCount = 2;
         this.SelfCasted = true;
+        this.spellIndex = 8;
     }
     public override void OnHit(SpellEffect spell)
     {

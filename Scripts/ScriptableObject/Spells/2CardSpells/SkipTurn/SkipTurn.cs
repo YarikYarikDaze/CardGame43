@@ -10,6 +10,7 @@ public class SkipTurn : SpellEffect
         this.spellType = 1;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
+        this.spellIndex = 4;
     }
 
     public override void OnTurn()

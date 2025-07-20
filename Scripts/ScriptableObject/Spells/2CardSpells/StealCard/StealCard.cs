@@ -10,6 +10,7 @@ public class StealCard : SpellEffect
         this.spellType = 1;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
+        this.spellIndex = 5;
     }
 
     public override void OnCast()

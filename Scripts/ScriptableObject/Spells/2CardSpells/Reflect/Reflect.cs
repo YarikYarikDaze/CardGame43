@@ -10,6 +10,7 @@ public class Reflect : SpellEffect
         this.spellType = 0;
         this.spellEffectsCount = 1;
         this.SelfCasted = true;
+        this.spellIndex = 6;
     }
     public override void OnHit(SpellEffect spell)
     {

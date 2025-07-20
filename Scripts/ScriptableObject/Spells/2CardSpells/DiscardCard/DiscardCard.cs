@@ -10,6 +10,7 @@ public class DiscardCard : SpellEffect
         this.spellType = 1;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
+        this.spellIndex = 3;
     }
 
     public override void OnCast()
