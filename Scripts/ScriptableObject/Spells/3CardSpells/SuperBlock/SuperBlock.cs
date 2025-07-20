@@ -30,5 +30,6 @@ public class SuperBlock : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         spell.EndSpell();
+        SendIdToClients();
     }
 }

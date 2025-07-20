@@ -31,5 +31,6 @@ public class TakeCardSkipTurn : SpellEffect
     {
         this.spellManager.GiveCardToPlayer(target);
         this.spellManager.EndPlayerTurn(target);
+        SendIdToClients();
     }
 }

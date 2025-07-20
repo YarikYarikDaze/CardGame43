@@ -31,5 +31,6 @@ public class SuperReflect : SpellEffect
     {
         spell.Effect(this, target, caster);
         spell.EndSpell();
+        SendIdToClients();
     }
 }

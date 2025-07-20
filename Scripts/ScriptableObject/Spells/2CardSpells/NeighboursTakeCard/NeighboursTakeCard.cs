@@ -46,5 +46,6 @@ public class NeighboursTakeCard : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.GiveCardToPlayer(target);
+        SendIdToClients();
     }
 }

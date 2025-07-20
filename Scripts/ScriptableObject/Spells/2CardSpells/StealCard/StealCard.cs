@@ -30,5 +30,6 @@ public class StealCard : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.StealCard(caster, target);
+        SendIdToClients();
     }
 }

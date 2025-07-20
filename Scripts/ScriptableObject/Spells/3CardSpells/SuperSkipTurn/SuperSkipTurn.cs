@@ -30,5 +30,6 @@ public class SuperSkipTurn : SpellEffect
     {
         this.spellManager.EndPlayerTurn(target);
         this.spellManager.GiveCardToPlayer(target);
+        SendIdToClients();
     }   
 }

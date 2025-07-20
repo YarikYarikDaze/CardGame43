@@ -27,5 +27,6 @@ public class Reflect : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         spell.Effect(this, target, caster);
+        SendIdToClients();
     }
 }

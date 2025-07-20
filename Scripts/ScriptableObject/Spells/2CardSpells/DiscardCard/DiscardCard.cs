@@ -30,5 +30,6 @@ public class DiscardCard : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.DiscardCard(target);
+        SendIdToClients();
     }
 }

@@ -57,7 +57,9 @@ public class DeleteCardsFromPrep : SpellEffect
         spellManager.ReturnCardsToHand(target, 1);
     }
 
-    void AdditionalEffect(int target) {
+    void AdditionalEffect(int target)
+    {
         this.spellManager.DiscardCard(target);
+        SendIdToClients();
     }
 }

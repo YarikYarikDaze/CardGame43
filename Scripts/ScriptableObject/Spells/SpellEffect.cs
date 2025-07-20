@@ -22,6 +22,8 @@ public abstract class SpellEffect : ScriptableObject
 
     protected bool SelfCasted;
 
+    protected int spellIndex;
+
     public virtual void InitializeSpell(int newCaster, int newTarget, SpellManager spellManager)
     {
         this.caster = newCaster;
@@ -83,5 +85,10 @@ public abstract class SpellEffect : ScriptableObject
                 this.targets[i] = -1;
             }
         }
+    }
+
+    protected void SendIdToClients()
+    {
+        spellManager.SendIdToClients(spellIndex, caster, targets);
     }
 }

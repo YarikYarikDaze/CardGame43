@@ -42,5 +42,6 @@ public class TakeCardsPrep : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.GiveCardsPrep(target);
+        SendIdToClients();
     }
 }

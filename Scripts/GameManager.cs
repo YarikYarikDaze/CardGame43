@@ -458,4 +458,15 @@ public class GameManager : NetworkBehaviour
             this.GiveCardToPlayer(index);
         }
     }
+
+    public void SendSpellsAnimationsToClients(int spellIndex, int caster, int[] targets)
+    {
+
+    }
+
+    [ClientRpc]
+    void AnimateEffectClientRpc(int spellIndex, int caster, int[] targets)
+    {
+        GameObject.FindWithTag("Player").GetComponent<Player>().AnimateEffect(spellIndex, caster, targets);
+    }
 }

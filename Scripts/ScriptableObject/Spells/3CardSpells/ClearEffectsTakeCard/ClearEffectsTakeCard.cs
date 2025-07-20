@@ -22,5 +22,6 @@ public class ClearEffectsTakeCard : SpellEffect
     {
         this.spellManager.ClearPlayerEffects(target);
         this.spellManager.GiveCardToPlayer(target);
+        SendIdToClients();
     }
 }

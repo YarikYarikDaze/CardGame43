@@ -30,5 +30,6 @@ public class SkipTurn : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         this.spellManager.EndPlayerTurn(target);
+        SendIdToClients();
     }
 }

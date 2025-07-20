@@ -45,5 +45,6 @@ public class AllNewCards : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         spellManager.RenewCardsInHands(target);
+        SendIdToClients();
     }
 }

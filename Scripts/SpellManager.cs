@@ -167,6 +167,11 @@ public class SpellManager : MonoBehaviour
         gameManager.SetEffectsOnPlayer(index, spellsOnPlayer);
     }
 
+    public void SendIdToClients(int spellIndex, int caster, int[] targets)
+    {
+        gameManager.SendSpellsAnimationsToClients(spellIndex, caster, targets);
+    }
+
     //
     //Spells Logic
     //

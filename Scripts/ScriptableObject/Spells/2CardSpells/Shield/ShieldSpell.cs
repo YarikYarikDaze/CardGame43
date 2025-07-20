@@ -28,5 +28,6 @@ public class ShieldSpell : SpellEffect
     public override void Effect(SpellEffect spell, int target, int caster)
     {
         spell.Block(target);
+        SendIdToClients();
     }
 }
