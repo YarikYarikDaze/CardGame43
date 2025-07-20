@@ -240,6 +240,11 @@ public class GameManager : NetworkBehaviour
         SetState(playerCards);
     }
 
+    public int GetPlayerCount()
+    {
+        return this.playerCount;
+    }
+
     public void SpellCasted()
     {
         this.SetState(playerCards);
@@ -348,6 +353,12 @@ public class GameManager : NetworkBehaviour
         SetState(playerCards);
     }
 
+    public void GiveSpecificCardToPlayer(int index, int color)
+    {
+        this.playerCards[index, 0, color]++;
+        SetState(playerCards);
+    }
+
     public List<SpellEffect> GetEffectsOnPlayer(int index)
     {
         return this.spellEffectsOnPlayers[index];
@@ -371,7 +382,7 @@ public class GameManager : NetworkBehaviour
 
     public int PreviousPlayer(int index)
     {
-        return (index - 1) % playerCount;
+        return (index - 1 + playerCount) % playerCount;
     }
 
     public int NextPlayer(int index)

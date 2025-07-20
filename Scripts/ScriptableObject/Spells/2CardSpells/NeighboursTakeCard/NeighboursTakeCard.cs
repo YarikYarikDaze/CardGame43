@@ -17,17 +17,18 @@ public class NeighboursTakeCard : SpellEffect
     {
         this.caster = newCaster;
         this.spellManager = spellManager;
+        this.targets = new int[targetsNumber];
         this.GetNeighbours();
     }
 
     void GetNeighbours()
     {
-        this.targets = new int[2];
         Array.Copy(this.spellManager.GetNeighbours(caster), this.targets, this.targetsNumber);
     }
 
     public override void OnCast()
     {
+        Debug.Log("Neighbours On Cast");
         if (!HasEnded())
         {
             foreach (int index in targets)
@@ -35,6 +36,7 @@ public class NeighboursTakeCard : SpellEffect
                 if (index != -1)
                 {
                     this.Effect(null, index, caster);
+                    Debug.Log("Target took card");
                 }
             }
             this.EndSpell();

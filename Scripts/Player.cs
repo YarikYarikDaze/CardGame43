@@ -169,7 +169,10 @@ public class Player : NetworkBehaviour
     public void ChangeActionsLeft(int change)
     {
         this.remainingMoves += change;
-        Debug.Log(change);
+        if (remainingMoves == 0)
+        {
+            this.EndTurn();
+        }
     }
 
     public void AddTarget(int index)

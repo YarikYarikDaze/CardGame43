@@ -16,13 +16,14 @@ public class ThreePlayersTakeCards : SpellEffect
     {
         this.caster = newCaster;
         this.spellManager = spellManager;
-        this.GetRandomPlayer();
+        this.GetTwoNextPlayers(target);
     }
 
-    void GetRandomPlayer()
+    void GetTwoNextPlayers(int target)
     {
-        this.targets = new int[1];
-        this.targets[0] = spellManager.GetRandomPlayer();
+        this.targets = new int[targetsNumber];
+        spellManager.GetTwoNextPlayers(target, caster);
+        Array.Copy(spellManager.GetTwoNextPlayers(target, caster), this.targets, targetsNumber);
     }
     public override void OnHit(SpellEffect spell)
     {
@@ -32,6 +33,10 @@ public class ThreePlayersTakeCards : SpellEffect
             {
                 if (index != -1)
                 {
+                    if (targets[0] == index)
+                    {
+                        this.Effect(null, index, caster);
+                    }
                     this.Effect(null, index, caster);
                 }
             }

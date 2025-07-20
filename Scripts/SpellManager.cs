@@ -130,6 +130,8 @@ public class SpellManager : MonoBehaviour
     }
     void HandleNewSpell(SpellEffect newSpell, int index, int[] targets)
     {
+        Debug.Log(targets[0]);
+        Debug.Log(targets[1]);
         foreach (int target in targets)
         {
             SpellEffect spellAfterHandling = this.TraverseEffectsOnHit(newSpell, target);
@@ -194,6 +196,10 @@ public class SpellManager : MonoBehaviour
     public void StealCard(int indexCaster, int indexTarget)
     {
         int cardNumber = ChooseCard(indexTarget);
+        if (cardNumber == -1)
+        {
+            return;
+        }
         int color = gameManager.RemoveCardFromPrep(indexTarget, cardNumber);
         gameManager.AddCardToPrep(indexCaster, 0, color);
     }
@@ -233,5 +239,65 @@ public class SpellManager : MonoBehaviour
     public void ReturnSpellToPrep(int target)
     {
         gameManager.ReturnSpellToPrep(target);
+    }
+
+    public int[] GetTwoNextPlayers(int index, int caster)
+    {
+        int[] targets = new int[3];
+        targets[0] = index;
+        targets[1] = gameManager.NextPlayer(index);
+        if (targets[1] == caster)
+        {
+            targets[1] = gameManager.NextPlayer(targets[1]);
+        }
+        targets[2] = gameManager.NextPlayer(targets[1]);
+        if (targets[2] == caster)
+        {
+            targets[2] = gameManager.NextPlayer(targets[2]);
+        }
+        return targets;
+    }
+
+    public void CreateRandomSpell(int caster)
+    {
+        Random random = new Random();
+        SpellEffect newSpell = (SpellEffect)ScriptableObject.CreateInstance(this.effectsArray[random.Next(3), random.Next(3), random.Next(4)]);
+
+        if (newSpell.IsSelfCasted())
+        {
+            newSpell.InitializeSpell(caster, caster, this);
+        }
+        else
+        {
+            newSpell.InitializeSpell(caster, GetRandomPlayer(), this);
+        }
+
+        gameManager.ClearPrepOfAPlayer(caster);
+
+        this.HandleNewSpell(newSpell, caster, newSpell.GetTargetsIndexes());
+    }
+
+    public int[] GetAllPlayers()
+    {
+        int[] targets = new int[gameManager.GetPlayerCount()];
+        for (int i = 0; i < gameManager.GetPlayerCount(); i++)
+        {
+            targets[i] = i;
+        }
+        return targets;
+    }
+
+    public void ReturnCardsToHand(int target, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            int cardNumber = ChooseCard(target);
+            if (cardNumber == -1)
+            {
+                return;
+            }
+            int color = gameManager.RemoveCardFromPrep(targetarget, cardNumber);
+            gameManager.GiveSpecificCardToPlayer(target, color);
+        }
     }
 }
