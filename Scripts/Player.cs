@@ -38,7 +38,7 @@ public class Player : NetworkBehaviour
             handScript.deckPrefab = deckPrefab;
             handScript.playerScript = this;
         }
-
+        this.target = -2;
     }
 
     void Update()
@@ -125,7 +125,7 @@ public class Player : NetworkBehaviour
 
     public void CastSpell()
     {
-        if (Turn && remainingMoves > 0)
+        if (Turn && remainingMoves > 0 && this.target==-2)
         {
             this.CastServerRpc(this.id);
         }

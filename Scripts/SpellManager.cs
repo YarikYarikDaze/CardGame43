@@ -27,8 +27,9 @@ public class SpellManager : MonoBehaviour
                 {
                 "NeighboursTakeCard",
                 "TakeCardsPrep",
-                "ReturnSpellToPrep",
-                "ThreePlayersTakeCards"
+                "ThreePlayersTakeCards",
+                "ReturnSpellToPrep"
+                
                 },
                 {
                 "TakeAdditionalCard",
@@ -47,7 +48,7 @@ public class SpellManager : MonoBehaviour
                 {
                 "SkipTurn",
                 "TakeCardSkipTurn",
-                "ThreePlayersTakeCards",
+                "ThreePlayersSkipTurn",
                 "NeighboursSkipTurn"
                 },
                 {
@@ -307,5 +308,14 @@ public class SpellManager : MonoBehaviour
     public void RenewCardsInHands(int target)
     {
         gameManager.RenewCardsInHands(target);
+    }
+
+    public void SkipTurnPostponed(int target, int caster)
+    {
+        SpellEffect skipSpell = (SpellEffect)ScriptableObject.CreateInstance("SkipTurn");
+
+        skipSpell.InitializeSpell(caster, target, this);
+
+        HandleNewSpell(skipSpell, caster, skipSpell.GetTargetsIndexes());
     }
 }

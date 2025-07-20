@@ -36,7 +36,15 @@ public class TwoPlayersSkipTurn : SpellEffect
             {
                 if (index != -1)
                 {
-                    this.Effect(null, index, caster);
+                    if (index == targets[0])
+                    {
+                        this.Effect(null, index, caster);
+                    }
+                    else
+                    {
+                        this.AdditionalEffect(index, caster);
+                    }
+                    
                 }
             }
             this.EndSpell();
@@ -47,5 +55,10 @@ public class TwoPlayersSkipTurn : SpellEffect
     {
         this.spellManager.EndPlayerTurn(target);
         SendIdToClients();
-    }   
+    }
+    void AdditionalEffect(int target, int caster)
+    {
+        this.spellManager.SkipTurnPostponed(target, caster);
+        SendIdToClients();
+    }
 }
