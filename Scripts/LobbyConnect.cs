@@ -13,7 +13,7 @@ using TMPro;
 
 public class LobbyConnect : NetworkBehaviour
 {
-    
+
 
     [SerializeField] GameObject main;
     [SerializeField] GameObject ChoiceMenu;
@@ -27,7 +27,9 @@ public class LobbyConnect : NetworkBehaviour
     [SerializeField] Button connect;
 
     [SerializeField] Button proceed;
+    [SerializeField] TMP_Text hostConnectedCount;
     [SerializeField] SceneTransitionManager transitionManager;
+    [SerializeField] TMP_Text joinConnectedCount;
 
     public string GetLocalIPv4()
     {
@@ -76,12 +78,21 @@ public class LobbyConnect : NetworkBehaviour
 
         proceed.onClick.AddListener(() =>
         {
-            int count = NetworkManager.Singleton.ConnectedClientsIds.Count;
-            if (count >= 3 && count <= 6)
-            {
-                transitionManager.TransitionAllPlayersToGameScene();
-            }
+            transitionManager.TransitionAllPlayersToGameScene();
         });
+    }
+    void Update()
+    {
+        int count = NetworkManager.Singleton.ConnectedClientsIds.Count;
+        if (lobbyHost.activeSelf)
+        {
+            proceed.interactable = count >= 3 && count <= 6;
+            hostConnectedCount.text = "Connected players: " + count.ToString();
+        }
+        if (lobbyJoin.activeSelf)
+        {
+            joinConnectedCount.text = "Currently in this lobby: " + count.ToString();
+        }
     }
 }
 //10.91.87.137

@@ -40,7 +40,7 @@ public class PrepScript : MonoBehaviour
         cardCount.text = count.ToString();
     } 
     public void Demo(){
-        idDemo.text = id.ToString();
+        idDemo.text = (id+1).ToString();
     }
 
 

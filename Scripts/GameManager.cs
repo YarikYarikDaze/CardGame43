@@ -143,7 +143,18 @@ public class GameManager : NetworkBehaviour
 
         LoadPrepsClientRpc(currentTurn);
         //add win calls
+        if (winner != -1)
+        {
+            AnnounceWinnerClientRpc(winner);
+        }
+    }
 
+    [ClientRpc]
+    void AnnounceWinnerClientRpc(int newWinner)
+    {
+        GameObject winnerAnouncement = GameObject.FindWithTag("WinPanel");
+        winnerAnouncement.SetActive(true);
+        winnerAnouncement.GetComponent<WinPanel>().AnnounceWinner(newWinner);
     }
 
     [ClientRpc]
@@ -331,8 +342,16 @@ public class GameManager : NetworkBehaviour
     {
         // NOTE: add Previous() and Next()
         currentTurn = NextPlayer(currentTurn);
+        CheckWinner(currentTurn);
         spellManager.TraverseEffectsOnTurn(currentTurn);
         SetState(playerCards);
+    }
+
+    public void CheckWinner(int i)
+    {
+        int[] handCards = new int[] { playerCards[i, 0, 0], playerCards[i, 0, 1], playerCards[i, 0, 2] };
+        int cardCount = handCards.Sum();
+        if(cardCount==0) winner = i;
     }
 
     int GiveColorToCard()
