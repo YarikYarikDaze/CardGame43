@@ -72,11 +72,8 @@ public class Player : NetworkBehaviour
     public void TakeTurn(bool turn)
     // Start of this player's turn
     {
-        if (this.turn != turn)
-        {
-            this.turn = turn;
-            remainingMoves = turn ? maxMoves : 0;
-        }
+        this.turn = turn;
+        remainingMoves = turn ? maxMoves : 0;
     }
 
     void SetCards(int[] newHandCards)

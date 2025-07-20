@@ -12,7 +12,7 @@ public class AllNewCards : SpellEffect
         this.targetsNumber = 6;
         this.spellType = 1;
         this.spellEffectsCount = 1;
-        this.SelfCasted = false;
+        this.SelfCasted = true;
     }
     public override void InitializeSpell(int newCaster, int target, SpellManager spellManager)
     {

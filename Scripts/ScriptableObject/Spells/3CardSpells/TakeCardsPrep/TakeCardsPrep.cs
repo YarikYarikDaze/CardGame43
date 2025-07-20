@@ -9,7 +9,7 @@ public class TakeCardsPrep : SpellEffect
         this.targetsNumber = 1;
         this.spellType = 2;
         this.spellEffectsCount = 1;
-        this.SelfCasted = false;
+        this.SelfCasted = true;
     }
 
     public override void InitializeSpell(int newCaster, int target, SpellManager spellManager)

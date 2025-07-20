@@ -85,6 +85,7 @@ public class GameManager : NetworkBehaviour
         // Initializes players and state
         InitializeGameClientRpc();
         SetState(playerCards);
+        SetTurns();
 
         //var sendParams = new ClientRpcParams();
         //sendParams.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[0] };
@@ -135,15 +136,26 @@ public class GameManager : NetworkBehaviour
 
             int[] prepCards = new int[] { cards[i, 1, 0], cards[i, 1, 1], cards[i, 1, 2] };
             SetPrepClientRpc(prepCards, cardCount);
-
-
-            // Gives a turn to current player
-            SetTurnClientRpc(i == currentTurn, sendOnly);
         }
 
         LoadPrepsClientRpc(currentTurn);
         //add win calls
 
+    }
+
+    void SetTurns()
+    {
+        for (int i = 0; i < playerCount; i++)
+        {
+            // sendParams are used for us to send only to client no. i. 
+            // NOTE: Its using Network's IDs, which is probably read only?
+            //       Later on we have to store IDs on a separate array to allow swapping, shifting etc.
+            var sendOnly = new ClientRpcParams();
+            sendOnly.Send.TargetClientIds = new[] { NetworkManager.Singleton.ConnectedClientsIds[i] };
+
+            // Gives a turn to current player
+            SetTurnClientRpc(i == currentTurn, sendOnly);
+        }
     }
 
     [ClientRpc]
@@ -339,6 +351,7 @@ public class GameManager : NetworkBehaviour
         currentTurn = NextPlayer(currentTurn);
         spellManager.TraverseEffectsOnTurn(currentTurn);
         SetState(playerCards);
+        SetTurns();
     }
 
     int GiveColorToCard()
