@@ -130,8 +130,6 @@ public class SpellManager : MonoBehaviour
     }
     void HandleNewSpell(SpellEffect newSpell, int index, int[] targets)
     {
-        Debug.Log(targets[0]);
-        Debug.Log(targets[1]);
         foreach (int target in targets)
         {
             SpellEffect spellAfterHandling = this.TraverseEffectsOnHit(newSpell, target);

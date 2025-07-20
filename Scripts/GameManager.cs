@@ -248,6 +248,7 @@ public class GameManager : NetworkBehaviour
     public void SpellCasted()
     {
         this.SetState(playerCards);
+        this.ChangePlayerRemainingMoves(currentTurn, -1);
     }
 
     public void NewCast(int id)
@@ -461,7 +462,7 @@ public class GameManager : NetworkBehaviour
 
     public void SendSpellsAnimationsToClients(int spellIndex, int caster, int[] targets)
     {
-
+        this.AnimateEffectClientRpc(spellIndex, caster, targets);
     }
 
     [ClientRpc]
