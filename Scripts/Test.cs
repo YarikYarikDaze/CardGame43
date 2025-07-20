@@ -4,7 +4,7 @@ using Unity.Netcode;
 public class Test : NetworkBehaviour
 {
     [SerializeField] GameObject managerPrefab;
-    
+
     void Start()
     {
         if (NetworkManager.Singleton.IsHost)
@@ -13,6 +13,8 @@ public class Test : NetworkBehaviour
             if (manager)
                 manager.GetComponent<NetworkObject>().Spawn();
         }
+        AudioJungle Jongle = GameObject.FindWithTag("Jongler").GetComponent<AudioJungle>();
+        Jongle.PlayClip(3);
     }
     
 }
