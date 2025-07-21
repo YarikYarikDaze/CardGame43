@@ -29,13 +29,13 @@ public class SpellManager : MonoBehaviour
                 "TakeCardsPrep",
                 "ThreePlayersTakeCards",
                 "ReturnSpellToPrep"
-                
+
                 },
                 {
                 "TakeAdditionalCard",
                 "SuperTakeAdditionalCard",
                 "RandomSpell",
-                "SuperClearEffects"
+                "ClearEffectsTakeCard"
                 }
             },
             {
@@ -48,33 +48,33 @@ public class SpellManager : MonoBehaviour
                 {
                 "SkipTurn",
                 "TakeCardSkipTurn",
-                "ThreePlayersSkipTurn",
+                "TwoPlayersSkipTurn",
                 "NeighboursSkipTurn"
                 },
                 {
                 "StealCard",
-                "NULLSpell",
-                "NULLSpell",
-                "NULLSpell"
+                "StealSpell",
+                "StealSpell",
+                "StealSpell"
                 }
             },
             {
                 {
                 "Reflect",
-                "NULLSpell",
-                "NULLSpell",
-                "NULLSpell"
+                "Reflect",
+                "Reflect",
+                "SuperReflect"
                 },
                 {
                 "ClearEffects",
-                "NULLSpell",
-                "NULLSpell",
-                "NULLSpell"
+                "ClearEffects",
+                "ClearEffects",
+                "ClearEffects"
                 },
                 {
                 "ShieldSpell",
-                "NULLSpell",
-                "NULLSpell",
+                "ShieldSpell",
+                "ShieldSpell",
                 "SuperBlock"
                 }
             }
@@ -317,5 +317,15 @@ public class SpellManager : MonoBehaviour
         skipSpell.InitializeSpell(caster, target, this);
 
         HandleNewSpell(skipSpell, caster, skipSpell.GetTargetsIndexes());
+    }
+
+    public void StealSpell(int caster, int target)
+    {
+        for (int i = 0; i < gameManager.GetCardsCountPrep(target); i++)
+        {
+            int cardNumber = ChooseCard(target);
+            int color = gameManager.RemoveCardFromPrep(target, cardNumber);
+            gameManager.AddCardToPrep(caster, 0, color);
+        }
     }
 }

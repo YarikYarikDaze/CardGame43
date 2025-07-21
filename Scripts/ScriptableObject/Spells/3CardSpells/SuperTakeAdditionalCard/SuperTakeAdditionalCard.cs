@@ -10,6 +10,7 @@ public class SuperTakeAdditionalCard : SpellEffect
         this.spellType = 2;
         this.spellEffectsCount = 2;
         this.SelfCasted = false;
+        this.spellIndex = 15;
     }
     public override void OnHit(SpellEffect spell)
     { 

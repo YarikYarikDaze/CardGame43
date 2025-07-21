@@ -13,6 +13,7 @@ public class ThreePlayersTakeCards : SpellEffect
         this.spellType = 2;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
+        this.spellIndex = 14;
     }
 
     public override void InitializeSpell(int newCaster, int target, SpellManager spellManager)
