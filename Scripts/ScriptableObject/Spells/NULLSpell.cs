@@ -22,5 +22,6 @@ public class NULLSpell : SpellEffect
 
     public override void Effect(SpellEffect spell, int target, int caster)
     {
+        //Null
     }
 }
