@@ -14,10 +14,11 @@ public class SpellAnimator : MonoBehaviour
     }
 
     [SerializeField]
-    public SpellAnimationConfig[] spellConfigs = new SpellAnimationConfig[36];
+    public SpellAnimationConfig[] spellConfigs;
 
     private void Awake()
     {
+        spellConfigs = new SpellAnimationConfig[36]; 
         // Инициализация массива spellConfigs
         for (int i = 0; i < spellConfigs.Length; i++)
         {

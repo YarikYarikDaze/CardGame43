@@ -219,5 +219,6 @@ public class Player : NetworkBehaviour
     {
         // Animation Logic? nah, not here.
         prepRenderer.GenerateEffects(spellId, targets);
+        Debug.Log(spellId);
     }
 }
