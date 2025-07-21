@@ -10,6 +10,7 @@ public class Burn : SpellEffect
         this.spellType = 2;
         this.spellEffectsCount = 3;
         this.SelfCasted = false;
+        this.spellIndex = 10;
     }
     public override void OnHit(SpellEffect spell) { }
 

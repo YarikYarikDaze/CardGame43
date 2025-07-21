@@ -1,21 +1,21 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TakeCardSkipTurn", menuName = "Scriptable Objects/TakeCardSkipTurn")]
-public class TakeCardSkipTurn : SpellEffect
+[CreateAssetMenu(fileName = "StealSpell", menuName = "Scriptable Objects/StealSpell")]
+public class StealSpell : SpellEffect
 {
     void Awake()
     {
         this.duration = 1;
         this.targetsNumber = 1;
-        this.spellType = 2;
+        this.spellType = 1;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
-        this.spellIndex = 21;
+        this.spellIndex = 24;
     }
 
-    public override void OnTurn()
-    {
-        if (!this.HasEnded())
+    public override void OnCast()
+    { 
+        if (!HasEnded())
         {
             foreach (int index in targets)
             {
@@ -30,8 +30,7 @@ public class TakeCardSkipTurn : SpellEffect
 
     public override void Effect(SpellEffect spell, int target, int caster)
     {
-        this.spellManager.GiveCardToPlayer(target);
-        this.spellManager.EndPlayerTurn(target);
+        this.spellManager.StealSpell(caster, target);
         SendIdToClients();
     }
 }

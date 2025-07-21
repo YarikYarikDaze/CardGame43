@@ -89,6 +89,9 @@ public abstract class SpellEffect : ScriptableObject
 
     protected void SendIdToClients()
     {
-        spellManager.SendIdToClients(spellIndex, caster, targets);
+        if (this.spellIndex != null)
+        {
+            spellManager.SendIdToClients(spellIndex, caster, targets);
+        }
     }
 }

@@ -10,6 +10,7 @@ public class RandomSpell : SpellEffect
         this.spellType = 1;
         this.spellEffectsCount = 1;
         this.SelfCasted = true;
+        this.spellIndex = 16;
     }
 
     public override void InitializeSpell(int newCaster, int target, SpellManager spellManager)

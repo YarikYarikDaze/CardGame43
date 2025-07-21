@@ -10,6 +10,7 @@ public class SuperBlock : SpellEffect
         this.spellType = 0;
         this.spellEffectsCount = 3;
         this.SelfCasted = true;
+        this.spellIndex = 35;
     }
     public override void OnHit(SpellEffect spell)
     {

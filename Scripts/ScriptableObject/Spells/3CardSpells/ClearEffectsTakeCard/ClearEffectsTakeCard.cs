@@ -10,6 +10,7 @@ public class ClearEffectsTakeCard : SpellEffect
         this.spellType = 2;
         this.spellEffectsCount = 1;
         this.SelfCasted = false;
+        this.spellIndex = 17;
     }
 
     public override void OnCast()
