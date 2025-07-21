@@ -1,0 +1,2158 @@
+fileFormatVersion: 2
+guid: c40324c19efb67b4db84551663f8bfcc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5301035649592218763
+    second: emty_spell_0
+  - first:
+      213: 5746966040342420293
+    second: emty_spell_1
+  - first:
+      213: 4127019015912725751
+    second: emty_spell_2
+  - first:
+      213: -7807807694720788079
+    second: emty_spell_3
+  - first:
+      213: -3440549691037430127
+    second: emty_spell_4
+  - first:
+      213: -3296895139497102270
+    second: emty_spell_5
+  - first:
+      213: 5016451733879547306
+    second: emty_spell_6
+  - first:
+      213: -4118001794989092207
+    second: emty_spell_7
+  - first:
+      213: 5351930285065678784
+    second: emty_spell_8
+  - first:
+      213: 3913219039631072480
+    second: emty_spell_9
+  - first:
+      213: 1807834221778805194
+    second: emty_spell_10
+  - first:
+      213: 8691655796610007878
+    second: emty_spell_11
+  - first:
+      213: -2050000877944683948
+    second: emty_spell_12
+  - first:
+      213: -4882692095847265000
+    second: emty_spell_13
+  - first:
+      213: 2121784169970971826
+    second: emty_spell_14
+  - first:
+      213: -6564880785246850963
+    second: emty_spell_15
+  - first:
+      213: 6686178612023855872
+    second: emty_spell_16
+  - first:
+      213: -4971789207489058354
+    second: emty_spell_17
+  - first:
+      213: 5643258149421804688
+    second: emty_spell_18
+  - first:
+      213: 2532905516919422300
+    second: emty_spell_19
+  - first:
+      213: -4758698838586679528
+    second: emty_spell_20
+  - first:
+      213: -5790616318117285302
+    second: emty_spell_21
+  - first:
+      213: 6483362273452361964
+    second: emty_spell_22
+  - first:
+      213: 6296229247126146047
+    second: emty_spell_23
+  - first:
+      213: 3572529157276582727
+    second: emty_spell_24
+  - first:
+      213: -7839873878525596343
+    second: emty_spell_25
+  - first:
+      213: 5509208630940028471
+    second: emty_spell_26
+  - first:
+      213: 2645881841247456875
+    second: emty_spell_27
+  - first:
+      213: 858316065769827139
+    second: emty_spell_28
+  - first:
+      213: -6729135958096150975
+    second: emty_spell_29
+  - first:
+      213: -3144795432911571870
+    second: emty_spell_30
+  - first:
+      213: 287998890998170757
+    second: emty_spell_31
+  - first:
+      213: -5520334900532644700
+    second: emty_spell_32
+  - first:
+      213: 8279528129062621314
+    second: emty_spell_33
+  - first:
+      213: -2518983421895561839
+    second: emty_spell_34
+  - first:
+      213: -6320834215774240173
+    second: emty_spell_35
+  - first:
+      213: -3334727096065319830
+    second: emty_spell_36
+  - first:
+      213: -4041856688747468762
+    second: emty_spell_37
+  - first:
+      213: -3143730533096277677
+    second: emty_spell_38
+  - first:
+      213: 4283616162004219481
+    second: emty_spell_39
+  - first:
+      213: 5673825353409740263
+    second: emty_spell_40
+  - first:
+      213: -8876306799424087047
+    second: emty_spell_41
+  - first:
+      213: 4786283442554151223
+    second: emty_spell_42
+  - first:
+      213: 6912387692105341550
+    second: emty_spell_43
+  - first:
+      213: -7596221106189973179
+    second: emty_spell_44
+  - first:
+      213: -9172401233165619492
+    second: emty_spell_45
+  - first:
+      213: -6805033948136953780
+    second: emty_spell_46
+  - first:
+      213: -6683633142978053700
+    second: emty_spell_47
+  - first:
+      213: 7974111489282069041
+    second: emty_spell_48
+  - first:
+      213: 3220691098786073498
+    second: emty_spell_49
+  - first:
+      213: 1088247259397383841
+    second: emty_spell_50
+  - first:
+      213: -7456235987156334400
+    second: emty_spell_51
+  - first:
+      213: 4600065403998957231
+    second: emty_spell_52
+  - first:
+      213: -4033573158219318678
+    second: emty_spell_53
+  - first:
+      213: -7796079900590548540
+    second: emty_spell_54
+  - first:
+      213: -7351094339484425817
+    second: emty_spell_55
+  - first:
+      213: -2477971157304432834
+    second: emty_spell_56
+  - first:
+      213: -1465660962978661063
+    second: emty_spell_57
+  - first:
+      213: -2627527458147820007
+    second: emty_spell_58
+  - first:
+      213: -6201023336410925130
+    second: emty_spell_59
+  - first:
+      213: 9142741361382829831
+    second: emty_spell_60
+  - first:
+      213: -5916575292333214285
+    second: emty_spell_61
+  - first:
+      213: 1528471058643141064
+    second: emty_spell_62
+  - first:
+      213: -4179410773907538947
+    second: emty_spell_63
+  - first:
+      213: 960243413621600318
+    second: emty_spell_64
+  - first:
+      213: -2831568827769987452
+    second: emty_spell_65
+  - first:
+      213: -6256287309042382809
+    second: emty_spell_66
+  - first:
+      213: 2423318558127972368
+    second: emty_spell_67
+  - first:
+      213: -6445669587485634887
+    second: emty_spell_68
+  - first:
+      213: -2027237724110012861
+    second: emty_spell_69
+  - first:
+      213: -6876370446440864736
+    second: emty_spell_70
+  - first:
+      213: 5203395717822994496
+    second: emty_spell_71
+  - first:
+      213: -6110678431511663391
+    second: emty_spell_72
+  - first:
+      213: 4731874876419180810
+    second: emty_spell_73
+  - first:
+      213: 468234172605333201
+    second: emty_spell_74
+  - first:
+      213: -7379049293344583445
+    second: emty_spell_75
+  - first:
+      213: 1673895891841015448
+    second: emty_spell_76
+  - first:
+      213: -4832165184912008744
+    second: emty_spell_77
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: emty_spell_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 280
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8450a356df019940800000000000000
+      internalID: 5301035649592218763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54bd7da3a2351cf40800000000000000
+      internalID: 5746966040342420293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_2
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fc92c8dded164930800000000000000
+      internalID: 4127019015912725751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_3
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1991b99e44815a390800000000000000
+      internalID: -7807807694720788079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_4
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19e42a9e846b040d0800000000000000
+      internalID: -3440549691037430127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_5
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 280
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 244309c96531f32d0800000000000000
+      internalID: -3296895139497102270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_6
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 280
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa568ce06440e9540800000000000000
+      internalID: 5016451733879547306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_7
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19211418f2be9d6c0800000000000000
+      internalID: -4118001794989092207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_8
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cfaeff0d30e54a40800000000000000
+      internalID: 5351930285065678784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_9
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ec5181cbfb8e4630800000000000000
+      internalID: 3913219039631072480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac1abe975a7b61910800000000000000
+      internalID: 1807834221778805194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_11
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 280
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64387ea85e6fe9870800000000000000
+      internalID: 8691655796610007878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_12
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 280
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4524ed8101fec83e0800000000000000
+      internalID: -2050000877944683948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_13
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81d8a6f88613d3cb0800000000000000
+      internalID: -4882692095847265000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_14
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b4ba2df577127d10800000000000000
+      internalID: 2121784169970971826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_15
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d60f29245bbd4e4a0800000000000000
+      internalID: -6564880785246850963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_16
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 283
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00b0f72d5041acc50800000000000000
+      internalID: 6686178612023855872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_17
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 280
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec96e75be08a00bb0800000000000000
+      internalID: -4971789207489058354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 243
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09c6d1c3361e05e40800000000000000
+      internalID: 5643258149421804688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_19
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 243
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5dfb91d520b62320800000000000000
+      internalID: 2532905516919422300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_20
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 243
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81f1af47e94b5fdb0800000000000000
+      internalID: -4758698838586679528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_21
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 243
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42f900832993afa0800000000000000
+      internalID: -5790616318117285302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_22
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 243
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce80c4b23a789f950800000000000000
+      internalID: 6483362273452361964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_23
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 243
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffb01633423b06750800000000000000
+      internalID: 6296229247126146047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 206
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7434239275c249130800000000000000
+      internalID: 3572529157276582727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_25
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 206
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94d2e92be3c233390800000000000000
+      internalID: -7839873878525596343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_26
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 206
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73e42b09f04a47c40800000000000000
+      internalID: 5509208630940028471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_27
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 206
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6e0631248f08b420800000000000000
+      internalID: 2645881841247456875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_28
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 206
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34ba83d0ae959eb00800000000000000
+      internalID: 858316065769827139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_29
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 206
+        width: 7
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14efe54af7e4d92a0800000000000000
+      internalID: -6729135958096150975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 169
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 264f80237317b54d0800000000000000
+      internalID: -3144795432911571870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_31
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 169
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58407a9277d2ff300800000000000000
+      internalID: 287998890998170757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_32
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 169
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a47f8ce7a4d363b0800000000000000
+      internalID: -5520334900532644700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_33
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 169
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 280d1a077fac6e270800000000000000
+      internalID: 8279528129062621314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_34
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 169
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d21d68ce5ca0dd0800000000000000
+      internalID: -2518983421895561839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_35
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 169
+        width: 7
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35244ac15c2e748a0800000000000000
+      internalID: -6320834215774240173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 133
+        width: 8
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6c1820df5ba8b1d0800000000000000
+      internalID: -3334727096065319830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_37
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 133
+        width: 8
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 628ab2a91c078e7c0800000000000000
+      internalID: -4041856688747468762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_38
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 133
+        width: 8
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3593f318cb93f54d0800000000000000
+      internalID: -3143730533096277677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_39
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 133
+        width: 8
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 956326a2436727b30800000000000000
+      internalID: 4283616162004219481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_40
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 133
+        width: 8
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7edb793091a7dbe40800000000000000
+      internalID: 5673825353409740263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_41
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 133
+        width: 7
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fb51fe9ef501d480800000000000000
+      internalID: -8876306799424087047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73126c3ae6b4c6240800000000000000
+      internalID: 4786283442554151223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_43
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 96
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6a98b98bfbbdef50800000000000000
+      internalID: 6912387692105341550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_44
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 96
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 549c832862dc49690800000000000000
+      internalID: -7596221106189973179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_45
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 96
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdeeec70da515b080800000000000000
+      internalID: -9172401233165619492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_46
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 96
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c48a2d4cda9af81a0800000000000000
+      internalID: -6805033948136953780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_47
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 96
+        width: 7
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb9f3cf5117fe33a0800000000000000
+      internalID: -6683633142978053700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 59
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 132d40e962cb9ae60800000000000000
+      internalID: 7974111489282069041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_49
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 59
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9b086a8d7132bc20800000000000000
+      internalID: 3220691098786073498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_50
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 59
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a66c2cdd1b3a1f00800000000000000
+      internalID: 1088247259397383841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_51
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 59
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c80010efd0268890800000000000000
+      internalID: -7456235987156334400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_52
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 59
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faeebecdc17b6df30800000000000000
+      internalID: 4600065403998957231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_53
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 59
+        width: 7
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6a79c8559ed508c0800000000000000
+      internalID: -4033573158219318678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 18
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c9dcb4c2a2cec390800000000000000
+      internalID: -7796079900590548540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_55
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 18
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a165a065aaabf990800000000000000
+      internalID: -7351094339484425817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_56
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 18
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e37a43d7c5a7c9dd0800000000000000
+      internalID: -2477971157304432834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_57
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 18
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93dff7c9e1de8abe0800000000000000
+      internalID: -1465660962978661063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_58
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 18
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91e9383b2b5298bd0800000000000000
+      internalID: -2627527458147820007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_59
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 18
+        width: 10
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b7b155412a81f9a0800000000000000
+      internalID: -6201023336410925130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_60
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70fae7ee3da81ee70800000000000000
+      internalID: 9142741361382829831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_61
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b530a57e1a14eda0800000000000000
+      internalID: -5916575292333214285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_62
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c1c3e36458363510800000000000000
+      internalID: 1528471058643141064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_63
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfbfcca6b00cff5c0800000000000000
+      internalID: -4179410773907538947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_64
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e30f2de0c48735d00800000000000000
+      internalID: 960243413621600318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_65
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 0
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48e53b7472f34b8d0800000000000000
+      internalID: -2831568827769987452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_66
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 0
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7288eb3f6d33d29a0800000000000000
+      internalID: -6256287309042382809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_67
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01064daa36b51a120800000000000000
+      internalID: 2423318558127972368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_68
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9be416a29a16c86a0800000000000000
+      internalID: -6445669587485634887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_69
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34eb62bd70ecdd3e0800000000000000
+      internalID: -2027237724110012861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_70
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 024e5e3f2893290a0800000000000000
+      internalID: -6876370446440864736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_71
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 0
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 048d0aa26dc263840800000000000000
+      internalID: 5203395717822994496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_72
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 0
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ec2b11a752823ba0800000000000000
+      internalID: -6110678431511663391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_73
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a098f8a212ffaa140800000000000000
+      internalID: 4731874876419180810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_74
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1def6d9cf708f7600800000000000000
+      internalID: 468234172605333201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_75
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be0591a73c9589990800000000000000
+      internalID: -7379049293344583445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_76
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 0
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89e5b28e17fda3710800000000000000
+      internalID: 1673895891841015448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emty_spell_77
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 0
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d95f41cd53b0fcb0800000000000000
+      internalID: -4832165184912008744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      emty_spell_0: 5301035649592218763
+      emty_spell_1: 5746966040342420293
+      emty_spell_10: 1807834221778805194
+      emty_spell_11: 8691655796610007878
+      emty_spell_12: -2050000877944683948
+      emty_spell_13: -4882692095847265000
+      emty_spell_14: 2121784169970971826
+      emty_spell_15: -6564880785246850963
+      emty_spell_16: 6686178612023855872
+      emty_spell_17: -4971789207489058354
+      emty_spell_18: 5643258149421804688
+      emty_spell_19: 2532905516919422300
+      emty_spell_2: 4127019015912725751
+      emty_spell_20: -4758698838586679528
+      emty_spell_21: -5790616318117285302
+      emty_spell_22: 6483362273452361964
+      emty_spell_23: 6296229247126146047
+      emty_spell_24: 3572529157276582727
+      emty_spell_25: -7839873878525596343
+      emty_spell_26: 5509208630940028471
+      emty_spell_27: 2645881841247456875
+      emty_spell_28: 858316065769827139
+      emty_spell_29: -6729135958096150975
+      emty_spell_3: -7807807694720788079
+      emty_spell_30: -3144795432911571870
+      emty_spell_31: 287998890998170757
+      emty_spell_32: -5520334900532644700
+      emty_spell_33: 8279528129062621314
+      emty_spell_34: -2518983421895561839
+      emty_spell_35: -6320834215774240173
+      emty_spell_36: -3334727096065319830
+      emty_spell_37: -4041856688747468762
+      emty_spell_38: -3143730533096277677
+      emty_spell_39: 4283616162004219481
+      emty_spell_4: -3440549691037430127
+      emty_spell_40: 5673825353409740263
+      emty_spell_41: -8876306799424087047
+      emty_spell_42: 4786283442554151223
+      emty_spell_43: 6912387692105341550
+      emty_spell_44: -7596221106189973179
+      emty_spell_45: -9172401233165619492
+      emty_spell_46: -6805033948136953780
+      emty_spell_47: -6683633142978053700
+      emty_spell_48: 7974111489282069041
+      emty_spell_49: 3220691098786073498
+      emty_spell_5: -3296895139497102270
+      emty_spell_50: 1088247259397383841
+      emty_spell_51: -7456235987156334400
+      emty_spell_52: 4600065403998957231
+      emty_spell_53: -4033573158219318678
+      emty_spell_54: -7796079900590548540
+      emty_spell_55: -7351094339484425817
+      emty_spell_56: -2477971157304432834
+      emty_spell_57: -1465660962978661063
+      emty_spell_58: -2627527458147820007
+      emty_spell_59: -6201023336410925130
+      emty_spell_6: 5016451733879547306
+      emty_spell_60: 9142741361382829831
+      emty_spell_61: -5916575292333214285
+      emty_spell_62: 1528471058643141064
+      emty_spell_63: -4179410773907538947
+      emty_spell_64: 960243413621600318
+      emty_spell_65: -2831568827769987452
+      emty_spell_66: -6256287309042382809
+      emty_spell_67: 2423318558127972368
+      emty_spell_68: -6445669587485634887
+      emty_spell_69: -2027237724110012861
+      emty_spell_7: -4118001794989092207
+      emty_spell_70: -6876370446440864736
+      emty_spell_71: 5203395717822994496
+      emty_spell_72: -6110678431511663391
+      emty_spell_73: 4731874876419180810
+      emty_spell_74: 468234172605333201
+      emty_spell_75: -7379049293344583445
+      emty_spell_76: 1673895891841015448
+      emty_spell_77: -4832165184912008744
+      emty_spell_8: 5351930285065678784
+      emty_spell_9: 3913219039631072480
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
