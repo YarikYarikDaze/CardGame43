@@ -90,7 +90,7 @@ public class LobbyConnect : NetworkBehaviour
         int count = NetworkManager.Singleton.ConnectedClientsIds.Count;
         if (lobbyHost.activeSelf)
         {
-            proceed.interactable = count >= 2 && count <= 6;
+            proceed.interactable = count >= 3 && count <= 6;
             hostConnectedCount.text = "Connected players: " + count.ToString();
         }
         if (lobbyJoin.activeSelf)

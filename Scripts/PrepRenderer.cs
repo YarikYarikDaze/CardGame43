@@ -28,11 +28,11 @@ public class PrepRenderer : MonoBehaviour
         Vector3[] PlPos = new Vector3[]
         {
             new Vector3(0f, -3f, 0f),       // YOU
-            new Vector3(-6f, 0f, -90f),     // LEFT
+            new Vector3(-6f, 0f, 0f),     // LEFT
             new Vector3(-6f, 3f, 0f),     // OPPOSITE LEFT
             new Vector3(0f, 3f, 0f),      // OPPOSITE CENTER
             new Vector3(6f, 3f, 0f),      // OPPOSITE RIGHT
-            new Vector3(6f, 0f, 90f)        // RIGHT
+            new Vector3(6f, 0f, 0f)        // RIGHT
         };
         Vector3 empty = new Vector3(0f, 0f, 0f);
         basePos = new Vector3[,]{
