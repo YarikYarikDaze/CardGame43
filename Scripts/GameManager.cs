@@ -149,9 +149,12 @@ public class GameManager : NetworkBehaviour
     [ClientRpc]
     void AnnounceWinnerClientRpc(int newWinner)
     {
-        GameObject winnerAnouncement = GameObject.FindWithTag("WinPanel");
+        GameObject winnerAnouncement = GameObject.FindWithTag("WinPanel").transform.GetChild(0).gameObject;
+        if (!winnerAnouncement) { Debug.Log("FUCK!"); return; }
         winnerAnouncement.SetActive(true);
         winnerAnouncement.GetComponent<WinPanel>().AnnounceWinner(newWinner);
+        AudioJungle Jongle = GameObject.FindWithTag("Jongler").GetComponent<AudioJungle>();
+        Jongle.PlayClip(2);
     }
 
     void SetTurns()
@@ -261,6 +264,14 @@ public class GameManager : NetworkBehaviour
         ChangePlayerRemainingMoves(id, -1);
 
         SetState(playerCards);
+        PlaceSoundClientRpc();
+    }
+
+    [ClientRpc]
+    void PlaceSoundClientRpc()
+    {
+        AudioJungle Jongle = GameObject.FindWithTag("Jongler").GetComponent<AudioJungle>();
+        Jongle.PlayClip(1);
     }
 
     public int GetPlayerCount()
@@ -365,12 +376,13 @@ public class GameManager : NetworkBehaviour
         SetState(playerCards);
         SetTurns();
     }
+    
 
     public void CheckWinner(int i)
     {
         int[] handCards = new int[] { playerCards[i, 0, 0], playerCards[i, 0, 1], playerCards[i, 0, 2] };
         int cardCount = handCards.Sum();
-        if(cardCount==0) winner = i;
+        if (cardCount < 8) winner = i;
     }
 
     int GiveColorToCard()
