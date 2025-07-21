@@ -103,6 +103,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4001287118882737714, guid: e72a844c414a9d545b2d8a8edd623e7d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1010
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -165,6 +169,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particle
       objectReference: {fileID: 0}
+    - target: {fileID: 9089005500547298835, guid: bcb448e489b4d0b4dbb12230bd856d11, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1010
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -183,6 +191,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4945105992521707585}
     m_Modifications:
+    - target: {fileID: 793119377595731637, guid: cad5a6936226f6047be7389ffaa44a84, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1010
+      objectReference: {fileID: 0}
     - target: {fileID: 2591960040662781962, guid: cad5a6936226f6047be7389ffaa44a84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
