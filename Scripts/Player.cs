@@ -217,6 +217,7 @@ public class Player : NetworkBehaviour
 
     public void AnimateEffect(int spellId, int caster, int[] targets)
     {
-        // Animation Logic
+        // Animation Logic? nah, not here.
+        prepRenderer.GenerateEffects(spellId, targets);
     }
 }

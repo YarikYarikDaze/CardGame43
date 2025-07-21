@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Unity.Netcode;
-using System;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -382,7 +381,7 @@ public class GameManager : NetworkBehaviour
     {
         int[] handCards = new int[] { playerCards[i, 0, 0], playerCards[i, 0, 1], playerCards[i, 0, 2] };
         int cardCount = handCards.Sum();
-        if (cardCount < 8) winner = i;
+        if (cardCount == 0) winner = i;
     }
 
     int GiveColorToCard()
@@ -412,7 +411,7 @@ public class GameManager : NetworkBehaviour
     public void SetEffectsOnPlayer(int index, List<SpellEffect> newEffects)
     {
         this.spellEffectsOnPlayers[index] = new List<SpellEffect>(newEffects);
-        Debug.Log(spellEffectsOnPlayers[index].Count);
+        //Debug.Log(spellEffectsOnPlayers[index].Count);
     }
 
     public void AddEffect(int index, SpellEffect newSpell)

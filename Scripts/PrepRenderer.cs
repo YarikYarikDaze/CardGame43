@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 
@@ -19,7 +20,7 @@ public class PrepRenderer : MonoBehaviour
 
     [SerializeField] GameObject turner;
 
-    GameObject animator;
+    public GameObject animator;
     public void Awake()
     {
         prepCount = NetworkManager.Singleton.ConnectedClientsIds.Count;
@@ -108,5 +109,24 @@ public class PrepRenderer : MonoBehaviour
             }
         }
     }
-    
+    public void GenerateEffects(int spell, int[] targets)
+    {
+        GameObject[] tempEffects = new GameObject[targets.Length];
+
+        for (int i = 0; i < targets.Length; i++)
+        {
+            tempEffects[i] = Instantiate(animator, new Vector3(basePos[prepCount - 1, shift(targets[i])].x, basePos[prepCount - 1, shift(targets[i])].y, 0f), Quaternion.identity);
+            tempEffects[i].GetComponent<SpellAnimator>().PlaySpellAnimation(spell);
+        }
+
+        StartCoroutine(DelayedDelete(tempEffects));
+    }
+    IEnumerator DelayedDelete(GameObject[] effects)
+    {
+        yield return new WaitForSeconds(2f);
+        foreach (GameObject g in effects)
+        {
+            Destroy(g);
+        }
+    }
 }

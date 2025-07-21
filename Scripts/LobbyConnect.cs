@@ -31,6 +31,10 @@ public class LobbyConnect : NetworkBehaviour
     [SerializeField] SceneTransitionManager transitionManager;
     [SerializeField] TMP_Text joinConnectedCount;
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
     public string GetLocalIPv4()
     {
         return Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
